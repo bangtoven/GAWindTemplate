@@ -1,9 +1,9 @@
 //
 //  GAAudioOutputProcessor.m
-//  Pods
+//  Hun
 //
-//  Created by bangtoven on 2015. 1. 14..
-//
+//  Created by Jungho Bang on 2015. 1. 7..
+//  Copyright (c) 2015년 CAT@SNU. All rights reserved.
 //
 
 #import "GAAudioOutputProcessor.h"
@@ -12,53 +12,106 @@
 #import "AEBlockChannel.h"
 
 #import "NRev.h"
+#import "PitShift.h"
+#import "FileWvIn.h"
 
-#import "GAAudioFileInput.h"
+#pragma mark - GAAudioFileInput
+@interface GAAudioFileInput : NSObject
+{
+    stk::FileWvIn fileWvIn;
+    int amplitude;
+    double base;
+}
+
+- (instancetype)initWithFileName:(NSString*)fileName andPitch:(int)pitch;
++ (instancetype)emptyInput;
+
+@property (nonatomic,readonly) stk::StkFloat tick;
+@property (nonatomic,readonly) BOOL isPlaying;
+
+- (stk::StkFloat) currentAmplitude;
+- (void)setRate:(stk::StkFloat)rate;
+
+@end
+#define MAX_AMPLITUDE 440
+@implementation GAAudioFileInput
+
+- (instancetype)init {
+    if (self = [super init]) {
+        amplitude = MAX_AMPLITUDE;
+    }
+    return self;
+}
+
+- (instancetype)initWithFileName:(NSString*)fileName andPitch:(int)pitch {
+    if (self = [super init]) {
+        std::string path = [[[NSBundle mainBundle] pathForResource:fileName ofType:@"wav"] cStringUsingEncoding:NSASCIIStringEncoding];
+        fileWvIn.openFile(path);
+        base = pow(1.0594, pitch);
+        fileWvIn.setRate(base);
+        amplitude = MAX_AMPLITUDE;
+    }
+    return self;
+}
+
++ (instancetype)emptyInput {
+    return [[GAAudioFileInput alloc] init];
+}
+
+- (void)setRate:(stk::StkFloat)rate
+{
+    if (fileWvIn.isOpen())
+        fileWvIn.setRate(base*rate);
+}
+
+- (stk::StkFloat)tick {
+    return fileWvIn.isOpen() ? fileWvIn.tick() : 0;
+}
+
+- (stk::StkFloat)currentAmplitude {
+    stk::StkFloat ratio = amplitude / (double)MAX_AMPLITUDE;
+    
+    if (amplitude>0)
+        amplitude--;
+    
+    return ratio;
+}
+
+- (BOOL)isPlaying {
+    return (amplitude!=0) && (fileWvIn.isFinished()==false);
+}
+
+@end
+
+#pragma mark - GAAudioOutputProcessor
 
 @interface GAAudioOutputProcessor () {
     NSArray *sampleTable;
     NSMutableArray *audioOutput;
     
     stk::NRev *reverb;
-    
-    double gain, masterVolume;
 }
 @property AEAudioController *audioController;
 @end
 
 @implementation GAAudioOutputProcessor
 
-- (void)changePitch:(double)pitch
-{
-    if (audioOutput.count == 0) {
-        return;
++ (instancetype)sharedOutput {
+    static GAAudioOutputProcessor *sharedInstance;
+    if (sharedInstance == nil) {
+        sharedInstance = [[GAAudioOutputProcessor alloc] init];
     }
-    double rate = pow(1.0594, pitch);
-    GAAudioFileInput *afi = audioOutput[0];
-    [afi setRate:rate];
+    return sharedInstance;
 }
 
-- (void)changeGain:(double)_gain
-{
-    gain = _gain;
-    [self setVolume];
+- (void)setReverbEffectMix:(double)mix {
+    reverb->setEffectMix(mix);
 }
-
-- (void)setMasterVolume:(double)volume
-{
-    masterVolume = volume;
-    [self setVolume];
-}
-
-- (void)setVolume
-{
-    AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
-    myBlockChannel.volume = masterVolume * gain;
+- (void)setReverbDelay:(double)delay {
+    reverb->setT60(delay);
 }
 
 - (void)changeNote:(int)note {
-    note += 2;
-    
     int fileNameKey;
     if (note < 0)
         fileNameKey = 0;
@@ -68,9 +121,6 @@
         fileNameKey = note;
     
     NSDictionary *sampleInfo = sampleTable[fileNameKey];
-    //    NSString *noteName = sampleInfo[@"noteName"];
-    //    NSLog(@"%@",noteName);
-    
     NSString *fileName = sampleInfo[@"fileName"];
     int pitch = [sampleInfo[@"pitch"] intValue] + (note-fileNameKey);
     
@@ -83,9 +133,28 @@
     [audioOutput insertObject:[GAAudioFileInput emptyInput] atIndex:0];
 }
 
-- (instancetype)initWithAudioInputTable:(NSArray*)dictArray {
+- (void)motionUpdatedToAngle:(double)angle {
+    if (audioOutput.count == 0) {
+        return;
+    }
+    
+    GAAudioFileInput *afi = audioOutput[0];
+    
+    double ppitch = angle*2/3;
+    ppitch = erf(ppitch)*2;
+    
+    double rate = pow(1.0594, ppitch);
+    [afi setRate:rate];
+    
+    double volume = erf(angle)*0.4 + 0.6;
+    
+    AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
+    myBlockChannel.volume = volume;
+}
+
+- (instancetype)init {
     if (self = [super init]) {
-        sampleTable = [NSArray arrayWithArray:dictArray];
+        sampleTable = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioInputTable" ofType:@"plist"]];
         
         audioOutput = [NSMutableArray arrayWithCapacity:10];
         
@@ -102,7 +171,7 @@
         reverb = new stk::NRev();
         reverb->setT60(1.8);
         reverb->setEffectMix(0.25);
-        
+
         AEBlockChannel *myBlockChannel = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp *time, UInt32 frames, AudioBufferList *audio) {
             
             //The STK classes compute and output one sample at a time,

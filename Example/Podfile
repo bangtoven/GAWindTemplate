@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'http://cat.snu.ac.kr:8000/iOS/specs.git'
 
 target 'GAWindTemplate', :exclusive => true do
   pod "GAWindTemplate", :path => "../"

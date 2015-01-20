@@ -1,6 +1,8 @@
 PODS:
   - GAWindTemplate (0.1.0):
-    - TheAmazingAudioEngine (~> 1.4.6)
+    - STK
+    - TheAmazingAudioEngine
+  - STK (4.5.3)
   - TheAmazingAudioEngine (1.4.6)
 
 DEPENDENCIES:
@@ -11,7 +13,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GAWindTemplate: c46aec5f38b0eb7e0cf19ab88ddf372b0411d74d
-  TheAmazingAudioEngine: d4c027506d6b8b025c5947fb401a972ccf7574f3
+  GAWindTemplate: fb14ec1eec8793aa04204783272f7dfcf0f5987a
+  STK: a3acfd91e8a9081d1b6ff3aeafe766f8494f8060
+  TheAmazingAudioEngine: 174889dc95c6a8a654375215e13a7db61a561fa4
 
 COCOAPODS: 0.35.0

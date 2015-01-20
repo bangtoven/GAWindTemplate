@@ -1,23 +1,23 @@
 //
 //  GAAudioOutputProcessor.h
-//  Pods
+//  Hun
 //
-//  Created by bangtoven on 2015. 1. 14..
-//
+//  Created by Jungho Bang on 2015. 1. 7..
+//  Copyright (c) 2015년 CAT@SNU. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface GAAudioOutputProcessor : NSObject
+#import "GAMotionProcessor.h"
 
-- (instancetype)initWithAudioInputTable:(NSArray*)dictArray;
+@interface GAAudioOutputProcessor : NSObject <GAMotionProcessorDelegate> 
 
-- (void)stopPlaying;
++ (instancetype)sharedOutput;
+
+- (void)setReverbEffectMix:(double)mix;
+- (void)setReverbDelay:(double)delay;
 
 - (void)changeNote:(int)note;
-- (void)changePitch:(double)pitch;
-- (void)changeGain:(double)gain;
-
-- (void)setMasterVolume:(double)volume;
+- (void)stopPlaying;
 
 @end

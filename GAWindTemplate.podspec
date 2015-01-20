@@ -25,5 +25,8 @@ Pod::Spec.new do |s|
   }
 
     s.library      = 'c++'
-    s.dependency 'TheAmazingAudioEngine', '~> 1.4.6'
+    s.dependency 'STK'
+    s.dependency 'TheAmazingAudioEngine'
 end
+
+# pod lib lint --sources=http://cat.snu.ac.kr:8000/iOS/specs.git --verbose

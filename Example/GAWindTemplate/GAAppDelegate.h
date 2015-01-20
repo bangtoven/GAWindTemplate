@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GATemplateAppDelegate.h"
 
-@interface GAAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+@interface GAAppDelegate : GATemplateAppDelegate
 
 @end
