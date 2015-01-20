@@ -25,6 +25,5 @@ Pod::Spec.new do |s|
   }
 
     s.library      = 'c++'
-    s.dependency 'STK', '~> 4.5.3'
     s.dependency 'TheAmazingAudioEngine', '~> 1.4.6'
 end
