@@ -12,7 +12,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"GAWindTemplate" ofType:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithPath:path];
+//    [bundle load];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"GATemplateStoryboard" bundle:bundle];
+    UIViewController *vc =[storyboard instantiateInitialViewController];
+    
+    // Set root view controller and make windows visible
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 							

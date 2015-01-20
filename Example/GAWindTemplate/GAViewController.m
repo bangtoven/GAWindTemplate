@@ -7,12 +7,17 @@
 //
 
 #import "GAViewController.h"
+#import "TestViewController.h"
 
 @interface GAViewController ()
 
 @end
 
 @implementation GAViewController
+- (IBAction)action:(id)sender {
+    TestViewController *tvc = [TestViewController tvcWithNib];
+    [self presentViewController:tvc animated:YES completion:nil];
+}
 
 - (void)viewDidLoad
 {
