@@ -176,6 +176,11 @@
     return self;
 }
 
+- (void)makeOneOctaveHigher{
+    baseOctave += 1;
+    fingeringToNote += 12;
+}
+
 - (void)setReverbEffectMix:(double)mix {
     reverb->setEffectMix(mix);
 }

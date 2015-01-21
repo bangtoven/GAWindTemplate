@@ -19,6 +19,8 @@
 
 + (instancetype)sharedOutput;
 
+- (void)makeOneOctaveHigher;
+
 - (void)setReverbEffectMix:(double)mix;
 - (void)setReverbDelay:(double)delay;
 

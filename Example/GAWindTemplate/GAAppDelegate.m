@@ -16,7 +16,7 @@
     NSLog(@"initialize called");
     
     [pvc setNeedsUpDownOctave:YES];
-    [pvc setAudioOutput:[GAAudioOutputProcessor sharedOutput]];
+//    [pvc setAudioOutput:[GAAudioOutputProcessor sharedOutput]];
 }
 
 @end

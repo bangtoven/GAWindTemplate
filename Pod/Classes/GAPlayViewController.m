@@ -31,11 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.needsUpDownOctave)
-        self.octaveButton.isUpDown = YES;
-    
-    self.keyNameLabel.text = @"";
-    
+    self.audioOutput = [GAAudioOutputProcessor sharedOutput];
     self.audioOutput.delegate = self;
     
     fingeringProcessor = [GAFingeringProcessor new];
@@ -46,6 +42,12 @@
 //    blowProcessor.delegate = self;
 //    [blowProcessor startUpdate];
     
+    if (self.needsUpDownOctave) {
+        [self.octaveButton setIsUpDown:YES];
+        [self.audioOutput makeOneOctaveHigher];
+    }
+
+    self.keyNameLabel.text = @"";
     alwaysBlowing = YES;
 }
 
