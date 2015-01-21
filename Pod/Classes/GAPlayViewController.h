@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAButtonHole.h"
-#import "GAButtonOctave.h"
+#import "GAFingeringHoleButton.h"
+#import "GAFingeringOctaveButton.h"
 
 @interface GAPlayViewController : UIViewController 
 
-@property (nonatomic) BOOL needs3Octave;
+@property (nonatomic) BOOL needsUpDownOctave;
 
-@property (weak, nonatomic) IBOutlet GAButtonOctave *octaveButton;
+@property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UILabel *keyNameLabel;
 
-- (IBAction)holeButtonAction:(GAButtonHole *)sender;
-- (IBAction)octaveButtonAction:(GAButtonOctave *)sender;
+- (IBAction)holeButtonAction:(GAFingeringHoleButton *)sender;
+- (IBAction)octaveButtonAction:(GAFingeringOctaveButton *)sender;
 
 @end
 

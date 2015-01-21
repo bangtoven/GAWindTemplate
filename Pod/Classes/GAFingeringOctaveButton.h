@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAButtonHole.h"
+#import "GAFingeringHoleButton.h"
 
-@interface GAButtonOctave : GAButtonHole
+@interface GAFingeringOctaveButton : GAFingeringHoleButton
 
 @property (nonatomic) BOOL isUpDown;
 @property (readonly) int octave;

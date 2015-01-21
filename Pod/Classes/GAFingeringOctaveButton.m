@@ -6,15 +6,15 @@
 //  Copyright (c) 2015년 bangtoven. All rights reserved.
 //
 
-#import "GAButtonOctave.h"
+#import "GAFingeringOctaveButton.h"
 
-@interface GAButtonOctave () {
+@interface GAFingeringOctaveButton () {
     UIImage *downImage, *upImage;
 }
 
 @end
 
-@implementation GAButtonOctave
+@implementation GAFingeringOctaveButton
 @synthesize octave = _octave;
 
 - (void)setIsUpDown:(BOOL)isUpDown

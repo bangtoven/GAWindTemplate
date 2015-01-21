@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GAButtonHole : UIButton
+@interface GAFingeringHoleButton : UIButton
 
 @property (readonly) IBInspectable NSInteger location;
 @property (readonly) BOOL closed;

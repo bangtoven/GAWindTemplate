@@ -6,9 +6,9 @@
 //  Copyright (c) 2014년 CAT@SNU. All rights reserved.
 //
 
-#import "GAButtonHole.h"
+#import "GAFingeringHoleButton.h"
 
-@implementation GAButtonHole
+@implementation GAFingeringHoleButton
 
 - (BOOL)closed {
     return self.highlighted;

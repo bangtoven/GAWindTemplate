@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.needs3Octave)
+    if (self.needsUpDownOctave)
         self.octaveButton.isUpDown = YES;
     
     self.keyNameLabel.text = @"";
@@ -56,11 +56,11 @@
     alwaysBlowing = YES;
 }
 
-- (IBAction)holeButtonAction:(GAButtonHole *)sender {
+- (IBAction)holeButtonAction:(GAFingeringHoleButton *)sender {
     [fingeringProcessor keyHoleInLocation:(int)sender.location changedTo:sender.closed];
 }
 
-- (IBAction)octaveButtonAction:(GAButtonOctave *)sender {
+- (IBAction)octaveButtonAction:(GAFingeringOctaveButton *)sender {
     [fingeringProcessor octaveChangedTo:sender.octave];
 }
 

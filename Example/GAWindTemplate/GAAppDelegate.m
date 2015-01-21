@@ -13,6 +13,7 @@
 - (void)initialize:(GAPlayViewController *)pvc
 {
     NSLog(@"initialize called");
+    [pvc setNeedsUpDownOctave:YES];
 }
 
 @end
