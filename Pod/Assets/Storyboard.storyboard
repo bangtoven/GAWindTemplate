@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -21,45 +19,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hun_background_play" translatesAutoresizingMaskIntoConstraints="NO" id="W4R-rQ-817">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back_10801920..png" translatesAutoresizingMaskIntoConstraints="NO" id="W4R-rQ-817">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-yy-JJU">
-                                <rect key="frame" x="253" y="495" width="94" height="85"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="box_left..png" translatesAutoresizingMaskIntoConstraints="NO" id="U2x-v0-he7">
+                                <rect key="frame" x="71" y="20" width="138" height="152"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="Cgo-D6-4xO"/>
-                                    <constraint firstAttribute="width" constant="94" id="WVC-hK-Qzt"/>
+                                    <constraint firstAttribute="width" constant="138" id="REl-GM-VCs"/>
+                                    <constraint firstAttribute="height" constant="152" id="vDH-5i-AAy"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TD7-FP-SkM" customClass="GAButtonOctave">
+                                <rect key="frame" x="71" y="20" width="138" height="152"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="138" id="JLr-rj-4uO"/>
+                                    <constraint firstAttribute="height" constant="152" id="loG-4b-Ire"/>
+                                </constraints>
+                                <state key="normal" image="octave.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="octave_active.png"/>
+                                <connections>
+                                    <action selector="octaveButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="6Jf-JS-A1f"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="box_right..png" translatesAutoresizingMaskIntoConstraints="NO" id="UkO-D9-onT">
+                                <rect key="frame" x="209" y="98" width="86" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="71" id="66z-Lv-B80"/>
+                                    <constraint firstAttribute="width" constant="86" id="CAK-7l-s1H"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blowarea..png" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-85-zxy">
+                                <rect key="frame" x="75" y="548" width="151" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="akX-bQ-Bjc"/>
+                                    <constraint firstAttribute="width" constant="151" id="yDx-qp-ngV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이크를 불어요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIP-Rx-j64">
+                                <rect key="frame" x="75" y="571" width="151" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="n2e-b1-MuP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tds-gF-ewV" customClass="GAButtonHole">
-                                <rect key="frame" x="85" y="215" width="130" height="130"/>
+                                <rect key="frame" x="85" y="187" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="A5k-Fc-M2Z"/>
-                                    <constraint firstAttribute="width" constant="130" id="HLj-TB-EK9"/>
-                                    <constraint firstAttribute="width" secondItem="Tds-gF-ewV" secondAttribute="height" multiplier="1:1" id="brC-Gx-wA1"/>
-                                    <constraint firstAttribute="width" constant="130" id="e8A-Ua-8XR"/>
+                                    <constraint firstAttribute="width" constant="130" id="ReU-Pv-gPC"/>
+                                    <constraint firstAttribute="height" constant="130" id="iT9-2g-vSI"/>
                                 </constraints>
-                                <state key="normal" image="hole_open.png">
+                                <state key="normal" image="button_big..png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" image="hole_close.png"/>
+                                <state key="highlighted" image="button_active_big..png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="location">
                                         <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="A5k-Fc-M2Z"/>
-                                        <exclude reference="e8A-Ua-8XR"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="80" y="157" width="87" height="87"/>
                                 </variation>
@@ -68,29 +91,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rf-QA-E68" customClass="GAButtonHole">
-                                <rect key="frame" x="85" y="365" width="130" height="130"/>
+                                <rect key="frame" x="85" y="332" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="RjX-jm-64O"/>
-                                    <constraint firstAttribute="width" constant="130" id="W1M-bB-VaO"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="wkh-oL-fQ3"/>
-                                    <constraint firstAttribute="width" secondItem="9rf-QA-E68" secondAttribute="height" multiplier="1:1" id="zmd-zw-cGS"/>
+                                    <constraint firstAttribute="width" constant="130" id="pnJ-z9-Hyw"/>
+                                    <constraint firstAttribute="height" constant="130" id="xGb-Kt-q38"/>
                                 </constraints>
-                                <state key="normal" image="hole_open.png">
+                                <state key="normal" image="button_big..png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" image="hole_close.png"/>
+                                <state key="highlighted" image="button_active_big..png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="location">
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="W1M-bB-VaO"/>
-                                        <exclude reference="wkh-oL-fQ3"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="80" y="157" width="87" height="87"/>
                                 </variation>
@@ -99,29 +114,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDE-2i-omj" customClass="GAButtonHole">
-                                <rect key="frame" x="390" y="320" width="130" height="130"/>
+                                <rect key="frame" x="390" y="280" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="H44-de-WoR"/>
-                                    <constraint firstAttribute="width" secondItem="RDE-2i-omj" secondAttribute="height" multiplier="1:1" id="aH8-Z6-VwA"/>
-                                    <constraint firstAttribute="width" constant="130" id="hP8-WW-sHG"/>
-                                    <constraint firstAttribute="width" constant="130" id="zwe-ZX-mY1"/>
+                                    <constraint firstAttribute="width" constant="130" id="Tgb-im-rFj"/>
+                                    <constraint firstAttribute="height" constant="130" id="iku-9Q-XvD"/>
                                 </constraints>
-                                <state key="normal" image="hole_open.png">
+                                <state key="normal" image="button_big..png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" image="hole_close.png"/>
+                                <state key="highlighted" image="button_active_big..png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="location">
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="H44-de-WoR"/>
-                                        <exclude reference="zwe-ZX-mY1"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="80" y="157" width="87" height="87"/>
                                 </variation>
@@ -129,61 +136,22 @@
                                     <action selector="holeButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="ROT-KV-oAv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6e-Gs-ihd" customClass="GAButtonHole">
-                                <rect key="frame" x="390" y="170" width="130" height="130"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="F6e-Gs-ihd" secondAttribute="height" multiplier="1:1" id="HkU-0C-QBU"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="a3h-yd-XyG"/>
-                                    <constraint firstAttribute="width" constant="130" id="lnd-YY-aZO"/>
-                                    <constraint firstAttribute="width" constant="130" id="rnI-6G-Ono"/>
-                                </constraints>
-                                <state key="normal" image="hole_open.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted" image="hole_close.png"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="location">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="a3h-yd-XyG"/>
-                                        <exclude reference="rnI-6G-Ono"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="80" y="157" width="87" height="87"/>
-                                </variation>
-                                <connections>
-                                    <action selector="holeButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="yDR-on-Ca7"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbd-pU-YBr" customClass="GAButtonHole">
-                                <rect key="frame" x="390" y="20" width="130" height="130"/>
+                                <rect key="frame" x="480" y="10" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Bbd-pU-YBr" secondAttribute="height" multiplier="1:1" id="2AU-O9-gRm"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="2KY-T6-OhS"/>
-                                    <constraint firstAttribute="width" constant="130" id="HrJ-QL-zFd"/>
-                                    <constraint firstAttribute="width" constant="130" id="xYi-0a-3k5"/>
+                                    <constraint firstAttribute="height" constant="120" id="RcT-Fe-Bvn"/>
+                                    <constraint firstAttribute="width" constant="120" id="fmf-bG-bFo"/>
                                 </constraints>
-                                <state key="normal" image="hole_open.png">
+                                <state key="normal" image="button_small..png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" image="hole_close.png"/>
+                                <state key="highlighted" image="button_active_small..png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="location">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2KY-T6-OhS"/>
-                                        <exclude reference="xYi-0a-3k5"/>
-                                    </mask>
-                                </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="80" y="157" width="87" height="87"/>
                                 </variation>
@@ -191,72 +159,102 @@
                                     <action selector="holeButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="Kjo-4A-Oq5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcm-8W-XEH">
-                                <rect key="frame" x="521" y="543" width="63" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lcm-8W-XEH">
+                                <rect key="frame" x="542" y="537" width="42" height="43"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="63" id="5AR-NR-DfH"/>
+                                    <constraint firstAttribute="width" constant="42" id="BJV-ou-hmn"/>
+                                    <constraint firstAttribute="height" constant="43" id="NXf-MT-qCb"/>
                                 </constraints>
-                                <state key="normal" title="설정"/>
+                                <state key="normal" image="setting..png"/>
                                 <connections>
                                     <action selector="settingButtonAction:" destination="uLo-NX-b0W" eventType="touchUpInside" id="3PI-gs-Hlj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TD7-FP-SkM" customClass="GAButtonHole">
-                                <rect key="frame" x="60" y="55" width="180" height="120"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6e-Gs-ihd" customClass="GAButtonHole">
+                                <rect key="frame" x="390" y="135" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="TD7-FP-SkM" secondAttribute="height" multiplier="3:2" id="Vj4-HC-F6t"/>
-                                    <constraint firstAttribute="width" constant="180" id="iyd-du-3GT"/>
+                                    <constraint firstAttribute="width" constant="130" id="b1b-rK-pTu"/>
+                                    <constraint firstAttribute="height" constant="130" id="kDT-KI-bSx"/>
                                 </constraints>
-                                <state key="normal" image="octave_open.png">
+                                <state key="normal" image="button_big..png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="highlighted" image="octave_close.png"/>
+                                <state key="highlighted" image="button_active_big..png"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="location">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="80" y="157" width="87" height="87"/>
+                                </variation>
                                 <connections>
-                                    <action selector="octaveButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="6Jf-JS-A1f"/>
+                                    <action selector="holeButtonAction:" destination="uLo-NX-b0W" eventType="valueChanged" id="yDR-on-Ca7"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo..png" translatesAutoresizingMaskIntoConstraints="NO" id="oMJ-XU-eCS">
+                                <rect key="frame" x="204" y="20" width="316" height="76"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Db4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-yy-JJU">
+                                <rect key="frame" x="209" y="98" width="86" height="71"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="width" secondItem="Bbd-pU-YBr" secondAttribute="height" multiplier="1:1" id="150-0a-iGK"/>
-                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="width" secondItem="Bbd-pU-YBr" secondAttribute="height" multiplier="1:1" id="7to-EO-Joc"/>
-                            <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="ihv-yy-JJU" secondAttribute="bottom" constant="20" id="9Ei-8J-ggG"/>
-                            <constraint firstItem="RDE-2i-omj" firstAttribute="centerY" secondItem="9rf-QA-E68" secondAttribute="top" constant="20" id="9GS-Ie-yjf"/>
-                            <constraint firstItem="RDE-2i-omj" firstAttribute="centerX" secondItem="F6e-Gs-ihd" secondAttribute="centerX" id="AiE-Ec-Qk2"/>
-                            <constraint firstItem="Lcm-8W-XEH" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" constant="523" id="Bcy-od-DBj"/>
-                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="centerX" secondItem="F6e-Gs-ihd" secondAttribute="centerX" id="E0x-kM-WkC"/>
-                            <constraint firstAttribute="centerX" secondItem="ihv-yy-JJU" secondAttribute="centerX" id="E6W-h2-Kkc"/>
-                            <constraint firstItem="W4R-rQ-817" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" id="JFU-77-o3B"/>
-                            <constraint firstAttribute="centerY" secondItem="Tds-gF-ewV" secondAttribute="centerY" constant="20" id="Nkb-Ua-iTV"/>
-                            <constraint firstItem="TD7-FP-SkM" firstAttribute="centerY" secondItem="Bbd-pU-YBr" secondAttribute="centerY" constant="30" id="NpO-FL-wie"/>
-                            <constraint firstItem="Lcm-8W-XEH" firstAttribute="bottom" secondItem="ihv-yy-JJU" secondAttribute="bottom" id="Onj-so-KJt"/>
-                            <constraint firstItem="Lcm-8W-XEH" firstAttribute="trailing" secondItem="1in-eu-dPQ" secondAttribute="trailingMargin" id="Qva-ou-Rak"/>
-                            <constraint firstItem="F6e-Gs-ihd" firstAttribute="width" secondItem="F6e-Gs-ihd" secondAttribute="height" multiplier="1:1" id="SgD-gI-GHI"/>
-                            <constraint firstAttribute="centerX" secondItem="Tds-gF-ewV" secondAttribute="centerX" multiplier="2" id="U7h-8f-tJb"/>
-                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="width" secondItem="Bbd-pU-YBr" secondAttribute="height" multiplier="1:1" id="V5B-ZE-Xg0"/>
-                            <constraint firstItem="RDE-2i-omj" firstAttribute="top" secondItem="F6e-Gs-ihd" secondAttribute="bottom" constant="20" id="ZnA-9i-CBA"/>
-                            <constraint firstItem="F6e-Gs-ihd" firstAttribute="top" secondItem="Bbd-pU-YBr" secondAttribute="bottom" constant="20" id="aH7-6u-qTc"/>
-                            <constraint firstAttribute="centerY" secondItem="W4R-rQ-817" secondAttribute="centerY" id="dZd-DT-bp6"/>
-                            <constraint firstItem="9rf-QA-E68" firstAttribute="width" secondItem="9rf-QA-E68" secondAttribute="height" multiplier="1:1" id="fJJ-pG-liG"/>
-                            <constraint firstAttribute="centerX" secondItem="RDE-2i-omj" secondAttribute="centerX" multiplier="0.66" id="kO0-fN-QSv"/>
-                            <constraint firstItem="RDE-2i-omj" firstAttribute="width" secondItem="RDE-2i-omj" secondAttribute="height" multiplier="1:1" id="miF-HS-dBt"/>
-                            <constraint firstAttribute="centerX" secondItem="W4R-rQ-817" secondAttribute="centerX" id="r8h-fW-3uy"/>
-                            <constraint firstAttribute="height" secondItem="W4R-rQ-817" secondAttribute="height" id="rLy-ao-zhl"/>
-                            <constraint firstItem="Tds-gF-ewV" firstAttribute="centerX" secondItem="9rf-QA-E68" secondAttribute="centerX" id="sXr-3I-THs"/>
-                            <constraint firstAttribute="width" secondItem="W4R-rQ-817" secondAttribute="width" id="tD4-ql-vVx"/>
-                            <constraint firstItem="Tds-gF-ewV" firstAttribute="centerX" secondItem="TD7-FP-SkM" secondAttribute="centerX" id="tEa-JZ-D4y"/>
-                            <constraint firstItem="9rf-QA-E68" firstAttribute="top" secondItem="Tds-gF-ewV" secondAttribute="bottom" constant="20" id="w3u-BB-LSR"/>
-                            <constraint firstItem="F6e-Gs-ihd" firstAttribute="width" secondItem="F6e-Gs-ihd" secondAttribute="height" multiplier="1:1" id="wE9-wu-7cu"/>
+                            <constraint firstItem="W4R-rQ-817" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" constant="-20" id="1QI-J3-Vac"/>
+                            <constraint firstItem="U2x-v0-he7" firstAttribute="centerY" secondItem="TD7-FP-SkM" secondAttribute="centerY" constant="0.5" id="3wx-9s-b3O"/>
+                            <constraint firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" multiplier="2" id="4Kn-yq-5Or"/>
+                            <constraint firstItem="F6e-Gs-ihd" firstAttribute="top" secondItem="Bbd-pU-YBr" secondAttribute="bottom" constant="5" id="5A1-vd-YtJ"/>
+                            <constraint firstItem="Tds-gF-ewV" firstAttribute="top" secondItem="TD7-FP-SkM" secondAttribute="bottom" constant="15" id="6o2-bl-PbF"/>
+                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="leading" secondItem="oMJ-XU-eCS" secondAttribute="trailing" constant="-40" id="7Wt-gP-e8s"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="height" secondItem="ihv-yy-JJU" secondAttribute="height" id="BLE-9l-sxZ"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="width" secondItem="ihv-yy-JJU" secondAttribute="width" id="C3z-Mr-gPg"/>
+                            <constraint firstItem="oMJ-XU-eCS" firstAttribute="top" secondItem="TD7-FP-SkM" secondAttribute="top" id="CwI-Bv-krE"/>
+                            <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="MIP-Rx-j64" secondAttribute="bottom" constant="8" symbolic="YES" id="Eaw-07-FZn"/>
+                            <constraint firstItem="U2x-v0-he7" firstAttribute="centerX" secondItem="TD7-FP-SkM" secondAttribute="centerX" id="FcN-hd-ejT"/>
+                            <constraint firstItem="MIP-Rx-j64" firstAttribute="leading" secondItem="2ha-85-zxy" secondAttribute="leading" id="Fh2-gZ-Kv4"/>
+                            <constraint firstItem="Lcm-8W-XEH" firstAttribute="trailing" secondItem="1in-eu-dPQ" secondAttribute="trailingMargin" id="HFJ-lv-Uqm"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="centerY" secondItem="ihv-yy-JJU" secondAttribute="centerY" id="Kkr-qO-1PI"/>
+                            <constraint firstItem="oMJ-XU-eCS" firstAttribute="leading" secondItem="U2x-v0-he7" secondAttribute="trailing" constant="-5" id="McC-ae-1Pr"/>
+                            <constraint firstItem="oMJ-XU-eCS" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" constant="-5" id="Mhd-zl-DIv"/>
+                            <constraint firstItem="U2x-v0-he7" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" constant="20" id="Qvd-dO-c3W"/>
+                            <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="Lcm-8W-XEH" secondAttribute="bottom" constant="20" id="RvF-i8-XTu"/>
+                            <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="W4R-rQ-817" secondAttribute="bottom" id="THW-fA-lCU"/>
+                            <constraint firstItem="W4R-rQ-817" firstAttribute="leading" secondItem="1in-eu-dPQ" secondAttribute="leadingMargin" constant="-16" id="UVA-Sl-3aS"/>
+                            <constraint firstItem="RDE-2i-omj" firstAttribute="top" secondItem="F6e-Gs-ihd" secondAttribute="bottom" constant="15" id="XvD-gm-Uac"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" id="YrE-X0-cIK"/>
+                            <constraint firstAttribute="centerX" secondItem="F6e-Gs-ihd" secondAttribute="centerX" multiplier="0.66" id="bIX-BU-GT4"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="bottom" secondItem="TD7-FP-SkM" secondAttribute="bottom" constant="-3" id="cY2-6E-W25"/>
+                            <constraint firstItem="MIP-Rx-j64" firstAttribute="trailing" secondItem="2ha-85-zxy" secondAttribute="trailing" id="chw-fs-zun"/>
+                            <constraint firstItem="Tds-gF-ewV" firstAttribute="centerX" secondItem="U2x-v0-he7" secondAttribute="centerX" constant="10" id="epX-Qe-3l2"/>
+                            <constraint firstItem="9rf-QA-E68" firstAttribute="leading" secondItem="Tds-gF-ewV" secondAttribute="leading" id="fZl-dI-hBF"/>
+                            <constraint firstItem="F6e-Gs-ihd" firstAttribute="trailing" secondItem="RDE-2i-omj" secondAttribute="trailing" id="gPi-bz-lej"/>
+                            <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="2ha-85-zxy" secondAttribute="bottom" id="kLO-d0-kpc"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" constant="5" id="nh4-L8-gSE"/>
+                            <constraint firstItem="2ha-85-zxy" firstAttribute="centerX" secondItem="MIP-Rx-j64" secondAttribute="centerX" id="nks-dQ-U3R"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bbd-pU-YBr" secondAttribute="trailing" constant="-16" id="paW-GM-hJE"/>
+                            <constraint firstItem="9rf-QA-E68" firstAttribute="top" secondItem="Tds-gF-ewV" secondAttribute="bottom" constant="15" id="q7P-ul-UhZ"/>
+                            <constraint firstAttribute="centerX" secondItem="Tds-gF-ewV" secondAttribute="centerX" multiplier="2" id="qgX-QZ-c11"/>
+                            <constraint firstItem="UkO-D9-onT" firstAttribute="centerX" secondItem="ihv-yy-JJU" secondAttribute="centerX" id="snr-tq-gvS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="W4R-rQ-817" secondAttribute="trailing" constant="-16" id="uoq-Tj-jls"/>
+                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" constant="10" id="vE5-hZ-a9M"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="JFU-77-o3B"/>
+                                <exclude reference="McC-ae-1Pr"/>
+                                <exclude reference="nh4-L8-gSE"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="pnW-jh-dbB"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="keyNameLabel" destination="ihv-yy-JJU" id="vAs-xY-Nei"/>
+                        <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
                         <segue destination="xLN-Xv-oL5" kind="presentation" identifier="show settings" id="FIJ-BI-tWA"/>
                         <segue destination="JAw-vg-AFb" kind="presentation" identifier="asdf" id="pfz-PM-f9a"/>
                     </connections>
@@ -530,12 +528,36 @@
             </objects>
             <point key="canvasLocation" x="984" y="20"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="azB-el-F0F">
+            <objects>
+                <viewController id="fOB-TQ-cK5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mlt-ds-hN9"/>
+                        <viewControllerLayoutGuide type="bottom" id="095-BM-edp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jyx-Ar-xuU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5PR-Uo-33S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
-        <image name="hole_close.png" width="153" height="150"/>
-        <image name="hole_open.png" width="78" height="78"/>
-        <image name="hun_background_play" width="375" height="625"/>
-        <image name="octave_close.png" width="246" height="155"/>
-        <image name="octave_open.png" width="246" height="155"/>
+        <image name="back_10801920..png" width="540" height="960"/>
+        <image name="blowarea..png" width="151" height="52"/>
+        <image name="box_left..png" width="138" height="152"/>
+        <image name="box_right..png" width="86" height="71"/>
+        <image name="button_active_big..png" width="74" height="69"/>
+        <image name="button_active_small..png" width="63" height="56"/>
+        <image name="button_big..png" width="73" height="66"/>
+        <image name="button_small..png" width="51" height="48"/>
+        <image name="logo..png" width="162" height="76"/>
+        <image name="octave.png" width="110" height="135"/>
+        <image name="octave_active.png" width="110" height="135"/>
+        <image name="setting..png" width="42" height="43"/>
     </resources>
 </document>

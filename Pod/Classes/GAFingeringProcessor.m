@@ -61,8 +61,8 @@
     }
 }
 
-- (void)octaveAction:(GAButtonHole *)sender {
-    self.octaveStatus = sender.closed ? 1 : 0;
+- (void)octaveAction:(GAButtonOctave *)sender {
+    self.octaveStatus = sender.octave;
     [self prepareKeyToQueue];
 }
 

@@ -34,6 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.needs3Octave) {
+        self.octaveButton.isUpDown = YES;
+    }
+    
     fingeringProcessor = [GAFingeringProcessor new];
     fingeringProcessor.delegate = self;
     
@@ -55,7 +59,7 @@
     [fingeringProcessor action:sender];
 }
 
-- (IBAction)octaveButtonAction:(GAButtonHole *)sender {
+- (IBAction)octaveButtonAction:(GAButtonOctave *)sender {
     [fingeringProcessor octaveAction:sender];
 }
 
@@ -84,6 +88,8 @@
 }
 
 - (IBAction)settingButtonAction:(id)sender {
+    self.octaveButton.isUpDown = !self.octaveButton.isUpDown;
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"정보", nil];
     [actionSheet showInView:self.view];
 }

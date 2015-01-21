@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GAButtonHole.h"
+#import "GAButtonOctave.h"
 
 #define FINGERING_ALL_OPEN INT32_MIN
 
@@ -20,6 +21,6 @@
 @property (nonatomic,weak) id<GAFingeringProcessorDelegate> delegate;
 
 - (void)action:(GAButtonHole *)sender;
-- (void)octaveAction:(GAButtonHole *)sender;
+- (void)octaveAction:(GAButtonOctave *)sender;
 
 @end

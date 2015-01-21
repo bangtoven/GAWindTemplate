@@ -19,11 +19,6 @@
         [super setHighlighted:highlighted];
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
-    
-//    if (highlighted)
-//        self.backgroundColor = [UIColor redColor];
-//    else
-//        self.backgroundColor = [UIColor blueColor];
 }
 
 @end
