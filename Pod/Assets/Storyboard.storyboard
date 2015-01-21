@@ -23,8 +23,8 @@
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo..png" translatesAutoresizingMaskIntoConstraints="NO" id="oMJ-XU-eCS">
-                                <rect key="frame" x="226" y="504" width="316" height="76"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo..png" translatesAutoresizingMaskIntoConstraints="NO" id="oMJ-XU-eCS">
+                                <rect key="frame" x="206" y="504" width="336" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="76" id="umo-Gz-B2o"/>
                                 </constraints>
@@ -149,7 +149,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bbd-pU-YBr" customClass="GAFingeringHoleButton">
-                                <rect key="frame" x="480" y="10" width="120" height="120"/>
+                                <rect key="frame" x="415" y="10" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="RcT-Fe-Bvn"/>
                                     <constraint firstAttribute="width" constant="120" id="fmf-bG-bFo"/>
@@ -233,6 +233,7 @@
                             <constraint firstItem="W4R-rQ-817" firstAttribute="leading" secondItem="1in-eu-dPQ" secondAttribute="leadingMargin" constant="-16" id="UVA-Sl-3aS"/>
                             <constraint firstItem="RDE-2i-omj" firstAttribute="top" secondItem="F6e-Gs-ihd" secondAttribute="bottom" constant="15" id="XvD-gm-Uac"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" id="YrE-X0-cIK"/>
+                            <constraint firstItem="Bbd-pU-YBr" firstAttribute="centerX" secondItem="F6e-Gs-ihd" secondAttribute="centerX" constant="20" id="a0r-Vd-XJe"/>
                             <constraint firstAttribute="centerX" secondItem="F6e-Gs-ihd" secondAttribute="centerX" multiplier="0.66" id="bIX-BU-GT4"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="bottom" secondItem="TD7-FP-SkM" secondAttribute="bottom" constant="-3" id="cY2-6E-W25"/>
                             <constraint firstItem="MIP-Rx-j64" firstAttribute="trailing" secondItem="2ha-85-zxy" secondAttribute="trailing" id="chw-fs-zun"/>
@@ -240,10 +241,9 @@
                             <constraint firstItem="9rf-QA-E68" firstAttribute="leading" secondItem="Tds-gF-ewV" secondAttribute="leading" id="fZl-dI-hBF"/>
                             <constraint firstItem="F6e-Gs-ihd" firstAttribute="trailing" secondItem="RDE-2i-omj" secondAttribute="trailing" id="gPi-bz-lej"/>
                             <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="2ha-85-zxy" secondAttribute="bottom" id="kLO-d0-kpc"/>
-                            <constraint firstItem="oMJ-XU-eCS" firstAttribute="leading" secondItem="2ha-85-zxy" secondAttribute="trailing" id="lWH-4x-gLv"/>
+                            <constraint firstItem="oMJ-XU-eCS" firstAttribute="leading" secondItem="2ha-85-zxy" secondAttribute="trailing" constant="-20" id="lWH-4x-gLv"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" constant="5" id="nh4-L8-gSE"/>
                             <constraint firstItem="2ha-85-zxy" firstAttribute="centerX" secondItem="MIP-Rx-j64" secondAttribute="centerX" id="nks-dQ-U3R"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bbd-pU-YBr" secondAttribute="trailing" constant="-16" id="paW-GM-hJE"/>
                             <constraint firstItem="9rf-QA-E68" firstAttribute="top" secondItem="Tds-gF-ewV" secondAttribute="bottom" constant="15" id="q7P-ul-UhZ"/>
                             <constraint firstAttribute="centerX" secondItem="Tds-gF-ewV" secondAttribute="centerX" multiplier="2" id="qgX-QZ-c11"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="centerX" secondItem="ihv-yy-JJU" secondAttribute="centerX" id="snr-tq-gvS"/>
@@ -545,13 +545,13 @@
         <image name="blowarea..png" width="151" height="52"/>
         <image name="box_left..png" width="138" height="152"/>
         <image name="box_right..png" width="86" height="71"/>
-        <image name="button_active_big..png" width="74" height="69"/>
-        <image name="button_active_small..png" width="63" height="56"/>
+        <image name="button_active_big..png" width="73" height="66"/>
+        <image name="button_active_small..png" width="51" height="48"/>
         <image name="button_big..png" width="73" height="66"/>
         <image name="button_small..png" width="51" height="48"/>
         <image name="logo..png" width="162" height="76"/>
-        <image name="octave.png" width="110" height="135"/>
-        <image name="octave_active.png" width="110" height="135"/>
+        <image name="octave.png" width="120" height="135"/>
+        <image name="octave_active.png" width="120" height="135"/>
         <image name="setting..png" width="42" height="43"/>
     </resources>
 </document>

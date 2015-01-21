@@ -172,23 +172,7 @@
 			children = (
 				6003F59C195388D20070C39A /* GAAppDelegate.h */,
 				6003F59D195388D20070C39A /* GAAppDelegate.m */,
-				73410D141A6EA00100819671 /* AudioInputTable.plist */,
-				73410CF31A6E9C7700819671 /* Hun_Ord_Py_A3_mf_1_16441.wav */,
-				73410CF41A6E9C7700819671 /* Hun_Ord_Py_Ab3_mf_1_16441.wav */,
-				73410CF51A6E9C7700819671 /* Hun_Ord_Py_B3_mf_1_16441.wav */,
-				73410CF61A6E9C7700819671 /* Hun_Ord_Py_Bb3_mf_1_16441.wav */,
-				73410CF71A6E9C7700819671 /* Hun_Ord_Py_C3_mf_1_16441.wav */,
-				73410CF81A6E9C7700819671 /* Hun_Ord_Py_C4_mf_1_16441.wav */,
-				73410CF91A6E9C7700819671 /* Hun_Ord_Py_D3_mf_1_16441.wav */,
-				73410CFA1A6E9C7700819671 /* Hun_Ord_Py_D4_mf_1_16441.wav */,
-				73410CFB1A6E9C7700819671 /* Hun_Ord_Py_Db3_mf_1_16441.wav */,
-				73410CFC1A6E9C7700819671 /* Hun_Ord_Py_Db4_mf_1_16441.wav */,
-				73410CFD1A6E9C7700819671 /* Hun_Ord_Py_E3_mf_1_16441.wav */,
-				73410CFE1A6E9C7700819671 /* Hun_Ord_Py_Eb3_mf_1_16441.wav */,
-				73410CFF1A6E9C7700819671 /* Hun_Ord_Py_Eb4_mf_1_16441.wav */,
-				73410D001A6E9C7700819671 /* Hun_Ord_Py_F3_mf_1_16441.wav */,
-				73410D011A6E9C7700819671 /* Hun_Ord_Py_G3_mf_1_16441.wav */,
-				73410D021A6E9C7700819671 /* Hun_Ord_Py_Gb3_mf_1_16441.wav */,
+				73401CC21A7004CF00760889 /* Samples */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -233,6 +217,30 @@
 				A4654522845E02D0AE9D24A7 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		73401CC21A7004CF00760889 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				73410D141A6EA00100819671 /* AudioInputTable.plist */,
+				73410CF31A6E9C7700819671 /* Hun_Ord_Py_A3_mf_1_16441.wav */,
+				73410CF41A6E9C7700819671 /* Hun_Ord_Py_Ab3_mf_1_16441.wav */,
+				73410CF51A6E9C7700819671 /* Hun_Ord_Py_B3_mf_1_16441.wav */,
+				73410CF61A6E9C7700819671 /* Hun_Ord_Py_Bb3_mf_1_16441.wav */,
+				73410CF71A6E9C7700819671 /* Hun_Ord_Py_C3_mf_1_16441.wav */,
+				73410CF81A6E9C7700819671 /* Hun_Ord_Py_C4_mf_1_16441.wav */,
+				73410CF91A6E9C7700819671 /* Hun_Ord_Py_D3_mf_1_16441.wav */,
+				73410CFA1A6E9C7700819671 /* Hun_Ord_Py_D4_mf_1_16441.wav */,
+				73410CFB1A6E9C7700819671 /* Hun_Ord_Py_Db3_mf_1_16441.wav */,
+				73410CFC1A6E9C7700819671 /* Hun_Ord_Py_Db4_mf_1_16441.wav */,
+				73410CFD1A6E9C7700819671 /* Hun_Ord_Py_E3_mf_1_16441.wav */,
+				73410CFE1A6E9C7700819671 /* Hun_Ord_Py_Eb3_mf_1_16441.wav */,
+				73410CFF1A6E9C7700819671 /* Hun_Ord_Py_Eb4_mf_1_16441.wav */,
+				73410D001A6E9C7700819671 /* Hun_Ord_Py_F3_mf_1_16441.wav */,
+				73410D011A6E9C7700819671 /* Hun_Ord_Py_G3_mf_1_16441.wav */,
+				73410D021A6E9C7700819671 /* Hun_Ord_Py_Gb3_mf_1_16441.wav */,
+			);
+			name = Samples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
