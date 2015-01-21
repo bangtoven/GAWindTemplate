@@ -9,12 +9,12 @@
 #import "GAPlayViewController.h"
 #import "GAAudioOutputProcessor.h"
 #import "GAMotionProcessor.h"
-#import "GABlowProcessor.h"
+#import "GAMicInputProcessor.h"
 #import "GAFingeringProcessor.h"
 
 @interface GAPlayViewController () <UIActionSheetDelegate,GAFingeringProcessorDelegate, GABlowProcessorDelegate> {
     GAMotionProcessor *motionProcessor;
-    GABlowProcessor *blowProcessor;
+    GAMicInputProcessor *blowProcessor;
     
     GAAudioOutputProcessor *audioOutput;
 
@@ -66,7 +66,7 @@
 
 - (void)fingeringChangedWithKey:(int)key{
     NSLog(@"%d", key);
-    if (FINGERING_ALL_OPEN) {
+    if (key == FINGERING_ALL_OPEN) {
         [audioOutput stopPlaying];
     }
     else {

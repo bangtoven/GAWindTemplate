@@ -6,19 +6,19 @@
 //
 //
 
-#import "GAGlobalSetting.h"
+#import "GASettings.h"
 
-@interface GAGlobalSetting ()
+@interface GASettings ()
 {
     BOOL touchMode;
 }
 @end
 
-@implementation GAGlobalSetting
+@implementation GASettings
 
 + (instancetype)sharedSetting
 {
-    static GAGlobalSetting *singleton = nil;
+    static GASettings *singleton = nil;
     if (!singleton) {
         singleton = [self new];
     }

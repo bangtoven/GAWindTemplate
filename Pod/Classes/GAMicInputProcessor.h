@@ -14,7 +14,7 @@
 @end
 
 
-@interface GABlowProcessor : NSObject
+@interface GAMicInputProcessor : NSObject
 
 + (float)micSensitivity;
 + (void)setMicSensitivity:(float)sensitivity;

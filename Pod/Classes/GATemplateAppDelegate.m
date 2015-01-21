@@ -7,6 +7,7 @@
 //
 
 #import "GATemplateAppDelegate.h"
+#import "NSBundle+GATemplate.h"
 
 @implementation GATemplateAppDelegate
 
@@ -19,8 +20,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"GAWindTemplate" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:path];
+    NSBundle *bundle = [NSBundle templateBundle];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:bundle];
     GAPlayViewController *vc =[storyboard instantiateInitialViewController];
     [self initialize:vc];

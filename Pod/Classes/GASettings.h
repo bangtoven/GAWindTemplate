@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GAGlobalSetting : NSObject
+@interface GASettings : NSObject
 
 + (instancetype)sharedSetting;
 - (BOOL)isTouchMode;

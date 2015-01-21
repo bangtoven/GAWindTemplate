@@ -7,11 +7,11 @@
 //
 
 #import "GASettingsViewController.h"
-#import "GABlowProcessor.h"
+#import "GAMicInputProcessor.h"
 #import "GAAudioOutputProcessor.h"
 
 @interface GASettingsViewController () <GABlowProcessorDelegate> {
-    GABlowProcessor *blowProcessor;
+    GAMicInputProcessor *blowProcessor;
     BOOL asdf;
 }
 @end
@@ -25,7 +25,7 @@
 //    blowProcessor.delegate = self;
 //    [blowProcessor startUpdate];
 
-    self.micThresholdSlider.value = [GABlowProcessor micSensitivity];
+    self.micThresholdSlider.value = [GAMicInputProcessor micSensitivity];
     [self sensitivityChanged:self];
 }
 
@@ -51,7 +51,7 @@
 }
 
 - (IBAction)saveAndGoBack {
-    [GABlowProcessor setMicSensitivity:self.micThresholdSlider.value];
+    [GAMicInputProcessor setMicSensitivity:self.micThresholdSlider.value];
     [blowProcessor stopUpdate];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

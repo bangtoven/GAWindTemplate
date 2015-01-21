@@ -7,6 +7,7 @@
 //
 
 #import "GAFingeringOctaveButton.h"
+#import "NSBundle+GATemplate.h"
 
 @interface GAFingeringOctaveButton () {
     UIImage *downImage, *upImage;
@@ -19,8 +20,7 @@
 
 - (void)setIsUpDown:(BOOL)isUpDown
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"GAWindTemplate" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:path];
+    NSBundle *bundle = [NSBundle templateBundle];
     if (isUpDown) {
         UIImage *image = [UIImage imageNamed:@"split_octave.png" inBundle:bundle compatibleWithTraitCollection:nil];
         [self setImage:image forState:UIControlStateNormal];

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014년 CAT@SNU. All rights reserved.
 //
 
-#import "GABlowProcessor.h"
+#import "GAMicInputProcessor.h"
 #include <sys/signal.h>
 
-@interface GABlowProcessor ()
+@interface GAMicInputProcessor ()
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) NSTimer *levelTimer;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation GABlowProcessor
+@implementation GAMicInputProcessor
 
 - (id)init {
     if (self = [super init]) {

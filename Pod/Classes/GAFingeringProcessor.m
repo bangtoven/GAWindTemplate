@@ -7,7 +7,8 @@
 //
 
 #import "GAFingeringProcessor.h"
-#import "GAGlobalSetting.h"
+#import "GASettings.h"
+#import "NSBundle+GATemplate.h"
 
 @interface GAFingeringProcessor () {
     NSTimer *timer;
@@ -27,12 +28,11 @@
 
 - (id)init {
     if (self = [super init]) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"GAWindTemplate" ofType:@"bundle"];
-        NSBundle *bundle = [NSBundle bundleWithPath:path];
+        NSBundle *bundle = [NSBundle templateBundle];
         self.fingeringTable = [NSArray arrayWithContentsOfFile:[bundle pathForResource:@"GAFingeringTable" ofType:@"plist"]];
 
         self.buttonStatus = [NSMutableString stringWithString:@"00000"];
-        self.currentKey = -1;
+        self.currentKey = 10;
     }
     return self;
 }
@@ -74,7 +74,7 @@
 - (void)sendToDelegate {
     timer = nil;
 
-    if ([GAGlobalSetting sharedSetting].isTouchMode &&
+    if ([GASettings sharedSetting].isTouchMode &&
         self.octaveStatus == 0 &&
         [self.buttonStatus isEqualToString:@"00000"]) {
         [self.delegate fingeringChangedWithKey:FINGERING_ALL_OPEN];
