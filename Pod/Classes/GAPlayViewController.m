@@ -7,17 +7,11 @@
 //
 
 #import "GAPlayViewController.h"
-#import "GAAudioOutputProcessor.h"
-#import "GAMotionProcessor.h"
 #import "GAMicInputProcessor.h"
-#import "GAFingeringProcessor.h"
 
-@interface GAPlayViewController () <UIActionSheetDelegate,GAFingeringProcessorDelegate, GABlowProcessorDelegate> {
-    GAMotionProcessor *motionProcessor;
+@interface GAPlayViewController () <UIActionSheetDelegate,GAAudioOutputDelegate, GABlowProcessorDelegate> {
     GAMicInputProcessor *blowProcessor;
     
-    GAAudioOutputProcessor *audioOutput;
-
     GAFingeringProcessor* fingeringProcessor;
 
     float micSensitivity;
@@ -26,6 +20,9 @@
 
     float intensity;
 }
+
+@property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
+@property (weak, nonatomic) IBOutlet UILabel *keyNameLabel;
 
 @end
 
@@ -39,14 +36,10 @@
     
     self.keyNameLabel.text = @"";
     
+    self.audioOutput.delegate = self;
+    
     fingeringProcessor = [GAFingeringProcessor new];
-    fingeringProcessor.delegate = self;
-    
-    audioOutput = [GAAudioOutputProcessor sharedOutput];//[[GAAudioOutputProcessor alloc] init];
-    
-    motionProcessor = [[GAMotionProcessor alloc] init];
-    motionProcessor.delegate = audioOutput;
-    [motionProcessor startUpdate];
+    fingeringProcessor.delegate = self.audioOutput;
     
 //    micSensitivity = [GABlowProcessor micSensitivity];
 //    blowProcessor = [[GABlowProcessor alloc] init];
@@ -64,14 +57,9 @@
     [fingeringProcessor octaveChangedTo:sender.octave];
 }
 
-- (void)fingeringChangedWithKey:(int)key{
-    NSLog(@"%d", key);
-    if (key == FINGERING_ALL_OPEN) {
-        [audioOutput stopPlaying];
-    }
-    else {
-        [audioOutput changeNote:(int)key];
-    }
+- (void)audioOutputChangedToNote:(NSString *)note
+{
+    self.keyNameLabel.text = note;
 }
 
 - (void)audioLevelUpdated:(float)averagePower {
@@ -80,17 +68,7 @@
 //    [self playSound];
 }
 
-- (IBAction)autoBlowing:(UISwitch*)sender {
-    alwaysBlowing = sender.isOn;
-    if (alwaysBlowing)
-        [blowProcessor stopUpdate];
-    else
-        [blowProcessor startUpdate];
-}
-
 - (IBAction)settingButtonAction:(id)sender {
-    self.octaveButton.isUpDown = !self.octaveButton.isUpDown;
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"정보", nil];
     [actionSheet showInView:self.view];
 }

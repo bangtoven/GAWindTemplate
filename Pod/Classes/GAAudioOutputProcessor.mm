@@ -15,6 +15,9 @@
 #import "PitShift.h"
 #import "FileWvIn.h"
 
+#import "GASettings.h"
+#import "GAMotionProcessor.h"
+
 #pragma mark - GAAudioFileInput
 @interface GAAudioFileInput : NSObject
 {
@@ -85,11 +88,16 @@
 
 #pragma mark - GAAudioOutputProcessor
 
-@interface GAAudioOutputProcessor () {
+@interface GAAudioOutputProcessor () <GAMotionProcessorDelegate> {
     NSArray *sampleTable;
+    int baseOctave;
+    int fingeringToNote;
+    
     NSMutableArray *audioOutput;
     
     stk::NRev *reverb;
+    
+    GAMotionProcessor *motionProcessor;
 }
 @property AEAudioController *audioController;
 @end
@@ -97,11 +105,75 @@
 @implementation GAAudioOutputProcessor
 
 + (instancetype)sharedOutput {
-    static GAAudioOutputProcessor *sharedInstance;
+    static id sharedInstance;
     if (sharedInstance == nil) {
-        sharedInstance = [[GAAudioOutputProcessor alloc] init];
+        sharedInstance = [[self alloc] init];
     }
     return sharedInstance;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        // initialize sample input
+        sampleTable = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioInputTable" ofType:@"plist"]];
+        
+        NSDictionary *firstSample = sampleTable[0];
+        int note = [firstSample[@"note"] intValue];
+        int octave = [firstSample[@"octave"] intValue];
+        baseOctave = note<6 ? octave-1 : octave;
+        fingeringToNote = (-6-note)%12;
+        
+        motionProcessor = [[GAMotionProcessor alloc] init];
+        motionProcessor.delegate = self;
+        [motionProcessor startUpdate];
+        
+        //Start the audio session:
+        self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription] inputEnabled:NO];
+        
+        NSError *errorAudioSetup = NULL;
+        BOOL result = [self.audioController start:&errorAudioSetup];
+        if ( !result ) NSLog(@"Error starting audio engine: %@", errorAudioSetup.localizedDescription);
+        
+        reverb = new stk::NRev();
+        reverb->setT60(1.8);
+        reverb->setEffectMix(0.25);
+        
+        AEBlockChannel *myBlockChannel = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp *time, UInt32 frames, AudioBufferList *audio) {
+            
+            for ( int i=0; i<frames; i++ ) {
+                stk::StkFloat sample = 0;
+                if (audioOutput.count < 1) {
+                    sample = 0;
+                }
+                else if (audioOutput.count == 1) {
+                    GAAudioFileInput *afi = audioOutput[0];
+                    sample = afi.tick;
+                }
+                else {
+                    for (int i = (int)audioOutput.count-1; i>0; i--) {
+                        GAAudioFileInput *afi = audioOutput[i];
+                        sample += afi.tick * afi.currentAmplitude;
+                        
+                        if (afi.isPlaying == NO)
+                            [audioOutput removeObject:afi];
+                    }
+                    GAAudioFileInput *afi = audioOutput[0];
+                    sample += afi.tick;
+                }
+                
+                ((float*)audio->mBuffers[0].mData)[i] =
+                ((float*)audio->mBuffers[1].mData)[i] = reverb->tick(sample);
+            }
+            
+        }];
+        
+        myBlockChannel.volume = 0.6;
+        
+        [self.audioController addChannels:@[myBlockChannel]];
+        
+        audioOutput = [NSMutableArray arrayWithCapacity:10];
+    }
+    return self;
 }
 
 - (void)setReverbEffectMix:(double)mix {
@@ -109,6 +181,27 @@
 }
 - (void)setReverbDelay:(double)delay {
     reverb->setT60(delay);
+}
+
+- (void)fingeringChangedWithKey:(int)key{
+    if (key == FINGERING_ALL_OPEN) 
+        [self stopPlaying];
+    else {
+        key += [GASettings sharedSetting].keyShift;
+        NSString *name = [self nameOfKey:key];
+        [self.delegate audioOutputChangedToNote:name];
+    
+        key += fingeringToNote;
+        [self changeNote:key];
+    }
+}
+
+- (NSString*)nameOfKey:(int)key {
+    static NSArray *keyNameArray = @[@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B"];
+    key += 6 + baseOctave*12;
+    int octave = key/12;
+    int index = key%12;
+    return [NSString stringWithFormat:@"%@%d",keyNameArray[index],octave];
 }
 
 - (void)changeNote:(int)note {
@@ -150,65 +243,6 @@
     
     AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
     myBlockChannel.volume = volume;
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        sampleTable = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioInputTable" ofType:@"plist"]];
-        
-        audioOutput = [NSMutableArray arrayWithCapacity:10];
-        
-        //Start the audio session:
-        self.audioController = [[AEAudioController alloc] initWithAudioDescription:
-                                [AEAudioController nonInterleavedFloatStereoAudioDescription]
-                                                                      inputEnabled:NO
-                                ];
-        
-        NSError *errorAudioSetup = NULL;
-        BOOL result = [self.audioController start:&errorAudioSetup];
-        if ( !result ) NSLog(@"Error starting audio engine: %@", errorAudioSetup.localizedDescription);
-        
-        reverb = new stk::NRev();
-        reverb->setT60(1.8);
-        reverb->setEffectMix(0.25);
-
-        AEBlockChannel *myBlockChannel = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp *time, UInt32 frames, AudioBufferList *audio) {
-            
-            //The STK classes compute and output one sample at a time,
-            //place them in the frames of the buffer:
-            
-            for ( int i=0; i<frames; i++ ) {
-                stk::StkFloat sample = 0;
-                if (audioOutput.count < 1) {
-                    sample = 0;
-                }
-                else if (audioOutput.count == 1) {
-                    GAAudioFileInput *afi = audioOutput[0];
-                    sample = afi.tick;
-                }
-                else {
-                    for (int i = (int)audioOutput.count-1; i>0; i--) {
-                        GAAudioFileInput *afi = audioOutput[i];
-                        sample += afi.tick * afi.currentAmplitude;
-                        
-                        if (afi.isPlaying == NO)
-                            [audioOutput removeObject:afi];
-                    }
-                    GAAudioFileInput *afi = audioOutput[0];
-                    sample += afi.tick;
-                }
-                
-                ((float*)audio->mBuffers[0].mData)[i] =
-                ((float*)audio->mBuffers[1].mData)[i] = reverb->tick(sample);
-            }
-            
-        }];
-        
-        myBlockChannel.volume = 0.6;
-        
-        [self.audioController addChannels:@[myBlockChannel]];
-    }
-    return self;
 }
 
 @end

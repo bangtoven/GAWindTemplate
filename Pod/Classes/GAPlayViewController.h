@@ -9,16 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GAFingeringHoleButton.h"
 #import "GAFingeringOctaveButton.h"
+#import "GAAudioOutputProcessor.h"
 
 @interface GAPlayViewController : UIViewController 
 
 @property (nonatomic) BOOL needsUpDownOctave;
-
-@property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
-@property (weak, nonatomic) IBOutlet UILabel *keyNameLabel;
-
-- (IBAction)holeButtonAction:(GAFingeringHoleButton *)sender;
-- (IBAction)octaveButtonAction:(GAFingeringOctaveButton *)sender;
+@property (assign, nonatomic) GAAudioOutputProcessor *audioOutput;
 
 @end
 

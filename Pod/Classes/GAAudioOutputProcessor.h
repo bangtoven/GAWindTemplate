@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GAFingeringProcessor.h"
 
-#import "GAMotionProcessor.h"
+@protocol GAAudioOutputDelegate <NSObject>
+- (void)audioOutputChangedToNote:(NSString*)note;
+@end
 
-@interface GAAudioOutputProcessor : NSObject <GAMotionProcessorDelegate> 
+@interface GAAudioOutputProcessor : NSObject <GAFingeringProcessorDelegate>
+
+@property (nonatomic, weak) id<GAAudioOutputDelegate> delegate;
 
 + (instancetype)sharedOutput;
 
 - (void)setReverbEffectMix:(double)mix;
 - (void)setReverbDelay:(double)delay;
 
-- (void)changeNote:(int)note;
 - (void)stopPlaying;
 
 @end

@@ -8,13 +8,9 @@
 
 #import "GASettings.h"
 
-@interface GASettings ()
-{
-    BOOL touchMode;
-}
-@end
-
 @implementation GASettings
+@synthesize isTouchMode;
+@synthesize keyShift;
 
 + (instancetype)sharedSetting
 {
@@ -28,12 +24,18 @@
 - (void)initialize
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    touchMode = [defaults boolForKey:@"touch mode"];
+    isTouchMode = [defaults boolForKey:@"touch mode"];
+    keyShift = (int)[defaults integerForKey:@"key shift"];
 }
 
 - (BOOL)isTouchMode
 {
-    return touchMode;
+    return isTouchMode;
+}
+
+- (int)keyShift
+{
+    return keyShift;
 }
 
 @end

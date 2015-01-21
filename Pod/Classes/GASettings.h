@@ -11,6 +11,8 @@
 @interface GASettings : NSObject
 
 + (instancetype)sharedSetting;
-- (BOOL)isTouchMode;
+
+@property (readonly) BOOL isTouchMode;
+@property (readonly) int keyShift;
 
 @end

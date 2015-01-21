@@ -14,12 +14,10 @@
     NSTimer *timer;
 }
 
+@property (nonatomic,strong) NSArray *fingeringTable;
+
 @property (nonatomic,strong) NSMutableString *buttonStatus;
 @property (nonatomic) int octaveStatus;
-@property (nonatomic,strong) NSArray *fingeringTable;
-//@property (nonatomic,strong) NSArray *keyNameArray;
-//        self.keyNameArray = @[@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B"];
-
 @property (nonatomic) int currentKey;
 
 @end
