@@ -34,9 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.needs3Octave) {
+    if (self.needs3Octave)
         self.octaveButton.isUpDown = YES;
-    }
+    
+    self.keyNameLabel.text = @"";
     
     fingeringProcessor = [GAFingeringProcessor new];
     fingeringProcessor.delegate = self;
@@ -56,11 +57,11 @@
 }
 
 - (IBAction)holeButtonAction:(GAButtonHole *)sender {
-    [fingeringProcessor action:sender];
+    [fingeringProcessor keyHoleInLocation:(int)sender.location changedTo:sender.closed];
 }
 
 - (IBAction)octaveButtonAction:(GAButtonOctave *)sender {
-    [fingeringProcessor octaveAction:sender];
+    [fingeringProcessor octaveChangedTo:sender.octave];
 }
 
 - (void)fingeringChangedWithKey:(int)key{

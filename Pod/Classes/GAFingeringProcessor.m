@@ -37,9 +37,7 @@
     return self;
 }
 
-- (void)action:(GAButtonHole *)sender {
-    NSInteger location = sender.location;
-    BOOL closed = sender.closed;
+- (void)keyHoleInLocation:(int)location changedTo:(BOOL)closed {
     [self.buttonStatus replaceCharactersInRange:NSMakeRange(location-1, 1) withString:closed?@"1":@"0"];
 
     __block int key = -1;
@@ -61,8 +59,8 @@
     }
 }
 
-- (void)octaveAction:(GAButtonOctave *)sender {
-    self.octaveStatus = sender.octave;
+- (void)octaveChangedTo:(int)octave {
+    self.octaveStatus = octave;
     [self prepareKeyToQueue];
 }
 
