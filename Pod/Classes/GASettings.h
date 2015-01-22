@@ -11,8 +11,9 @@
 @interface GASettings : NSObject
 
 @property (nonatomic, getter=isTouchMode) BOOL touchMode;
-@property (nonatomic) float micSensitivity;
+@property (nonatomic) float micThreshold;
 @property (nonatomic) int keyShift;
+@property (nonatomic) float motionSensitivity;
 @property (nonatomic) float reverbTime;
 @property (nonatomic) float reverbMix;
 

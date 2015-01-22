@@ -285,7 +285,7 @@
         <scene sceneID="453-JU-AQ5">
             <objects>
                 <tableViewController id="3uA-QS-4U0" customClass="GASettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uUh-DX-cdr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="uUh-DX-cdr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -317,15 +317,15 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="마이크 설정" footerTitle="주변 환경에 맞춰 마이크 작동 범위를 조절하세요. 파란색 부분은 노이즈로 처리되어 무시됩니다." id="Jqg-1b-pej">
+                            <tableViewSection headerTitle="마이크" footerTitle="주변 환경에 맞춰 마이크 작동 범위를 조절하세요. 파란색 부분은 노이즈로 처리되어 무시됩니다." id="Jqg-1b-pej">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="8o5-70-q0k">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="8o5-70-q0k">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8o5-70-q0k" id="DC5-Ed-eQc">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgo-7k-Q75" customClass="F3BarGauge">
-                                                    <rect key="frame" x="8" y="10" width="584" height="40"/>
+                                                    <rect key="frame" x="8" y="38" width="584" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="numBars">
@@ -334,20 +334,27 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GND-Zs-0ug">
-                                                    <rect key="frame" x="6" y="58" width="588" height="31"/>
+                                                    <rect key="frame" x="6" y="86" width="588" height="31"/>
                                                     <connections>
                                                         <action selector="micSensitivityChanged:" destination="3uA-QS-4U0" eventType="valueChanged" id="l1x-W4-6PK"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이크 작동 범위" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvh-G0-dUN">
+                                                    <rect key="frame" x="8" y="9" width="113" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="top" secondItem="bgo-7k-Q75" secondAttribute="bottom" constant="8" symbolic="YES" id="4yr-xy-uIZ"/>
-                                                <constraint firstItem="bgo-7k-Q75" firstAttribute="top" secondItem="DC5-Ed-eQc" secondAttribute="topMargin" constant="2" id="9L9-55-QmW"/>
-                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="leading" secondItem="bgo-7k-Q75" secondAttribute="leading" id="CGm-qN-ePX"/>
-                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="leading" secondItem="DC5-Ed-eQc" secondAttribute="leadingMargin" id="JIz-Eu-Qrs"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="GND-Zs-0ug" secondAttribute="bottom" constant="1" id="cif-va-3vH"/>
-                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="trailing" secondItem="DC5-Ed-eQc" secondAttribute="trailingMargin" id="jib-pA-kdg"/>
-                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="trailing" secondItem="bgo-7k-Q75" secondAttribute="trailing" id="nsI-m9-dS1"/>
+                                                <constraint firstItem="Bvh-G0-dUN" firstAttribute="top" secondItem="DC5-Ed-eQc" secondAttribute="topMargin" constant="1" id="41m-96-E5J"/>
+                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="top" secondItem="bgo-7k-Q75" secondAttribute="bottom" constant="8" symbolic="YES" id="6DJ-JR-1MN"/>
+                                                <constraint firstItem="Bvh-G0-dUN" firstAttribute="leading" secondItem="bgo-7k-Q75" secondAttribute="leading" id="J0M-12-syb"/>
+                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="leading" secondItem="DC5-Ed-eQc" secondAttribute="leadingMargin" id="U1w-f1-waw"/>
+                                                <constraint firstItem="bgo-7k-Q75" firstAttribute="trailing" secondItem="DC5-Ed-eQc" secondAttribute="trailingMargin" id="dqZ-KD-ITv"/>
+                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="leading" secondItem="bgo-7k-Q75" secondAttribute="leading" id="nkS-Ua-Jbv"/>
+                                                <constraint firstItem="GND-Zs-0ug" firstAttribute="bottom" secondItem="DC5-Ed-eQc" secondAttribute="bottomMargin" id="nl8-tf-ngG"/>
+                                                <constraint firstItem="bgo-7k-Q75" firstAttribute="trailing" secondItem="GND-Zs-0ug" secondAttribute="trailing" id="o0R-Xf-bUH"/>
+                                                <constraint firstItem="bgo-7k-Q75" firstAttribute="top" secondItem="Bvh-G0-dUN" secondAttribute="bottom" constant="8" symbolic="YES" id="tLz-TL-pzd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -389,25 +396,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="gLj-hf-Kjy">
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="모션" id="r4t-cN-fwj">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="69" id="UEG-7u-AtE">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gLj-hf-Kjy" id="kKa-fv-eoz">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UEG-7u-AtE" id="4DR-0p-ZIS">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6y2-Xi-wrY">
-                                                    <rect key="frame" x="8" y="14" width="584" height="30"/>
-                                                    <state key="normal" title="기본값으로 재설정">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="resetBaseNote:" destination="3uA-QS-4U0" eventType="touchUpInside" id="2Jb-s6-1o4"/>
-                                                    </connections>
-                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모션 감도" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="212-f5-AA4">
+                                                    <rect key="frame" x="8" y="10" width="64" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.59999999999999998" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xq1-fs-fpy">
+                                                    <rect key="frame" x="6" y="30" width="588" height="31"/>
+                                                </slider>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6y2-Xi-wrY" firstAttribute="top" secondItem="kKa-fv-eoz" secondAttribute="topMargin" constant="6" id="DtO-pA-ECC"/>
-                                                <constraint firstItem="6y2-Xi-wrY" firstAttribute="leading" secondItem="kKa-fv-eoz" secondAttribute="leadingMargin" id="MbE-ab-3Rc"/>
-                                                <constraint firstItem="6y2-Xi-wrY" firstAttribute="trailing" secondItem="kKa-fv-eoz" secondAttribute="trailingMargin" id="Pl4-PA-gGr"/>
+                                                <constraint firstItem="212-f5-AA4" firstAttribute="top" secondItem="4DR-0p-ZIS" secondAttribute="topMargin" constant="2" id="5eu-qE-Usn"/>
+                                                <constraint firstItem="212-f5-AA4" firstAttribute="leading" secondItem="xq1-fs-fpy" secondAttribute="leading" id="Anp-0F-iJJ"/>
+                                                <constraint firstItem="xq1-fs-fpy" firstAttribute="leading" secondItem="4DR-0p-ZIS" secondAttribute="leadingMargin" id="JMI-Fk-Yhz"/>
+                                                <constraint firstItem="xq1-fs-fpy" firstAttribute="bottom" secondItem="4DR-0p-ZIS" secondAttribute="bottomMargin" id="Na6-Bd-6HG"/>
+                                                <constraint firstItem="xq1-fs-fpy" firstAttribute="trailing" secondItem="4DR-0p-ZIS" secondAttribute="trailingMargin" id="vWQ-Mk-EJb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -425,7 +437,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.7999999523162842" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="eyJ-En-mjv">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.7999999523162842" minValue="0.01" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="eyJ-En-mjv">
                                                     <rect key="frame" x="6" y="30" width="588" height="31"/>
                                                 </slider>
                                             </subviews>
@@ -482,6 +494,7 @@
                         <outlet property="baseNoteStepper" destination="2Bi-0R-jUt" id="0Mw-VM-nMj"/>
                         <outlet property="micInputGaugeBar" destination="bgo-7k-Q75" id="d6e-4L-evq"/>
                         <outlet property="micThresholdSlider" destination="GND-Zs-0ug" id="AKF-Ha-gE7"/>
+                        <outlet property="motionSensitivitySlider" destination="xq1-fs-fpy" id="N0X-dg-vH9"/>
                         <outlet property="playModeSegment" destination="jIz-QB-mTi" id="dZx-Dh-Vzk"/>
                         <outlet property="reverbMixSlider" destination="p2l-Gw-IOl" id="yTD-dk-sDY"/>
                         <outlet property="reverbTimeSlider" destination="eyJ-En-mjv" id="OXw-f7-TQT"/>

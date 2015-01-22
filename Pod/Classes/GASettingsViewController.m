@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIStepper *baseNoteStepper;
 @property (weak, nonatomic) IBOutlet UILabel *baseNoteShiftLabel;
 
+@property (weak, nonatomic) IBOutlet UISlider *motionSensitivitySlider;
 
 @property (weak, nonatomic) IBOutlet UISlider *reverbTimeSlider;
 @property (weak, nonatomic) IBOutlet UISlider *reverbMixSlider;
@@ -42,11 +43,13 @@
     self.playModeSegment.selectedSegmentIndex = settings.isTouchMode;
     [self playModeChanged:self];
     
-    self.micThresholdSlider.value = settings.micSensitivity;
+    self.micThresholdSlider.value = settings.micThreshold;
     [self micSensitivityChanged:self];
     
     self.baseNoteStepper.value = settings.keyShift;
     [self baseNoteChanged:self];
+    
+    self.motionSensitivitySlider.value = settings.motionSensitivity;
     
     self.reverbTimeSlider.value = settings.reverbTime;
     self.reverbMixSlider.value = settings.reverbMix;
@@ -102,8 +105,9 @@
 {
 //    if it is unwind...
     settings.touchMode = self.playModeSegment.selectedSegmentIndex==1;
-    settings.micSensitivity = self.micThresholdSlider.value;
+    settings.micThreshold = self.micThresholdSlider.value;
     settings.keyShift = self.baseNoteStepper.value;
+    settings.motionSensitivity = self.motionSensitivitySlider.value;
     settings.reverbTime = self.reverbTimeSlider.value;
     settings.reverbMix = self.reverbMixSlider.value;
     [settings synchronize];

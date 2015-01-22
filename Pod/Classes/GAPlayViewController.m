@@ -22,7 +22,8 @@
 {
     [super viewDidLoad];
     
-    self.audioOutput = [GAAudioOutputProcessor sharedOutput];
+    if (self.audioOutput == nil)
+        self.audioOutput = [GAAudioOutputProcessor sharedOutput];
     self.audioOutput.delegate = self;
     
     self.fingeringProcessor = [GAFingeringProcessor new];

@@ -10,7 +10,7 @@
 #import <CoreMotion/CoreMotion.h>
 
 @protocol GAMotionProcessorDelegate <NSObject>
--(void)motionUpdatedToAngle:(double)angle;
+-(void)motionUpdated:(CMDeviceMotion*)motion;
 @end
 
 

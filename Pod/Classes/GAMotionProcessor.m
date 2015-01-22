@@ -8,9 +8,8 @@
 
 #import "GAMotionProcessor.h"
 
-@interface GAMotionProcessor () {
-    CMMotionManager *motionManager;
-}
+@interface GAMotionProcessor ()
+@property (strong) CMMotionManager *motionManager;
 @end
 
 @implementation GAMotionProcessor
@@ -24,53 +23,30 @@
 }
 
 -(void)startUpdate {
-    if (motionManager) 
+    if (self.motionManager)
         return;
     
-    motionManager = [[CMMotionManager alloc] init];
+    self.motionManager = [[CMMotionManager alloc] init];
     
-    double calibrationTime = 0.01;
-    
-    if (motionManager.isDeviceMotionAvailable) {
-        motionManager.deviceMotionUpdateInterval = 1 / 100.0;
-        __block NSTimeInterval lastTimeStamp = -1.0;
-        __block double lastAttitude = -1;
+    if (self.motionManager.isDeviceMotionAvailable) {
         NSOperationQueue *gyroQueue = [[NSOperationQueue alloc] init];
-        [motionManager startDeviceMotionUpdatesToQueue:gyroQueue withHandler:
+        self.motionManager.deviceMotionUpdateInterval = 1 / 100.0;
+        [self.motionManager startDeviceMotionUpdatesToQueue:gyroQueue withHandler:
          ^(CMDeviceMotion *motion, NSError *error) {
-             if (lastTimeStamp < 0) {
-                 lastTimeStamp = motion.timestamp;
-             }
-             
-             if (motion.timestamp - lastTimeStamp > calibrationTime) {
-//                 double pitch = motion.attitude.pitch;
-                 double pitch = motion.userAcceleration.y;
-                 double diff = pitch-lastAttitude;
-                 if (ABS(diff)>0.005) {
-                     [self performSelectorOnMainThread: @selector(update:)
-                                            withObject: [NSNumber numberWithDouble:pitch]
-                                         waitUntilDone: NO];
-                     lastAttitude = pitch;
-                 }
-                 lastTimeStamp = motion.timestamp;
-             }
+             [self performSelectorOnMainThread: @selector(update:)
+                                    withObject: motion
+                                 waitUntilDone: YES];
          }];
     }
 }
 
-- (void)update:(NSNumber*)input {
-//    double intensity = input.doubleValue + M_PI_2;
-//    if (intensity < 0) intensity = 0;
-//
-//    double angle = intensity/M_PI*180.0;
-//    
-//    [self.delegate motionUpdatedToAngle:angle];
-    [self.delegate motionUpdatedToAngle:input.doubleValue];
+- (void)update:(CMDeviceMotion*)motion {
+    [self.delegate motionUpdated:motion];
 }
 
 -(void)stopUpdate {
-    [motionManager stopDeviceMotionUpdates];
-    motionManager = nil;
+    [self.motionManager stopDeviceMotionUpdates];
+    self.motionManager = nil;
 }
 
 @end
