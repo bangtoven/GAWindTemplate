@@ -95,7 +95,7 @@
     
     NSMutableArray *audioOutput;
     
-    stk::NRev *reverb;
+    stk::NRev reverb;
     
     GAMotionProcessor *motionProcessor;
 }
@@ -134,9 +134,7 @@
         BOOL result = [self.audioController start:&errorAudioSetup];
         if ( !result ) NSLog(@"Error starting audio engine: %@", errorAudioSetup.localizedDescription);
         
-        reverb = new stk::NRev();
-        reverb->setT60(1.8);
-        reverb->setEffectMix(0.25);
+        [self updateSettings];
         
         AEBlockChannel *myBlockChannel = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp *time, UInt32 frames, AudioBufferList *audio) {
             
@@ -162,7 +160,7 @@
                 }
                 
                 ((float*)audio->mBuffers[0].mData)[i] =
-                ((float*)audio->mBuffers[1].mData)[i] = reverb->tick(sample);
+                ((float*)audio->mBuffers[1].mData)[i] = reverb.tick(sample);
             }
             
         }];
@@ -181,11 +179,11 @@
     fingeringToNote += 12;
 }
 
-- (void)setReverbEffectMix:(double)mix {
-    reverb->setEffectMix(mix);
-}
-- (void)setReverbDelay:(double)delay {
-    reverb->setT60(delay);
+- (void)updateSettings
+{
+    GASettings *settings = [GASettings sharedSetting];
+    reverb.setEffectMix(settings.reverbMix);
+    reverb.setT60(settings.reverbTime);
 }
 
 - (void)fingeringChangedWithKey:(int)key{

@@ -75,19 +75,4 @@
     [self stopUpdate];
 }
 
-#define MIC_SENSITIVITY_KEY @"mic sensitivity"
-+ (float)micSensitivity {
-    float sensitivity = [[NSUserDefaults standardUserDefaults] floatForKey:MIC_SENSITIVITY_KEY];
-    if (sensitivity < 0.05) {
-        sensitivity = 0.5;
-        [self setMicSensitivity:sensitivity];
-    }
-    return sensitivity;
-}
-+ (void)setMicSensitivity:(float)sensitivity {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setFloat:sensitivity forKey:MIC_SENSITIVITY_KEY];
-    [defaults synchronize];
-}
-
 @end

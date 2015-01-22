@@ -9,33 +9,50 @@
 #import "GASettings.h"
 
 @implementation GASettings
-@synthesize isTouchMode;
-@synthesize keyShift;
 
 + (instancetype)sharedSetting
 {
     static GASettings *singleton = nil;
     if (!singleton) {
-        singleton = [self new];
+        singleton = [[self alloc] init];
     }
     return singleton;
 }
 
-- (void)initialize
+- (id)init
+{
+    if (self = [super init]) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        if ([defaults boolForKey:@"initialized"]==NO) {
+            _touchMode = NO;
+            _micSensitivity = 0.5;
+            _keyShift = 0;
+            _reverbTime = 1.8;
+            _reverbMix = 0.25;
+            [defaults setBool:YES forKey:@"initialized"];
+            [self synchronize];
+        }
+        else {
+            _touchMode = [defaults boolForKey:@"touch mode"];
+            _micSensitivity = [defaults floatForKey:@"mic sensitivity"];
+            _keyShift = (int)[defaults integerForKey:@"key shift"];
+            _reverbTime = [defaults floatForKey:@"reverb time"];
+            _reverbMix = [defaults floatForKey:@"reverb mix"];
+        }
+    }
+    return self;
+}
+
+- (void)synchronize
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    isTouchMode = [defaults boolForKey:@"touch mode"];
-    keyShift = (int)[defaults integerForKey:@"key shift"];
-}
-
-- (BOOL)isTouchMode
-{
-    return isTouchMode;
-}
-
-- (int)keyShift
-{
-    return keyShift;
+    [defaults setBool:_touchMode forKey:@"touch mode"];
+    [defaults setFloat:_micSensitivity forKey:@"mic sensitivity"];
+    [defaults setInteger:_keyShift forKey:@"key shift"];
+    [defaults setFloat:_reverbTime forKey:@"reverb time"];
+    [defaults setFloat:_reverbMix forKey:@"reverb mix"];
+    [defaults synchronize];
 }
 
 @end

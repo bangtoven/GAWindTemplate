@@ -72,7 +72,7 @@
 - (void)sendToDelegate {
     timer = nil;
 
-    if ([GASettings sharedSetting].isTouchMode &&
+    if ([[GASettings sharedSetting] isTouchMode] &&
         self.octaveStatus == 0 &&
         [self.buttonStatus isEqualToString:@"00000"]) {
         [self.delegate fingeringChangedWithKey:FINGERING_ALL_OPEN];

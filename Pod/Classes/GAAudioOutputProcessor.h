@@ -20,10 +20,10 @@
 + (instancetype)sharedOutput;
 
 - (void)makeOneOctaveHigher;
-
-- (void)setReverbEffectMix:(double)mix;
-- (void)setReverbDelay:(double)delay;
+- (void)updateSettings;
 
 - (void)stopPlaying;
+
+- (NSString*)nameOfKey:(int)key;
 
 @end

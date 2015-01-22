@@ -10,9 +10,13 @@
 
 @interface GASettings : NSObject
 
-+ (instancetype)sharedSetting;
+@property (nonatomic, getter=isTouchMode) BOOL touchMode;
+@property (nonatomic) float micSensitivity;
+@property (nonatomic) int keyShift;
+@property (nonatomic) float reverbTime;
+@property (nonatomic) float reverbMix;
 
-@property (readonly) BOOL isTouchMode;
-@property (readonly) int keyShift;
++ (instancetype)sharedSetting;
+- (void)synchronize;
 
 @end

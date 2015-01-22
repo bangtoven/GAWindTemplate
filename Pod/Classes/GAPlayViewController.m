@@ -71,6 +71,8 @@
 }
 
 - (IBAction)settingButtonAction:(id)sender {
+    [self.audioOutput stopPlaying];
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"정보", nil];
     [actionSheet showInView:self.view];
 }
@@ -89,27 +91,8 @@
 
 - (IBAction)backToPlayView:(UIStoryboardSegue*)sender
 {
-    NSLog(@"I am back!");
+//    if it is from settings v.c.
+    [self.audioOutput updateSettings];
 }
-
-//- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
-//{
-//
-//}
-//
-//- (void)actionSheetCancel:(UIActionSheet *)actionSheet
-//{
-//
-//}
-
-//// Called when we cancel a view (eg. the user clicks the Home button). This is not called when the user clicks the cancel button.
-//// If not defined in the delegate, we simulate a click in the cancel button
-//- (void)actionSheetCancel:(UIActionSheet *)actionSheet;
-//
-//- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;  // after animation
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex; // before animation and hiding view
-//- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;  // after animation
-//
 
 @end

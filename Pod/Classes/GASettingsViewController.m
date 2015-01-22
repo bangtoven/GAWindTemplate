@@ -9,27 +9,64 @@
 #import "GASettingsViewController.h"
 #import "GAMicInputProcessor.h"
 #import "GAAudioOutputProcessor.h"
+#import "GASettings.h"
 
 @interface GASettingsViewController () <GABlowProcessorDelegate> {
+    GASettings *settings;
     GAMicInputProcessor *blowProcessor;
-    BOOL asdf;
 }
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *playModeSegment;
+
+@property (weak, nonatomic) IBOutlet F3BarGauge *micInputGaugeBar;
+@property (weak, nonatomic) IBOutlet UISlider *micThresholdSlider;
+
+@property (weak, nonatomic) IBOutlet UILabel *baseNoteLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *baseNoteStepper;
+@property (weak, nonatomic) IBOutlet UILabel *baseNoteShiftLabel;
+
+
+@property (weak, nonatomic) IBOutlet UISlider *reverbTimeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *reverbMixSlider;
+
 @end
 
 @implementation GASettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    blowProcessor = [[GABlowProcessor alloc] init];
-//    blowProcessor.delegate = self;
-//    [blowProcessor startUpdate];
 
-    self.micThresholdSlider.value = [GAMicInputProcessor micSensitivity];
-    [self sensitivityChanged:self];
+    settings = [GASettings sharedSetting];
+
+    self.playModeSegment.selectedSegmentIndex = settings.isTouchMode;
+    [self playModeChanged:self];
+    
+    self.micThresholdSlider.value = settings.micSensitivity;
+    [self micSensitivityChanged:self];
+    
+    self.baseNoteStepper.value = settings.keyShift;
+    [self baseNoteChanged:self];
+    
+    self.reverbTimeSlider.value = settings.reverbTime;
+    self.reverbMixSlider.value = settings.reverbMix;
 }
 
-- (IBAction)sensitivityChanged:(id)sender {
+- (IBAction)playModeChanged:(id)sender {
+    if (self.playModeSegment.selectedSegmentIndex==1) {
+        [blowProcessor stopUpdate];
+        self.micThresholdSlider.enabled = NO;
+        self.micInputGaugeBar.alpha = 0.5;
+    }
+    else {
+        self.micThresholdSlider.enabled = YES;
+        self.micInputGaugeBar.alpha = 1.0;
+        //    blowProcessor = [[GABlowProcessor alloc] init];
+        //    blowProcessor.delegate = self;
+        //    [blowProcessor startUpdate];
+    }
+}
+
+- (IBAction)micSensitivityChanged:(id)sender {
     float threshold = self.micThresholdSlider.value;
     self.micInputGaugeBar.normalThreshold = threshold;
     self.micInputGaugeBar.warnThreshold = (2*threshold + 1.0) / 3.0;
@@ -38,62 +75,39 @@
     [self.micInputGaugeBar resetPeak];
 }
 
-- (IBAction)reverbDelayChanged:(id)sender {
-    [[GAAudioOutputProcessor sharedOutput] setReverbDelay:self.reverbDelaySlider.value];
-}
-
-- (IBAction)reverbMixChanged:(id)sender {
-    [[GAAudioOutputProcessor sharedOutput] setReverbEffectMix:self.reverbMixSlider.value];
-}
-
 - (void)audioLevelUpdated:(float)averagePower {
     self.micInputGaugeBar.value = averagePower;
 }
 
-- (IBAction)saveAndGoBack {
-    [GAMicInputProcessor setMicSensitivity:self.micThresholdSlider.value];
+- (IBAction)baseNoteChanged:(id)sender {
+    int value = (int)self.baseNoteStepper.value;
+    GAAudioOutputProcessor *aop = [GAAudioOutputProcessor sharedOutput];
+    NSString *name = [aop nameOfKey:value];
+    self.baseNoteLabel.text = name;
+    if (value == 0)
+        self.baseNoteShiftLabel.text = @"";
+    else if (value > 0)
+        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"+%d",value];
+    else if (value < 0)
+        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"%d",value];
+}
+
+- (IBAction)resetBaseNote:(id)sender {
+    self.baseNoteStepper.value = 0;
+    [self baseNoteChanged:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+//    if it is unwind...
+    settings.touchMode = self.playModeSegment.selectedSegmentIndex==1;
+    settings.micSensitivity = self.micThresholdSlider.value;
+    settings.keyShift = self.baseNoteStepper.value;
+    settings.reverbTime = self.reverbTimeSlider.value;
+    settings.reverbMix = self.reverbMixSlider.value;
+    [settings synchronize];
+    
     [blowProcessor stopUpdate];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    return 2;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    switch (component) {
-        case 0:
-            return 11;
-        case 1:
-            return 3;
-        default:
-            return 0;
-    }
-
-}
-//// returns width of column and height of row for each component.
-//- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component;
-//- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-
-// these methods return either a plain NSString, a NSAttributedString, or a view (e.g UILabel) to display the row for the component.
-// for the view versions, we cache any hidden and thus unused views and pass them back for reuse.
-// If you return back a different object, the old one will be released. the view will be centered in the row rect
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    switch (component) {
-        case 0: {
-            NSArray *noteNameArray = @[@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B"];
-            return noteNameArray[row];
-        }
-        case 1:
-            return [NSString stringWithFormat:@"%d",row+2];
-        default:
-            return @"";
-    }
-}
-
-//- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-
-
 
 @end

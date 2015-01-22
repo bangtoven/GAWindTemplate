@@ -16,9 +16,6 @@
 
 @interface GAMicInputProcessor : NSObject
 
-+ (float)micSensitivity;
-+ (void)setMicSensitivity:(float)sensitivity;
-
 @property (nonatomic, weak) id <GABlowProcessorDelegate> delegate;
 
 - (void)startUpdate;
