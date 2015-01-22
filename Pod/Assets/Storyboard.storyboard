@@ -290,7 +290,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="연주 방법" id="ios-QC-Jsc">
+                            <tableViewSection headerTitle="연주 방법" footerTitle="터치 모드에서는 마이크를 불지 않아도 연주가 가능합니다." id="ios-QC-Jsc">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="nGJ-EV-pMW">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -317,7 +317,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="마이크 설정" id="Jqg-1b-pej">
+                            <tableViewSection headerTitle="마이크 설정" footerTitle="주변 환경에 맞춰 마이크 작동 범위를 조절하세요. 파란색 부분은 노이즈로 처리되어 무시됩니다." id="Jqg-1b-pej">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="8o5-70-q0k">
                                         <autoresizingMask key="autoresizingMask"/>

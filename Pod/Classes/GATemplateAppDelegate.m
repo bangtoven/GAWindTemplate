@@ -11,10 +11,7 @@
 
 @implementation GATemplateAppDelegate
 
-- (void)initialize:(GAPlayViewController*)pvc
-{
-    
-}
+- (void)initialize:(GAPlayViewController*)pvc {}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

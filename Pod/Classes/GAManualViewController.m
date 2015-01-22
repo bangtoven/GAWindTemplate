@@ -52,14 +52,18 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self.navigationController setHidesBarsOnTap:YES];
+    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnTap:)]) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self.navigationController setHidesBarsOnTap:YES];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setHidesBarsOnTap:NO];
+    
+    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnTap:)])
+        [self.navigationController setHidesBarsOnTap:NO];
 }
 
 - (ContentsViewController *)viewControllerAtIndex:(NSUInteger)index
