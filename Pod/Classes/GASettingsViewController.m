@@ -33,7 +33,8 @@
 
 @implementation GASettingsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     settings = [GASettings sharedSetting];
@@ -49,6 +50,12 @@
     
     self.reverbTimeSlider.value = settings.reverbTime;
     self.reverbMixSlider.value = settings.reverbMix;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (IBAction)playModeChanged:(id)sender {

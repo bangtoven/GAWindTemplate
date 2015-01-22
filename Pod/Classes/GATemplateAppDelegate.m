@@ -22,12 +22,14 @@
     
     NSBundle *bundle = [NSBundle templateBundle];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:bundle];
-    GAPlayViewController *vc =[storyboard instantiateInitialViewController];
+    UINavigationController *nvc = [storyboard instantiateInitialViewController];
+    
+    GAPlayViewController *vc = (GAPlayViewController*)nvc.topViewController;
     [self initialize:vc];
     
     // Set root view controller and make windows visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = vc;
+    self.window.rootViewController = nvc;
     [self.window makeKeyAndVisible];
     
     return YES;
