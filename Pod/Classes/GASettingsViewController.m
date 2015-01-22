@@ -52,12 +52,6 @@
     self.reverbMixSlider.value = settings.reverbMix;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (IBAction)playModeChanged:(id)sender {
     if (self.playModeSegment.selectedSegmentIndex==1) {
         [blowProcessor stopUpdate];

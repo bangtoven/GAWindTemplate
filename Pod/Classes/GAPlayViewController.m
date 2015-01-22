@@ -47,6 +47,12 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (IBAction)holeButtonAction:(GAFingeringHoleButton *)sender {
     [self.fingeringProcessor keyHoleInLocation:(int)sender.location changedTo:sender.closed];
 }
@@ -74,15 +80,14 @@
         return;
 
     switch (buttonIndex) {
-        case 0: {
+        case 0: 
             [self performSegueWithIdentifier:@"show settings" sender:nil];
             break;
-        }
-        case 1: {
+        case 1:
             [self performSegueWithIdentifier:@"show manual" sender:nil];
             break;
-        }
         default:
+            [self performSegueWithIdentifier:@"show info" sender:nil];
             break;
     }
 }

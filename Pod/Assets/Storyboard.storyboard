@@ -274,11 +274,12 @@
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
                         <segue destination="3uA-QS-4U0" kind="show" identifier="show settings" id="zv1-L1-aPE"/>
                         <segue destination="aXa-Ou-oai" kind="show" identifier="show manual" id="FoG-Ns-gWI"/>
+                        <segue destination="sm8-TR-qaq" kind="show" identifier="show info" id="t3v-on-osd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-1K-opn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="946" y="-741"/>
+            <point key="canvasLocation" x="720" y="-741"/>
         </scene>
         <!--설정-->
         <scene sceneID="453-JU-AQ5">
@@ -469,7 +470,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="설정" id="hQ8-3h-dPy">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="hvK-xD-kga">
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="hvK-xD-kga">
                             <connections>
                                 <segue destination="Rd5-H4-UKP" kind="unwind" identifier="settings updated" unwindAction="backToPlayView:" id="1zz-Fh-tYr"/>
                             </connections>
@@ -489,7 +490,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jkj-Bb-3G0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Rd5-H4-UKP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1802" y="-741"/>
+            <point key="canvasLocation" x="1576" y="-805"/>
+        </scene>
+        <!--정보-->
+        <scene sceneID="jSE-d6-nb1">
+            <objects>
+                <viewController id="sm8-TR-qaq" customClass="GAInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="q3a-I9-zI3"/>
+                        <viewControllerLayoutGuide type="bottom" id="tGL-gQ-81h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kYb-H3-yPg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정보 페이지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rn-Qv-nr6">
+                                <rect key="frame" x="16" y="114" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Rn-Qv-nr6" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="JxT-1t-OEI"/>
+                            <constraint firstItem="7Rn-Qv-nr6" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="70" id="w2d-LR-thh"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="정보" id="WgO-zQ-MRg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iAO-KN-8IB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="67"/>
         </scene>
         <!--사용법-->
         <scene sceneID="5gX-y4-30C">
@@ -504,18 +537,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="사용법" id="Mc2-4Q-fUe">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ISA-rY-6eM">
-                            <connections>
-                                <segue destination="VyD-ke-vPn" kind="unwind" unwindAction="backToPlayView:" id="dTM-Ka-Imc"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="사용법" id="Mc2-4Q-fUe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="es0-qk-N82" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="VyD-ke-vPn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1802" y="18"/>
+            <point key="canvasLocation" x="1576" y="-100"/>
         </scene>
         <!--Contents View Controller-->
         <scene sceneID="G58-s3-q0L">
@@ -547,7 +573,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPI-vf-hNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2468" y="18"/>
+            <point key="canvasLocation" x="2242" y="-100"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yj9-ul-kMR">
@@ -559,6 +585,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dhF-xy-DiL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -567,7 +596,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mlm-MJ-EQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="-741"/>
+            <point key="canvasLocation" x="24" y="-741"/>
         </scene>
     </scenes>
     <resources>
@@ -584,4 +613,5 @@
         <image name="octave_active.png" width="120" height="135"/>
         <image name="setting..png" width="42" height="43"/>
     </resources>
+    <color key="tintColor" red="0.50196081399917603" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
