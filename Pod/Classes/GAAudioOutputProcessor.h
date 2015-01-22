@@ -15,9 +15,9 @@
 
 @interface GAAudioOutputProcessor : NSObject <GAFingeringProcessorDelegate>
 
-@property (nonatomic, weak) id<GAAudioOutputDelegate> delegate;
-
 + (instancetype)sharedOutput;
+
+@property (nonatomic, weak) id<GAAudioOutputDelegate> delegate;
 
 - (void)makeOneOctaveHigher;
 - (void)updateSettings;

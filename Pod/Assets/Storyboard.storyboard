@@ -267,12 +267,12 @@
                         <outlet property="keyNameLabel" destination="ihv-yy-JJU" id="vAs-xY-Nei"/>
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
                         <segue destination="xLN-Xv-oL5" kind="presentation" identifier="show settings" id="FIJ-BI-tWA"/>
-                        <segue destination="JAw-vg-AFb" kind="presentation" identifier="asdf" id="pfz-PM-f9a"/>
+                        <segue destination="oB4-CZ-FW2" kind="presentation" identifier="show manual" id="8AQ-dX-B4k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-1K-opn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="-560"/>
+            <point key="canvasLocation" x="88" y="-414"/>
         </scene>
         <!--설정-->
         <scene sceneID="453-JU-AQ5">
@@ -463,10 +463,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="설정" id="hQ8-3h-dPy">
-                        <barButtonItem key="leftBarButtonItem" title="닫기" id="hvK-xD-kga">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="hvK-xD-kga">
                             <connections>
                                 <action selector="saveAndGoBack" destination="3uA-QS-4U0" id="zXt-VK-weH"/>
-                                <segue destination="Rd5-H4-UKP" kind="unwind" unwindAction="backToPlayView:" id="1zz-Fh-tYr"/>
+                                <segue destination="Rd5-H4-UKP" kind="unwind" identifier="settings updated" unwindAction="backToPlayView:" id="1zz-Fh-tYr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -484,7 +484,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jkj-Bb-3G0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Rd5-H4-UKP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1692" y="-826"/>
+            <point key="canvasLocation" x="1692" y="-743"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Wp-5E-1LD">
@@ -503,30 +503,98 @@
             <point key="canvasLocation" x="990" y="-743"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="sNj-Uc-DJD">
+        <scene sceneID="GzV-Bz-gWB">
             <objects>
-                <viewController id="JAw-vg-AFb" sceneMemberID="viewController">
+                <viewController id="ECv-au-dGD" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="o6j-Th-1K6"/>
-                        <viewControllerLayoutGuide type="bottom" id="fDD-ur-xeV"/>
+                        <viewControllerLayoutGuide type="top" id="KWq-dP-7hc"/>
+                        <viewControllerLayoutGuide type="bottom" id="iuY-nZ-QoS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cch-LZ-8Td">
+                    <view key="view" contentMode="scaleToFill" id="gZA-1d-HCd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="설명서" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puI-A8-tlP">
-                                <rect key="frame" x="48" y="43" width="442" height="203"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="170"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2XP-ju-iIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4U5-wc-Tcz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="984" y="20"/>
+            <point key="canvasLocation" x="990" y="699"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eKk-mj-cl2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnTap="YES" id="oB4-CZ-FW2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vRW-1u-oJR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aXa-Ou-oai" kind="relationship" relationship="rootViewController" id="9CE-iv-szO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bvm-fD-9W5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="990" y="18"/>
+        </scene>
+        <!--사용법-->
+        <scene sceneID="5gX-y4-30C">
+            <objects>
+                <viewController id="aXa-Ou-oai" customClass="GAManualViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5sQ-MJ-U7A"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Wi-tY-9pz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IwO-oL-BTd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="사용법" id="Mc2-4Q-fUe">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ISA-rY-6eM">
+                            <connections>
+                                <segue destination="VyD-ke-vPn" kind="unwind" unwindAction="backToPlayView:" id="dTM-Ka-Imc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="es0-qk-N82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VyD-ke-vPn" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1692" y="18"/>
+        </scene>
+        <!--Contents View Controller-->
+        <scene sceneID="G58-s3-q0L">
+            <objects>
+                <viewController storyboardIdentifier="ContentsViewController" id="oe9-cO-bQM" customClass="ContentsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2gN-cA-nm8"/>
+                        <viewControllerLayoutGuide type="bottom" id="HOp-Ob-P5f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Djt-bl-XLN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IEd-pg-gBs">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IEd-pg-gBs" firstAttribute="height" secondItem="Djt-bl-XLN" secondAttribute="height" id="RJN-Ge-KtZ"/>
+                            <constraint firstAttribute="centerX" secondItem="IEd-pg-gBs" secondAttribute="centerX" id="SBW-Lt-O4A"/>
+                            <constraint firstItem="IEd-pg-gBs" firstAttribute="width" secondItem="Djt-bl-XLN" secondAttribute="width" id="jBJ-CO-o18"/>
+                            <constraint firstAttribute="centerY" secondItem="IEd-pg-gBs" secondAttribute="centerY" id="pwy-6O-fUz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="IEd-pg-gBs" id="jKB-Jy-YaQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oPI-vf-hNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2396" y="18"/>
         </scene>
     </scenes>
     <resources>

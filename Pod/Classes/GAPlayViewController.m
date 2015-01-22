@@ -84,6 +84,10 @@
             [self performSegueWithIdentifier:@"show settings" sender:nil];
             break;
         }
+        case 1: {
+            [self performSegueWithIdentifier:@"show manual" sender:nil];
+            break;
+        }
         default:
             break;
     }
@@ -91,8 +95,9 @@
 
 - (IBAction)backToPlayView:(UIStoryboardSegue*)sender
 {
-//    if it is from settings v.c.
-    [self.audioOutput updateSettings];
+    if ([sender.identifier isEqualToString:@"settings updated"]) {
+        [self.audioOutput updateSettings];
+    }
 }
 
 @end
