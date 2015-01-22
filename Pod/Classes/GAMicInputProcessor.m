@@ -19,6 +19,14 @@
 
 @implementation GAMicInputProcessor
 
++ (GAMicInputProcessor*)micInputProcessor {
+    static GAMicInputProcessor *singleton;
+    if (!singleton) {
+        singleton = [[GAMicInputProcessor alloc] init];
+    }
+    return singleton;
+}
+
 - (id)init {
     if (self = [super init]) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
@@ -33,13 +41,11 @@
                                   nil];
         
         NSError *error;
-        
         self.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
         
-        if (self.recorder) {
+        if (self.recorder && error==nil) {
             [self.recorder prepareToRecord];
             [self.recorder setMeteringEnabled:YES];
-            [self.recorder record];
         } else
             NSLog(@"Error in initializeRecorder: %@", [error description]);
     }
@@ -49,14 +55,19 @@
 - (void)startUpdate {
     if (!self.levelTimer)
         self.levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+    
+    if (self.recorder.isRecording == NO)
+        [self.recorder record];
 }
 
 - (void)stopUpdate {
     if (self.levelTimer) {
         [self.levelTimer invalidate];
         self.levelTimer = nil;
-        [self.recorder stop];
     }
+    
+    if (self.recorder.isRecording)
+        [self.recorder stop];
 }
 
 - (void)levelTimerCallback:(NSTimer *)timer

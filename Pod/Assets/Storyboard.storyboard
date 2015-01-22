@@ -70,6 +70,21 @@
                                     <constraint firstAttribute="width" constant="151" id="yDx-qp-ngV"/>
                                 </constraints>
                             </imageView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-Zk-nGn" customClass="JHGlowView">
+                                <rect key="frame" x="70" y="520" width="160" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="MnL-Hv-eAD"/>
+                                    <constraint firstAttribute="width" constant="160" id="NHf-6w-L2G"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="centerColor">
+                                        <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이크를 불어요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIP-Rx-j64">
                                 <rect key="frame" x="75" y="571" width="151" height="21"/>
                                 <constraints>
@@ -224,6 +239,7 @@
                             <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="MIP-Rx-j64" secondAttribute="bottom" constant="8" symbolic="YES" id="Eaw-07-FZn"/>
                             <constraint firstItem="U2x-v0-he7" firstAttribute="centerX" secondItem="TD7-FP-SkM" secondAttribute="centerX" id="FcN-hd-ejT"/>
                             <constraint firstItem="MIP-Rx-j64" firstAttribute="leading" secondItem="2ha-85-zxy" secondAttribute="leading" id="Fh2-gZ-Kv4"/>
+                            <constraint firstItem="XXO-Zk-nGn" firstAttribute="bottom" secondItem="2ha-85-zxy" secondAttribute="bottom" id="GSq-rb-krk"/>
                             <constraint firstItem="Lcm-8W-XEH" firstAttribute="trailing" secondItem="1in-eu-dPQ" secondAttribute="trailingMargin" id="HFJ-lv-Uqm"/>
                             <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="oMJ-XU-eCS" secondAttribute="bottom" constant="20" id="HTi-ih-Re5"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="centerY" secondItem="ihv-yy-JJU" secondAttribute="centerY" id="Kkr-qO-1PI"/>
@@ -246,6 +262,7 @@
                             <constraint firstItem="9rf-QA-E68" firstAttribute="leading" secondItem="Tds-gF-ewV" secondAttribute="leading" id="fZl-dI-hBF"/>
                             <constraint firstItem="F6e-Gs-ihd" firstAttribute="trailing" secondItem="RDE-2i-omj" secondAttribute="trailing" id="gPi-bz-lej"/>
                             <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="2ha-85-zxy" secondAttribute="bottom" id="kLO-d0-kpc"/>
+                            <constraint firstItem="XXO-Zk-nGn" firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" constant="-0.5" id="lCe-ya-re9"/>
                             <constraint firstItem="oMJ-XU-eCS" firstAttribute="leading" secondItem="2ha-85-zxy" secondAttribute="trailing" constant="-20" id="lWH-4x-gLv"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" constant="5" id="nh4-L8-gSE"/>
                             <constraint firstItem="2ha-85-zxy" firstAttribute="centerX" secondItem="MIP-Rx-j64" secondAttribute="centerX" id="nks-dQ-U3R"/>
@@ -271,6 +288,7 @@
                     <navigationItem key="navigationItem" id="pnW-jh-dbB"/>
                     <connections>
                         <outlet property="keyNameLabel" destination="ihv-yy-JJU" id="vAs-xY-Nei"/>
+                        <outlet property="micGlowView" destination="XXO-Zk-nGn" id="8CX-cF-qtU"/>
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
                         <segue destination="3uA-QS-4U0" kind="show" identifier="show settings" id="zv1-L1-aPE"/>
                         <segue destination="aXa-Ou-oai" kind="show" identifier="show manual" id="FoG-Ns-gWI"/>

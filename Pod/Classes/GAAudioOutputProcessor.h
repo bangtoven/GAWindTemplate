@@ -12,6 +12,7 @@
 
 @protocol GAAudioOutputDelegate <NSObject>
 - (void)audioOutputChangedToNote:(NSString*)note;
+- (void)audioOutputChangedWithMicLevel:(float)value;
 @end
 
 @interface GAAudioOutputProcessor : NSObject <GAFingeringProcessorDelegate,GAMotionProcessorDelegate>

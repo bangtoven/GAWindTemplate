@@ -7,12 +7,14 @@
 //
 
 #import "GAPlayViewController.h"
+#import "JHGlowView.h"
 
 @interface GAPlayViewController () <UIActionSheetDelegate,GAAudioOutputDelegate>
 
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UILabel *keyNameLabel;
 @property (strong, nonatomic) GAFingeringProcessor* fingeringProcessor;
+@property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
 
 @end
 
@@ -34,11 +36,6 @@
         [self.audioOutput makeOneOctaveHigher];
     }
     
-    //    micSensitivity = [GABlowProcessor micSensitivity];
-    //    blowProcessor = [[GABlowProcessor alloc] init];
-    //    blowProcessor.delegate = self;
-    //    [blowProcessor startUpdate];
-
     self.keyNameLabel.text = @"";
 }
 
@@ -65,6 +62,11 @@
 - (void)audioOutputChangedToNote:(NSString *)note
 {
     self.keyNameLabel.text = note;
+}
+
+- (void)audioOutputChangedWithMicLevel:(float)value
+{
+    self.micGlowView.value = value;
 }
 
 - (IBAction)settingButtonAction:(id)sender

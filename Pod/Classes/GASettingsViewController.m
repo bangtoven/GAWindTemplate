@@ -11,13 +11,13 @@
 #import "GAAudioOutputProcessor.h"
 #import "GASettings.h"
 
-@interface GASettingsViewController () <GABlowProcessorDelegate> {
+@interface GASettingsViewController () <GAMicInputProcessorDelegate> {
     GASettings *settings;
-    GAMicInputProcessor *blowProcessor;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *playModeSegment;
 
+@property (strong) GAMicInputProcessor *micProcessor;
 @property (weak, nonatomic) IBOutlet F3BarGauge *micInputGaugeBar;
 @property (weak, nonatomic) IBOutlet UISlider *micThresholdSlider;
 
@@ -57,16 +57,18 @@
 
 - (IBAction)playModeChanged:(id)sender {
     if (self.playModeSegment.selectedSegmentIndex==1) {
-        [blowProcessor stopUpdate];
         self.micThresholdSlider.enabled = NO;
         self.micInputGaugeBar.alpha = 0.5;
+        [self.micProcessor stopUpdate];
     }
     else {
         self.micThresholdSlider.enabled = YES;
         self.micInputGaugeBar.alpha = 1.0;
-        //    blowProcessor = [[GABlowProcessor alloc] init];
-        //    blowProcessor.delegate = self;
-        //    [blowProcessor startUpdate];
+        if (self.micProcessor == nil) {
+            self.micProcessor = [GAMicInputProcessor micInputProcessor];
+            self.micProcessor.delegate = self;
+        }
+        [self.micProcessor startUpdate];
     }
 }
 
@@ -112,7 +114,7 @@
     settings.reverbMix = self.reverbMixSlider.value;
     [settings synchronize];
     
-    [blowProcessor stopUpdate];
+    [self.micProcessor stopUpdate];
 }
 
 @end

@@ -9,16 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@protocol GABlowProcessorDelegate <NSObject>
-- (void)audioLevelUpdated:(float)averagePower;
+@protocol GAMicInputProcessorDelegate <NSObject>
+-(void)audioLevelUpdated:(float)averagePower;
 @end
 
 
 @interface GAMicInputProcessor : NSObject
 
-@property (nonatomic, weak) id <GABlowProcessorDelegate> delegate;
+@property (nonatomic, weak) id <GAMicInputProcessorDelegate> delegate;
 
-- (void)startUpdate;
-- (void)stopUpdate;
++(GAMicInputProcessor*)micInputProcessor;
+-(void)startUpdate;
+-(void)stopUpdate;
 
 @end

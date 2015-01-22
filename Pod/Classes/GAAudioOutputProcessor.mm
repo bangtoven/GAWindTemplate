@@ -17,6 +17,8 @@
 
 #import "GASettings.h"
 
+#import "GAMicInputProcessor.h"
+
 
 #pragma mark - GAAudioFileInput
 @interface GAAudioFileInput : NSObject
@@ -88,7 +90,7 @@
 
 #pragma mark - GAAudioOutputProcessor
 
-@interface GAAudioOutputProcessor () {
+@interface GAAudioOutputProcessor () <GAMicInputProcessorDelegate> {
     NSArray *sampleTable;
     int baseOctave;
     int fingeringToNote;
@@ -102,22 +104,14 @@
 }
 @property (strong) AEAudioController *audioController;
 @property (strong) GAMotionProcessor *motionProcessor;
+@property (strong) GAMicInputProcessor *micProcessor;
 @end
 
 @implementation GAAudioOutputProcessor
 
-- (void)updateSettings
-{
-    GASettings *settings = [GASettings sharedSetting];
-    reverb.setEffectMix(settings.reverbMix);
-    reverb.setT60(settings.reverbTime);
-    keyShift = settings.keyShift;
-    motionSensitivity = settings.motionSensitivity;
-}
-
 - (void)fingeringChangedWithKey:(int)key
 {
-    if (key == FINGERING_ALL_OPEN) 
+    if (key == FINGERING_ALL_OPEN)
         [self stopPlaying];
     else {
         key += keyShift;
@@ -148,11 +142,6 @@
     [audioOutput insertObject:input atIndex:0];
 }
 
-- (void)stopPlaying
-{
-    [audioOutput insertObject:[GAAudioFileInput emptyInput] atIndex:0];
-}
-
 - (void)motionUpdated:(CMDeviceMotion *)motion {
     if (audioOutput.count == 0)
         return;
@@ -174,6 +163,17 @@
 
         lastAccel = accelY;
     }
+}
+
+- (void)audioLevelUpdated:(float)averagePower
+{
+    [self.delegate audioOutputChangedWithMicLevel:averagePower];
+    // 처리 필요.
+}
+
+- (void)stopPlaying
+{
+    [audioOutput insertObject:[GAAudioFileInput emptyInput] atIndex:0];
 }
 
 - (NSString*)nameOfKey:(int)key
@@ -212,18 +212,12 @@
         baseOctave = note<6 ? octave-1 : octave;
         fingeringToNote = (-6-note)%12;
         
-        self.motionProcessor = [[GAMotionProcessor alloc] init];
-        self.motionProcessor.delegate = self;
-        [self.motionProcessor startUpdate];
-        
         //Start the audio session:
         self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription] inputEnabled:NO];
         
         NSError *errorAudioSetup = NULL;
         BOOL result = [self.audioController start:&errorAudioSetup];
         if ( !result ) NSLog(@"Error starting audio engine: %@", errorAudioSetup.localizedDescription);
-        
-        [self updateSettings];
         
         AEBlockChannel *myBlockChannel = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp *time, UInt32 frames, AudioBufferList *audio) {
             
@@ -253,14 +247,37 @@
             }
             
         }];
-        
         myBlockChannel.volume = 0.6;
-        
         [self.audioController addChannels:@[myBlockChannel]];
-        
         audioOutput = [NSMutableArray arrayWithCapacity:10];
+        
+        self.motionProcessor = [[GAMotionProcessor alloc] init];
+        self.motionProcessor.delegate = self;
+        [self.motionProcessor startUpdate];
+        
+        [self updateSettings];
     }
     return self;
+}
+
+- (void)updateSettings
+{
+    GASettings *settings = [GASettings sharedSetting];
+    reverb.setEffectMix(settings.reverbMix);
+    reverb.setT60(settings.reverbTime);
+    keyShift = settings.keyShift;
+    motionSensitivity = settings.motionSensitivity;
+    
+    if (settings.isTouchMode) {
+        [self.micProcessor stopUpdate];
+    }
+    else {
+        if (self.micProcessor == nil) 
+            self.micProcessor = [GAMicInputProcessor micInputProcessor];
+
+        self.micProcessor.delegate = self;
+        [self.micProcessor startUpdate];
+    }
 }
 
 @end
