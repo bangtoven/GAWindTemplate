@@ -11,6 +11,8 @@
 
 @interface GATemplateAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (strong, nonatomic) UIWindow *window;
+
 - (void)initialize:(GAPlayViewController*)pvc;
 
 @end
