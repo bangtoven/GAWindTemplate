@@ -17,6 +17,8 @@
 @property (nonatomic) float reverbTime;
 @property (nonatomic) float reverbMix;
 
+@property (nonatomic) int baseNote;
+
 + (instancetype)sharedSetting;
 - (void)synchronize;
 

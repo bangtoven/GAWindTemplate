@@ -9,23 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "GAFingeringProcessor.h"
 #import "GAMotionProcessor.h"
+#import "GAMicInputProcessor.h"
 
 @protocol GAAudioOutputDelegate <NSObject>
+- (void)audioOutputStopped;
 - (void)audioOutputChangedToNote:(NSString*)note;
 - (void)audioOutputChangedWithMicLevel:(float)value;
 @end
 
 @interface GAAudioOutputProcessor : NSObject <GAFingeringProcessorDelegate,GAMotionProcessorDelegate>
 
-+ (instancetype)sharedOutput;
-
+@property (strong) GAFingeringProcessor* fingeringProcessor;
 @property (nonatomic, weak) id<GAAudioOutputDelegate> delegate;
 
-- (void)makeOneOctaveHigher;
-- (void)updateSettings;
-
 - (void)stopPlaying;
-
-- (NSString*)nameOfKey:(int)key;
+- (void)updateSettings;
 
 @end

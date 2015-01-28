@@ -10,140 +10,44 @@
 
 #import "AEAudioController.h"
 #import "AEBlockChannel.h"
-
 #import "NRev.h"
-#import "PitShift.h"
-#import "FileWvIn.h"
+
+#import "GAAudioInputFile.h"
+#import "GAAudioInputTable.h"
 
 #import "GASettings.h"
 
-#import "GAMicInputProcessor.h"
-
-
-#pragma mark - GAAudioFileInput
-@interface GAAudioFileInput : NSObject
-{
-    stk::FileWvIn fileWvIn;
-    int amplitude;
-    double base;
-}
-
-- (instancetype)initWithFileName:(NSString*)fileName andPitch:(int)pitch;
-+ (instancetype)emptyInput;
-
-@property (nonatomic,readonly) stk::StkFloat tick;
-@property (nonatomic,readonly) BOOL isPlaying;
-
-- (stk::StkFloat) currentAmplitude;
-- (void)setRate:(stk::StkFloat)rate;
-
-@end
-#define MAX_AMPLITUDE 440
-@implementation GAAudioFileInput
-
-- (instancetype)init {
-    if (self = [super init]) {
-        amplitude = MAX_AMPLITUDE;
-    }
-    return self;
-}
-
-- (instancetype)initWithFileName:(NSString*)fileName andPitch:(int)pitch {
-    if (self = [super init]) {
-        std::string path = [[[NSBundle mainBundle] pathForResource:fileName ofType:@"wav"] cStringUsingEncoding:NSASCIIStringEncoding];
-        fileWvIn.openFile(path);
-        base = pow(1.0594, pitch);
-        fileWvIn.setRate(base);
-        amplitude = MAX_AMPLITUDE;
-    }
-    return self;
-}
-
-+ (instancetype)emptyInput {
-    return [[GAAudioFileInput alloc] init];
-}
-
-- (void)setRate:(stk::StkFloat)rate
-{
-    if (fileWvIn.isOpen())
-        fileWvIn.setRate(base*rate);
-}
-
-- (stk::StkFloat)tick {
-    return fileWvIn.isOpen() ? fileWvIn.tick() : 0;
-}
-
-- (stk::StkFloat)currentAmplitude {
-    stk::StkFloat ratio = amplitude / (double)MAX_AMPLITUDE;
-    
-    if (amplitude>0)
-        amplitude--;
-    
-    return ratio;
-}
-
-- (BOOL)isPlaying {
-    return (amplitude!=0) && (fileWvIn.isFinished()==false);
-}
-
-@end
-
-#pragma mark - GAAudioOutputProcessor
-
 @interface GAAudioOutputProcessor () <GAMicInputProcessorDelegate> {
-    NSArray *sampleTable;
-    int baseOctave;
-    int fingeringToNote;
-    int keyShift;
-    float motionSensitivity;
-    
-    NSMutableArray *audioOutput;
     stk::NRev reverb;
-    
+
+    float motionSensitivity;
     double lastAccel;
 }
+
+@property (nonatomic, strong) GAMotionProcessor *motionProcessor;
+@property (nonatomic, strong) GAMicInputProcessor *micProcessor;
+
+@property (nonatomic, strong) GAAudioInputTable *audioInputTable;
 @property (strong) AEAudioController *audioController;
-@property (strong) GAMotionProcessor *motionProcessor;
-@property (strong) GAMicInputProcessor *micProcessor;
+@property (strong) NSMutableArray *audioOutput;
+
 @end
 
 @implementation GAAudioOutputProcessor
 
-- (void)fingeringChangedWithKey:(int)key
+- (void)fingeringChangedWithNote:(int)note
 {
-    if (key == FINGERING_ALL_OPEN)
+    if (note == FINGERING_ALL_OPEN)
         [self stopPlaying];
     else {
-        key += keyShift;
-        NSString *name = [self nameOfKey:key];
-        [self.delegate audioOutputChangedToNote:name];
-    
-        key += fingeringToNote;
-        [self changeNote:key];
+        GAAudioInputFile *input = [self.audioInputTable audioInputOfNote:note];
+        [self.audioOutput insertObject:input atIndex:0];
+        [self.delegate audioOutputChangedToNote:input.noteName];
     }
 }
 
-- (void)changeNote:(int)note
-{
-    int fileNameKey;
-    if (note < 0)
-        fileNameKey = 0;
-    else if (note >= sampleTable.count)
-        fileNameKey = (int)sampleTable.count-1;
-    else
-        fileNameKey = note;
-    
-    NSDictionary *sampleInfo = sampleTable[fileNameKey];
-    NSString *fileName = sampleInfo[@"fileName"];
-    int pitch = [sampleInfo[@"pitch"] intValue] + (note-fileNameKey);
-    
-    GAAudioFileInput *input = [[GAAudioFileInput alloc] initWithFileName:fileName andPitch:pitch];
-    
-    [audioOutput insertObject:input atIndex:0];
-}
-
 - (void)motionUpdated:(CMDeviceMotion *)motion {
-    if (audioOutput.count == 0)
+    if (self.audioOutput.count == 0)
         return;
     
     double accelY = motion.userAcceleration.y;
@@ -153,7 +57,7 @@
         double adjusted = accelY*motionSensitivity;
         double pitch = erf(adjusted)*2;
         double rate = pow(1.0594, pitch);
-        GAAudioFileInput *afi = audioOutput[0];
+        GAAudioInputFile *afi = self.audioOutput[0];
         [afi setRate:rate];
         
         double factor = 0.4 * motionSensitivity/0.6;
@@ -173,45 +77,22 @@
 
 - (void)stopPlaying
 {
-    [audioOutput insertObject:[GAAudioFileInput emptyInput] atIndex:0];
-}
-
-- (NSString*)nameOfKey:(int)key
-{
-    static NSArray *keyNameArray = @[@"C",@"Db",@"D",@"Eb",@"E",@"F",@"Gb",@"G",@"Ab",@"A",@"Bb",@"B"];
-    key += 6 + baseOctave*12;
-    int octave = key/12;
-    int index = key%12;
-    return [NSString stringWithFormat:@"%@%d",keyNameArray[index],octave];
-}
-
-- (void)makeOneOctaveHigher
-{
-    baseOctave += 1;
-    fingeringToNote += 12;
+    [self.audioOutput insertObject:[GAAudioInputFile emptyInput] atIndex:0];
+    [self.delegate audioOutputStopped];
 }
 
 #pragma mark - Generator
 
-+ (instancetype)sharedOutput {
-    static id sharedInstance;
-    if (sharedInstance == nil) {
-        sharedInstance = [[self alloc] init];
-    }
-    return sharedInstance;
-}
+//+ (instancetype)sharedOutput {
+//    static id sharedInstance;
+//    if (sharedInstance == nil) {
+//        sharedInstance = [[self alloc] init];
+//    }
+//    return sharedInstance;
+//}
 
 - (instancetype)init {
     if (self = [super init]) {
-        // initialize sample input
-        sampleTable = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AudioInputTable" ofType:@"plist"]];
-        
-        NSDictionary *firstSample = sampleTable[0];
-        int note = [firstSample[@"note"] intValue];
-        int octave = [firstSample[@"octave"] intValue];
-        baseOctave = note<6 ? octave-1 : octave;
-        fingeringToNote = (-6-note)%12;
-        
         //Start the audio session:
         self.audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription] inputEnabled:NO];
         
@@ -223,22 +104,22 @@
             
             for ( int i=0; i<frames; i++ ) {
                 stk::StkFloat sample = 0;
-                if (audioOutput.count < 1) {
+                if (self.audioOutput.count < 1) {
                     sample = 0;
                 }
-                else if (audioOutput.count == 1) {
-                    GAAudioFileInput *afi = audioOutput[0];
+                else if (self.audioOutput.count == 1) {
+                    GAAudioInputFile *afi = self.audioOutput[0];
                     sample = afi.tick;
                 }
                 else {
-                    for (int i = (int)audioOutput.count-1; i>0; i--) {
-                        GAAudioFileInput *afi = audioOutput[i];
+                    for (int i = (int)self.audioOutput.count-1; i>0; i--) {
+                        GAAudioInputFile *afi = self.audioOutput[i];
                         sample += afi.tick * afi.currentAmplitude;
                         
                         if (afi.isPlaying == NO)
-                            [audioOutput removeObject:afi];
+                            [self.audioOutput removeObject:afi];
                     }
-                    GAAudioFileInput *afi = audioOutput[0];
+                    GAAudioInputFile *afi = self.audioOutput[0];
                     sample += afi.tick;
                 }
                 
@@ -249,7 +130,19 @@
         }];
         myBlockChannel.volume = 0.6;
         [self.audioController addChannels:@[myBlockChannel]];
-        audioOutput = [NSMutableArray arrayWithCapacity:10];
+        self.audioOutput = [NSMutableArray arrayWithCapacity:10];
+        
+        // initialize GA classes.
+        self.audioInputTable = [[GAAudioInputTable alloc] init];
+        int baseMidiNumber = (int)self.audioInputTable.range.location;
+        int note = baseMidiNumber%12;
+        int octave = baseMidiNumber/12;
+        if (note < 6)
+            octave--;
+        [GASettings sharedSetting].baseNote = 6 + octave*12;
+        
+        self.fingeringProcessor = [[GAFingeringProcessor alloc] init];
+        self.fingeringProcessor.delegate = self;
         
         self.motionProcessor = [[GAMotionProcessor alloc] init];
         self.motionProcessor.delegate = self;
@@ -262,10 +155,11 @@
 
 - (void)updateSettings
 {
+    [self.fingeringProcessor updateSettings];
+
     GASettings *settings = [GASettings sharedSetting];
     reverb.setEffectMix(settings.reverbMix);
     reverb.setT60(settings.reverbTime);
-    keyShift = settings.keyShift;
     motionSensitivity = settings.motionSensitivity;
     
     if (settings.isTouchMode) {

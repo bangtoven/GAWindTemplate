@@ -14,7 +14,7 @@
 @interface GAPlayViewController : UIViewController 
 
 @property (nonatomic) BOOL needsUpDownOctave;
-@property (assign, nonatomic) GAAudioOutputProcessor *audioOutput;
+@property (strong, nonatomic) GAAudioOutputProcessor *audioOutput;
 
 @end
 

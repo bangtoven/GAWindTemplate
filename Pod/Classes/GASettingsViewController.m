@@ -8,11 +8,12 @@
 
 #import "GASettingsViewController.h"
 #import "GAMicInputProcessor.h"
-#import "GAAudioOutputProcessor.h"
 #import "GASettings.h"
+#import "GAAudioInputTable.h"
 
 @interface GASettingsViewController () <GAMicInputProcessorDelegate> {
     GASettings *settings;
+    int baseMidiNumber;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *playModeSegment;
@@ -39,7 +40,8 @@
     [super viewDidLoad];
 
     settings = [GASettings sharedSetting];
-
+    baseMidiNumber = settings.baseNote;
+    
     self.playModeSegment.selectedSegmentIndex = settings.isTouchMode;
     [self playModeChanged:self];
     
@@ -52,7 +54,7 @@
     self.motionSensitivitySlider.value = settings.motionSensitivity;
     
     self.reverbTimeSlider.value = settings.reverbTime;
-    self.reverbMixSlider.value = settings.reverbMix;
+    self.reverbMixSlider.value = settings.reverbMix;    
 }
 
 - (IBAction)playModeChanged:(id)sender {
@@ -86,16 +88,16 @@
 }
 
 - (IBAction)baseNoteChanged:(id)sender {
-    int value = (int)self.baseNoteStepper.value;
-    GAAudioOutputProcessor *aop = [GAAudioOutputProcessor sharedOutput];
-    NSString *name = [aop nameOfKey:value];
+    int shift = (int)self.baseNoteStepper.value;
+    
+    NSString *name = [GAAudioInputTable nameOfNote:shift+baseMidiNumber];
     self.baseNoteLabel.text = name;
-    if (value == 0)
+    if (shift == 0)
         self.baseNoteShiftLabel.text = @"";
-    else if (value > 0)
-        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"+%d",value];
-    else if (value < 0)
-        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"%d",value];
+    else if (shift > 0)
+        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"+%d",shift];
+    else if (shift < 0)
+        self.baseNoteShiftLabel.text = [NSString stringWithFormat:@"%d",shift];
 }
 
 - (IBAction)resetBaseNote:(id)sender {

@@ -12,8 +12,7 @@
 @interface GAPlayViewController () <UIActionSheetDelegate,GAAudioOutputDelegate>
 
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
-@property (weak, nonatomic) IBOutlet UILabel *keyNameLabel;
-@property (strong, nonatomic) GAFingeringProcessor* fingeringProcessor;
+@property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
 
 @end
@@ -24,19 +23,13 @@
 {
     [super viewDidLoad];
     
-    if (self.audioOutput == nil)
-        self.audioOutput = [GAAudioOutputProcessor sharedOutput];
+    self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
     
-    self.fingeringProcessor = [GAFingeringProcessor new];
-    self.fingeringProcessor.delegate = self.audioOutput;
-    
-    if (self.needsUpDownOctave) {
+    if (self.needsUpDownOctave)
         [self.octaveButton setIsUpDown:YES];
-        [self.audioOutput makeOneOctaveHigher];
-    }
     
-    self.keyNameLabel.text = @"";
+    self.noteNameLabel.text = @"";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,16 +45,21 @@
 }
 
 - (IBAction)holeButtonAction:(GAFingeringHoleButton *)sender {
-    [self.fingeringProcessor keyHoleInLocation:(int)sender.location changedTo:sender.closed];
+    [self.audioOutput.fingeringProcessor keyHoleInLocation:(int)sender.location changedTo:sender.closed];
 }
 
 - (IBAction)octaveButtonAction:(GAFingeringOctaveButton *)sender {
-    [self.fingeringProcessor octaveChangedTo:sender.octave];
+    [self.audioOutput.fingeringProcessor octaveChangedTo:sender.octave];
+}
+
+- (void)audioOutputStopped
+{
+    self.noteNameLabel.text = @"";
 }
 
 - (void)audioOutputChangedToNote:(NSString *)note
 {
-    self.keyNameLabel.text = note;
+    self.noteNameLabel.text = note;
 }
 
 - (void)audioOutputChangedWithMicLevel:(float)value

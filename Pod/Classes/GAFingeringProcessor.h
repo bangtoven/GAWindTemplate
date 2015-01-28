@@ -11,7 +11,7 @@
 #define FINGERING_ALL_OPEN INT32_MIN
 
 @protocol GAFingeringProcessorDelegate <NSObject>
-- (void)fingeringChangedWithKey:(int)key;
+- (void)fingeringChangedWithNote:(int)note;
 @end
 
 @interface GAFingeringProcessor : NSObject
@@ -20,5 +20,7 @@
 
 - (void)keyHoleInLocation:(int)location changedTo:(BOOL)closed;
 - (void)octaveChangedTo:(int)octave;
+
+- (void)updateSettings;
 
 @end

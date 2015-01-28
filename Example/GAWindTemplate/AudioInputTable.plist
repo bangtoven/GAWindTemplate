@@ -5,192 +5,120 @@
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_C3_mf_1_16441</string>
-		<key>note</key>
-		<integer>0</integer>
-		<key>noteName</key>
-		<string>C3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>60</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
-		<string>Hun_Ord_Py_Db3_mf_1_16441</string>
-		<key>note</key>
+		<string>Hun_Ord_Py_C3_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>61</integer>
+		<key>pitch</key>
 		<integer>1</integer>
-		<key>noteName</key>
-		<string>Db3</string>
-		<key>octave</key>
-		<integer>3</integer>
+	</dict>
+	<dict>
+		<key>fileName</key>
+		<string>Hun_Ord_Py_D3_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>62</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_D3_mf_1_16441</string>
-		<key>note</key>
-		<integer>2</integer>
-		<key>noteName</key>
-		<string>D3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>63</integer>
 		<key>pitch</key>
-		<integer>0</integer>
-	</dict>
-	<dict>
-		<key>fileName</key>
-		<string>Hun_Ord_Py_Eb3_mf_1_16441</string>
-		<key>note</key>
-		<integer>3</integer>
-		<key>noteName</key>
-		<string>Eb3</string>
-		<key>octave</key>
-		<integer>3</integer>
-		<key>pitch</key>
-		<integer>0</integer>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_E3_mf_1_16441</string>
-		<key>note</key>
-		<integer>4</integer>
-		<key>noteName</key>
-		<string>E3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>64</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_F3_mf_1_16441</string>
-		<key>note</key>
-		<integer>5</integer>
-		<key>noteName</key>
-		<string>F3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>65</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
-		<string>Hun_Ord_Py_Gb3_mf_1_16441</string>
-		<key>note</key>
-		<integer>6</integer>
-		<key>noteName</key>
-		<string>Gb3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<string>Hun_Ord_Py_F3_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>66</integer>
+		<key>pitch</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>fileName</key>
+		<string>Hun_Ord_Py_G3_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>67</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_G3_mf_1_16441</string>
-		<key>note</key>
-		<integer>7</integer>
-		<key>noteName</key>
-		<string>G3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>68</integer>
 		<key>pitch</key>
-		<integer>0</integer>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
-		<string>Hun_Ord_Py_Ab3_mf_1_16441</string>
-		<key>note</key>
-		<integer>8</integer>
-		<key>noteName</key>
-		<string>Ab3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<string>Hun_Ord_Py_A3_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>69</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_A3_mf_1_16441</string>
-		<key>note</key>
-		<integer>9</integer>
-		<key>noteName</key>
-		<string>A3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>70</integer>
 		<key>pitch</key>
-		<integer>0</integer>
-	</dict>
-	<dict>
-		<key>fileName</key>
-		<string>Hun_Ord_Py_Bb3_mf_1_16441</string>
-		<key>note</key>
-		<integer>10</integer>
-		<key>noteName</key>
-		<string>Bb3</string>
-		<key>octave</key>
-		<integer>3</integer>
-		<key>pitch</key>
-		<integer>0</integer>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_B3_mf_1_16441</string>
-		<key>note</key>
-		<integer>11</integer>
-		<key>noteName</key>
-		<string>B3</string>
-		<key>octave</key>
-		<integer>3</integer>
+		<key>midiNumber</key>
+		<integer>71</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_C4_mf_1_16441</string>
-		<key>note</key>
-		<integer>0</integer>
-		<key>noteName</key>
-		<string>C4</string>
-		<key>octave</key>
-		<integer>4</integer>
+		<key>midiNumber</key>
+		<integer>72</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
-		<string>Hun_Ord_Py_Db4_mf_1_16441</string>
-		<key>note</key>
-		<integer>1</integer>
-		<key>noteName</key>
-		<string>Db4</string>
-		<key>octave</key>
-		<integer>4</integer>
+		<string>Hun_Ord_Py_C4_mf_1_16441</string>
+		<key>midiNumber</key>
+		<integer>73</integer>
 		<key>pitch</key>
-		<integer>0</integer>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>fileName</key>
 		<string>Hun_Ord_Py_D4_mf_1_16441</string>
-		<key>note</key>
-		<integer>2</integer>
-		<key>noteName</key>
-		<string>D4</string>
-		<key>octave</key>
-		<integer>4</integer>
-		<key>pitch</key>
-		<integer>0</integer>
-	</dict>
-	<dict>
-		<key>fileName</key>
-		<string>Hun_Ord_Py_Eb4_mf_1_16441</string>
-		<key>note</key>
-		<integer>3</integer>
-		<key>noteName</key>
-		<string>Eb4</string>
-		<key>octave</key>
-		<integer>4</integer>
+		<key>midiNumber</key>
+		<integer>74</integer>
 		<key>pitch</key>
 		<integer>0</integer>
 	</dict>

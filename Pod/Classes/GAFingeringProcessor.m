@@ -12,6 +12,8 @@
 
 @interface GAFingeringProcessor () {
     NSTimer *timer;
+    BOOL isTouchMode;
+    int fingeringToMidiNumber;
 }
 
 @property (nonatomic,strong) NSArray *fingeringTable;
@@ -24,15 +26,24 @@
 
 @implementation GAFingeringProcessor
 
-- (id)init {
+- (instancetype)init
+{
     if (self = [super init]) {
         NSBundle *bundle = [NSBundle templateBundle];
         self.fingeringTable = [NSArray arrayWithContentsOfFile:[bundle pathForResource:@"GAFingeringTable" ofType:@"plist"]];
-
+        
         self.buttonStatus = [NSMutableString stringWithString:@"00000"];
         self.currentKey = 10;
+        [self updateSettings];
     }
     return self;
+}
+
+- (void)updateSettings
+{
+    GASettings *settings = [GASettings sharedSetting];
+    isTouchMode = settings.isTouchMode;
+    fingeringToMidiNumber = settings.baseNote + settings.keyShift;
 }
 
 - (void)keyHoleInLocation:(int)location changedTo:(BOOL)closed {
@@ -72,14 +83,14 @@
 - (void)sendToDelegate {
     timer = nil;
 
-    if ([[GASettings sharedSetting] isTouchMode] &&
+    if (isTouchMode &&
         self.octaveStatus == 0 &&
         [self.buttonStatus isEqualToString:@"00000"]) {
-        [self.delegate fingeringChangedWithKey:FINGERING_ALL_OPEN];
+        [self.delegate fingeringChangedWithNote:FINGERING_ALL_OPEN];
     }
     else {
-        int key = self.currentKey + self.octaveStatus*12;
-        [self.delegate fingeringChangedWithKey:key];
+        int note = self.currentKey + self.octaveStatus*12 + fingeringToMidiNumber;
+        [self.delegate fingeringChangedWithNote:note];
     }
 }
 
