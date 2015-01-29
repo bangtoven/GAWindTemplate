@@ -39,7 +39,7 @@
     
     NSBundle *bundle = [NSBundle mainBundle];
     NSDictionary *info = [bundle infoDictionary];
-    NSString *prodName = [info objectForKey:@"CFBundleDisplayName"];
+    NSString *prodName = [info objectForKey:@"CFBundleName"];
     self.instNameLabel.text = prodName;
     
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
