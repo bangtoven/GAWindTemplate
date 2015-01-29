@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>_touchMode</key>
-	<false/>
+	<true/>
 	<key>_micThreshold</key>
 	<real>0.5</real>
 	<key>_keyShift</key>
