@@ -19,10 +19,10 @@
 
 @interface GAAudioOutputProcessor : NSObject <GAFingeringProcessorDelegate,GAMotionProcessorDelegate>
 
-@property (strong) GAFingeringProcessor* fingeringProcessor;
 @property (nonatomic, weak) id<GAAudioOutputDelegate> delegate;
+@property (nonatomic, strong) GAFingeringProcessor* fingeringProcessor;
 
-- (void)stopPlaying;
+- (void)stopAudioOutput;
 - (void)updateSettings;
 
 @end

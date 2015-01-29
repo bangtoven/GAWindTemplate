@@ -8,6 +8,7 @@
 
 #import "GAPlayViewController.h"
 #import "JHGlowView.h"
+#import "GASettings.h"
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
@@ -36,8 +37,11 @@
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
     
-    if (self.needsUpDownOctave)
+    if (self.needsUpDownOctave) {
         [self.octaveButton setIsUpDown:YES];
+        [GASettings sharedSetting].baseNote += 12;
+        [self.audioOutput updateSettings];
+    }
     
     self.noteNameLabel.text = @"";
 }
@@ -80,8 +84,6 @@
 
 - (IBAction)settingButtonAction:(id)sender
 {
-    [self.audioOutput stopPlaying];
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"악기 정보",@"앱 정보",nil];
     [actionSheet showInView:self.navigationController.view];
 }
@@ -90,6 +92,8 @@
 {
     if (buttonIndex == actionSheet.cancelButtonIndex)
         return;
+
+    [self.audioOutput stopAudioOutput];
 
     switch (buttonIndex) {
         case 0: 

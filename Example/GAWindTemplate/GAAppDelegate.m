@@ -15,7 +15,7 @@
 {
     NSLog(@"initialize called");
     
-//    [pvc setNeedsUpDownOctave:YES];
+    [pvc setNeedsUpDownOctave:YES];
 }
 
 @end

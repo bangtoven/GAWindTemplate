@@ -23,8 +23,9 @@
     
     float micThreshold;
 
-    float masterVolume;
-    float motionGain;
+    double micGain;
+    double motionGain;
+    double masterVolume;
     
     stk::NRev reverb;
 
@@ -32,8 +33,8 @@
     double lastAccel;
 }
 
-@property (nonatomic, strong) GAMotionProcessor *motionProcessor;
 @property (nonatomic, strong) GAMicInputProcessor *micProcessor;
+@property (nonatomic, strong) GAMotionProcessor *motionProcessor;
 
 @property (nonatomic, strong) GAAudioInputTable *audioInputTable;
 @property (strong) AEAudioController *audioController;
@@ -43,9 +44,14 @@
 
 @implementation GAAudioOutputProcessor
 
+- (void)stopAudioOutput
+{
+    [self.micProcessor stopUpdate];
+    [self stopPlaying];
+}
+
 - (void)fingeringChangedWithNote:(int)note
 {
-    [self.delegate audioOutputChangedToNote:[GAAudioInputTable nameOfNote:note]];
     [self playNote:note];
 }
 
@@ -54,6 +60,7 @@
     if (note == FINGERING_ALL_OPEN)
         [self stopPlaying];
     else {
+        [self.delegate audioOutputChangedToNote:[GAAudioInputTable nameOfNote:note]];
         lastNote = note;
         if (isPlaying) {
             GAAudioInputFile *input = [self.audioInputTable audioInputOfNote:note];
@@ -69,7 +76,7 @@
     double accelY = motion.userAcceleration.y;
     double diff = accelY-lastAccel;
     
-    if (ABS(diff)>0.005) {
+    if (ABS(diff)>0.001) {
         double adjusted = accelY*motionSensitivity;
         double pitch = erf(adjusted)*2;
         double rate = pow(1.0594, pitch);
@@ -77,9 +84,10 @@
         [afi setRate:rate];
         
         double factor = 0.4 * motionSensitivity/0.6;
-        motionGain = erf(accelY)*factor + 0.6;
+        double gain = erf(accelY)*factor + 0.6;
+        motionGain = (9*motionGain+gain)/10;
         [self updateVolume];
-
+        
         lastAccel = accelY;
     }
 }
@@ -93,11 +101,10 @@
 - (void)micInputLevelUpdated:(float)averagePower
 {
     float volume = (averagePower-micThreshold) / (1-micThreshold);
-    masterVolume = (9*masterVolume+volume)/10;
-    
-    [self.delegate audioOutputChangedWithMicLevel:masterVolume];
-    
+    micGain = (9*micGain+volume)/10;
     [self updateVolume];
+    
+    [self.delegate audioOutputChangedWithMicLevel:micGain];
 }
 
 - (void)micInputStopped
@@ -106,27 +113,19 @@
     [self stopPlaying];
 }
 
-- (void)updateVolume
-{
-    AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
-    myBlockChannel.volume = masterVolume * motionGain;
-}
-
 - (void)stopPlaying
 {
     [self.audioOutput insertObject:[GAAudioInputFile emptyInput] atIndex:0];
     [self.delegate audioOutputStopped];
 }
 
-#pragma mark - Generator
+- (void)updateVolume
+{
+    masterVolume = motionGain * micGain;
+    if (masterVolume>1)
+        masterVolume = 1;
+}
 
-//+ (instancetype)sharedOutput {
-//    static id sharedInstance;
-//    if (sharedInstance == nil) {
-//        sharedInstance = [[self alloc] init];
-//    }
-//    return sharedInstance;
-//}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -160,12 +159,14 @@
                     sample += afi.tick;
                 }
                 
+                sample *= masterVolume;
+                
                 ((float*)audio->mBuffers[0].mData)[i] =
                 ((float*)audio->mBuffers[1].mData)[i] = reverb.tick(sample);
             }
             
         }];
-        myBlockChannel.volume = 0.6;
+
         [self.audioController addChannels:@[myBlockChannel]];
         self.audioOutput = [NSMutableArray arrayWithCapacity:10];
         
@@ -205,16 +206,14 @@
     if (settings.isTouchMode) {
         [self.micProcessor stopUpdate];
         self.micProcessor = nil;
-        masterVolume = 1.0;
+        micGain = 1.0;
         isPlaying = YES;
         
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     }
     else {
         self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
-
         micThreshold = settings.micThreshold;
-        
         [self.micProcessor startUpdate];
     }
 }
