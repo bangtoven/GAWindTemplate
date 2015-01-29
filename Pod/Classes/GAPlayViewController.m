@@ -9,7 +9,7 @@
 #import "GAPlayViewController.h"
 #import "JHGlowView.h"
 
-@interface GAPlayViewController () <UIActionSheetDelegate,GAAudioOutputDelegate>
+@interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
@@ -19,9 +19,19 @@
 
 @implementation GAPlayViewController
 
+- (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
+{
+    NSString *model = [UIDevice currentDevice].model;
+    if ([model containsString:@"iPod"])
+        return UIInterfaceOrientationMaskPortraitUpsideDown;
+    else
+        return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.delegate = self;
     
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
@@ -54,7 +64,8 @@
 
 - (void)audioOutputStopped
 {
-    self.noteNameLabel.text = @"";
+//    self.noteNameLabel.text = @"";
+    self.micGlowView.value = 0;
 }
 
 - (void)audioOutputChangedToNote:(NSString *)note
@@ -72,7 +83,7 @@
     [self.audioOutput stopPlaying];
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"악기 정보",@"앱 정보",nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:self.navigationController.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

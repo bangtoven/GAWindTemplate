@@ -10,16 +10,19 @@
 #import <AVFoundation/AVFoundation.h>
 
 @protocol GAMicInputProcessorDelegate <NSObject>
--(void)audioLevelUpdated:(float)averagePower;
+-(void)micInputLevelUpdated:(float)averagePower;
+@optional
+-(void)micInputStarted;
+-(void)micInputStopped;
 @end
-
 
 @interface GAMicInputProcessor : NSObject
 
-@property (nonatomic, weak) id <GAMicInputProcessorDelegate> delegate;
+- (id)initWithDelegate:(id<GAMicInputProcessorDelegate>)delegate andProcessThreshold:(BOOL)process;
 
-+(GAMicInputProcessor*)micInputProcessor;
 -(void)startUpdate;
 -(void)stopUpdate;
+
+-(void)updateSettings;
 
 @end

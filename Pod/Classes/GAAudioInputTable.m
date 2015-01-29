@@ -52,9 +52,6 @@
     int pitch = [sampleInfo[@"pitch"] intValue] + pitchShift;
     
     GAAudioInputFile *input = [[GAAudioInputFile alloc] initWithFileName:fileName andPitch:pitch];
-    input.noteName = [GAAudioInputTable nameOfNote:note];
-    input.midiNumber = note;
-    
     return input;
 }
 

@@ -18,7 +18,6 @@
 
 @property (nonatomic,weak) id<GAMotionProcessorDelegate> delegate;
 
-+(GAMotionProcessor*)motionProcessor;
 -(void)startUpdate;
 -(void)stopUpdate;
 

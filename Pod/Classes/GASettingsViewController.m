@@ -62,14 +62,13 @@
         self.micThresholdSlider.enabled = NO;
         self.micInputGaugeBar.alpha = 0.5;
         [self.micProcessor stopUpdate];
+        self.micProcessor = nil;
     }
     else {
         self.micThresholdSlider.enabled = YES;
         self.micInputGaugeBar.alpha = 1.0;
-        if (self.micProcessor == nil) {
-            self.micProcessor = [GAMicInputProcessor micInputProcessor];
-            self.micProcessor.delegate = self;
-        }
+        self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:NO];
+            [self.micProcessor stopUpdate];
         [self.micProcessor startUpdate];
     }
 }
@@ -83,7 +82,7 @@
     [self.micInputGaugeBar resetPeak];
 }
 
-- (void)audioLevelUpdated:(float)averagePower {
+- (void)micInputLevelUpdated:(float)averagePower {
     self.micInputGaugeBar.value = averagePower;
 }
 

@@ -18,6 +18,14 @@
 #import "GASettings.h"
 
 @interface GAAudioOutputProcessor () <GAMicInputProcessorDelegate> {
+    BOOL isPlaying;
+    int lastNote;
+    
+    float micThreshold;
+
+    float masterVolume;
+    float motionGain;
+    
     stk::NRev reverb;
 
     float motionSensitivity;
@@ -37,12 +45,20 @@
 
 - (void)fingeringChangedWithNote:(int)note
 {
+    [self.delegate audioOutputChangedToNote:[GAAudioInputTable nameOfNote:note]];
+    [self playNote:note];
+}
+
+- (void)playNote:(int)note
+{
     if (note == FINGERING_ALL_OPEN)
         [self stopPlaying];
     else {
-        GAAudioInputFile *input = [self.audioInputTable audioInputOfNote:note];
-        [self.audioOutput insertObject:input atIndex:0];
-        [self.delegate audioOutputChangedToNote:input.noteName];
+        lastNote = note;
+        if (isPlaying) {
+            GAAudioInputFile *input = [self.audioInputTable audioInputOfNote:note];
+            [self.audioOutput insertObject:input atIndex:0];
+        }
     }
 }
 
@@ -61,18 +77,39 @@
         [afi setRate:rate];
         
         double factor = 0.4 * motionSensitivity/0.6;
-        double volume = erf(accelY)*factor + 0.6;
-        AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
-        myBlockChannel.volume = volume;
+        motionGain = erf(accelY)*factor + 0.6;
+        [self updateVolume];
 
         lastAccel = accelY;
     }
 }
 
-- (void)audioLevelUpdated:(float)averagePower
+- (void)micInputStarted
 {
-    [self.delegate audioOutputChangedWithMicLevel:averagePower];
-    // 처리 필요.
+    isPlaying = YES;
+    [self playNote:lastNote];
+}
+
+- (void)micInputLevelUpdated:(float)averagePower
+{
+    float volume = (averagePower-micThreshold) / (1-micThreshold);
+    masterVolume = (9*masterVolume+volume)/10;
+    
+    [self.delegate audioOutputChangedWithMicLevel:masterVolume];
+    
+    [self updateVolume];
+}
+
+- (void)micInputStopped
+{
+    isPlaying = NO;
+    [self stopPlaying];
+}
+
+- (void)updateVolume
+{
+    AEBlockChannel *myBlockChannel = self.audioController.channels.lastObject;
+    myBlockChannel.volume = masterVolume * motionGain;
 }
 
 - (void)stopPlaying
@@ -133,6 +170,8 @@
         self.audioOutput = [NSMutableArray arrayWithCapacity:10];
         
         // initialize GA classes.
+        lastNote = FINGERING_ALL_OPEN;
+        
         self.audioInputTable = [[GAAudioInputTable alloc] init];
         int baseMidiNumber = (int)self.audioInputTable.range.location;
         int note = baseMidiNumber%12;
@@ -156,7 +195,8 @@
 - (void)updateSettings
 {
     [self.fingeringProcessor updateSettings];
-
+    [self.micProcessor updateSettings];
+    
     GASettings *settings = [GASettings sharedSetting];
     reverb.setEffectMix(settings.reverbMix);
     reverb.setT60(settings.reverbTime);
@@ -164,12 +204,17 @@
     
     if (settings.isTouchMode) {
         [self.micProcessor stopUpdate];
+        self.micProcessor = nil;
+        masterVolume = 1.0;
+        isPlaying = YES;
+        
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     }
     else {
-        if (self.micProcessor == nil) 
-            self.micProcessor = [GAMicInputProcessor micInputProcessor];
+        self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
 
-        self.micProcessor.delegate = self;
+        micThreshold = settings.micThreshold;
+        
         [self.micProcessor startUpdate];
     }
 }

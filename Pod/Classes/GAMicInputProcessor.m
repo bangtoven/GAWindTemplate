@@ -7,9 +7,19 @@
 //
 
 #import "GAMicInputProcessor.h"
+#import "GASettings.h"
 #include <sys/signal.h>
 
-@interface GAMicInputProcessor ()
+#define MIC_UPDATE_INTERVAL 0.01
+#define IDLE_TIME_THRESHOLD 5
+
+@interface GAMicInputProcessor () {
+    BOOL processThreshold;
+    float micThreshold;
+    int idleTime;
+}
+
+@property (nonatomic, weak) id <GAMicInputProcessorDelegate> delegate;
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
 @property (nonatomic, strong) NSTimer *levelTimer;
@@ -19,18 +29,11 @@
 
 @implementation GAMicInputProcessor
 
-+ (GAMicInputProcessor*)micInputProcessor {
-    static GAMicInputProcessor *singleton;
-    if (!singleton) {
-        singleton = [[GAMicInputProcessor alloc] init];
-    }
-    return singleton;
-}
-
-- (id)init {
+- (id)initWithDelegate:(id<GAMicInputProcessorDelegate>)delegate andProcessThreshold:(BOOL)process {
     if (self = [super init]) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-
+        [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+        
         NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
         
         NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -48,13 +51,28 @@
             [self.recorder setMeteringEnabled:YES];
         } else
             NSLog(@"Error in initializeRecorder: %@", [error description]);
+        
+        [self updateSettings];
+        self.delegate = delegate;
+        processThreshold = process;
     }
     return self;
 }
 
+- (void)updateSettings
+{
+    GASettings *settings = [GASettings sharedSetting];
+    micThreshold = settings.micThreshold;
+    idleTime = 0;
+}
+
 - (void)startUpdate {
-    if (!self.levelTimer)
-        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.03 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+    if (!self.levelTimer) {
+        if (processThreshold)
+            self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+        else
+            self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(rawLevelTimerCallback:) userInfo: nil repeats: YES];
+    }
     
     if (self.recorder.isRecording == NO)
         [self.recorder record];
@@ -70,16 +88,35 @@
         [self.recorder stop];
 }
 
+- (void)rawLevelTimerCallback:(NSTimer *)timer
+{
+    [self.recorder updateMeters];
+    double averagePower = pow(10, 0.05 * [self.recorder averagePowerForChannel:0]);
+    [self.delegate micInputLevelUpdated:averagePower];
+}
+
 - (void)levelTimerCallback:(NSTimer *)timer
 {
     [self.recorder updateMeters];
-    
-//    const double ALPHA = 0.3;
-//    double peakPowerForChannel = pow(10, (0.05 * [self.recorder peakPowerForChannel:0]));
-//    self.lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * self.lowPassResults;
-    
     double averagePower = pow(10, 0.05 * [self.recorder averagePowerForChannel:0]);
-    [self.delegate audioLevelUpdated:averagePower];
+    
+    if (averagePower > micThreshold) {
+        if (idleTime >= IDLE_TIME_THRESHOLD)
+            [self.delegate micInputStarted];
+        
+        idleTime = 0;
+        [self.delegate micInputLevelUpdated:averagePower];
+    }
+    else {
+        if (idleTime < IDLE_TIME_THRESHOLD) {
+            idleTime++;
+            [self.delegate micInputLevelUpdated:averagePower];
+        }
+        else if (idleTime == IDLE_TIME_THRESHOLD) {
+            idleTime = INT32_MAX;
+            [self.delegate micInputStopped];
+        }
+    }
 }
 
 - (void)dealloc {

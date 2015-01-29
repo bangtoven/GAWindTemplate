@@ -14,14 +14,6 @@
 
 @implementation GAMotionProcessor
 
-+ (GAMotionProcessor*)motionProcessor {
-    static GAMotionProcessor *singleton;
-    if (!singleton) {
-        singleton = [[GAMotionProcessor alloc] init];
-    }
-    return singleton;
-}
-
 -(void)startUpdate {
     if (self.motionManager)
         return;
