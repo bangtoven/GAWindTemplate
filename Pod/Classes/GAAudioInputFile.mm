@@ -24,12 +24,11 @@
     if (self = [super init]) {
         std::string path = [[[NSBundle mainBundle] pathForResource:fileName ofType:@"wav"] cStringUsingEncoding:NSASCIIStringEncoding];
         fileWvIn.openFile(path);
+        base = fileWvIn.getRate();
         if (pitch!=0) {
-            base = pow(1.0594, pitch);
+            base *= pow(1.0594, pitch);
             fileWvIn.setRate(base);
         }
-        else
-            base = 1.0;
         amplitude = MAX_AMPLITUDE;
     }
     return self;

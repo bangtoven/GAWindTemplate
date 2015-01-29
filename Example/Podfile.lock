@@ -1,5 +1,5 @@
 PODS:
-  - GAWindTemplate (0.2.0):
+  - GAWindTemplate (0.3.1):
     - STK
     - TheAmazingAudioEngine
   - STK (4.5.3)
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  GAWindTemplate: f3657d23f953978d4926d727128415c014c09c3a
+  GAWindTemplate: f5a7202c5f77fea3783567d661afcea1ecd0e7dd
   STK: 67bd2cb1a6e128502aec118d6d6774e4b3ab28b5
   TheAmazingAudioEngine: 174889dc95c6a8a654375215e13a7db61a561fa4
 
