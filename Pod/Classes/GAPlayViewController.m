@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
+@property (weak, nonatomic) IBOutlet UIImageView *blowImageView;
 
 @end
 
@@ -43,7 +44,15 @@
         [self.audioOutput updateSettings];
     }
     
+    [self updateSettings];
+    
     self.noteNameLabel.text = @"";
+}
+
+- (void)updateSettings
+{
+    self.blowImageView.hidden = [GASettings sharedSetting].isTouchMode;
+    self.micGlowView.value = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,6 +120,7 @@
 - (IBAction)backToPlayView:(UIStoryboardSegue*)sender
 {
     if ([sender.identifier isEqualToString:@"settings updated"]) {
+        [self updateSettings];
         [self.audioOutput updateSettings];
     }
 }

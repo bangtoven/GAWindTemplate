@@ -305,6 +305,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="pnW-jh-dbB"/>
                     <connections>
+                        <outlet property="blowImageView" destination="2ha-85-zxy" id="ath-Cl-QZG"/>
                         <outlet property="micGlowView" destination="XXO-Zk-nGn" id="8CX-cF-qtU"/>
                         <outlet property="noteNameLabel" destination="ihv-yy-JJU" id="NID-la-0ot"/>
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
