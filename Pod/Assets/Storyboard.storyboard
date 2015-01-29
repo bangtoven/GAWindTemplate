@@ -66,14 +66,14 @@
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blowarea..png" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-85-zxy">
-                                <rect key="frame" x="74" y="548" width="151" height="52"/>
+                                <rect key="frame" x="75" y="548" width="151" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="akX-bQ-Bjc"/>
                                     <constraint firstAttribute="width" constant="151" id="yDx-qp-ngV"/>
                                 </constraints>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-Zk-nGn" customClass="JHGlowView">
-                                <rect key="frame" x="69" y="520" width="160" height="80"/>
+                                <rect key="frame" x="70" y="520" width="160" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="MnL-Hv-eAD"/>
                                     <constraint firstAttribute="width" constant="160" id="NHf-6w-L2G"/>
@@ -219,7 +219,7 @@
                                 <color key="textColor" red="0.23137254901960785" green="0.15294117647058825" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instument" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="zTz-07-tv9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instument" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="zTz-07-tv9">
                                 <rect key="frame" x="315" y="518" width="260" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -306,6 +306,7 @@
                     <navigationItem key="navigationItem" id="pnW-jh-dbB"/>
                     <connections>
                         <outlet property="blowImageView" destination="2ha-85-zxy" id="ath-Cl-QZG"/>
+                        <outlet property="instNameLabel" destination="zTz-07-tv9" id="IM0-qt-B1d"/>
                         <outlet property="micGlowView" destination="XXO-Zk-nGn" id="8CX-cF-qtU"/>
                         <outlet property="noteNameLabel" destination="ihv-yy-JJU" id="NID-la-0ot"/>
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>

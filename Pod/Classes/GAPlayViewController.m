@@ -12,6 +12,7 @@
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *instNameLabel;
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
@@ -23,17 +24,23 @@
 
 - (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController
 {
-    NSString *model = [UIDevice currentDevice].model;
-    if ([model containsString:@"iPod"])
-        return UIInterfaceOrientationMaskPortraitUpsideDown;
-    else
-        return UIInterfaceOrientationMaskPortrait;
+//    NSString *model = [UIDevice currentDevice].model;
+//    if ([model containsString:@"iPod"])
+    return UIInterfaceOrientationMaskPortraitUpsideDown;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.delegate = self;
+    
+    NSString *model = [UIDevice currentDevice].model;
+    if ([model containsString:@"iPod"])
+        self.navigationController.delegate = self;
+    
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSDictionary *info = [bundle infoDictionary];
+    NSString *prodName = [info objectForKey:@"CFBundleDisplayName"];
+    self.instNameLabel.text = prodName;
     
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
