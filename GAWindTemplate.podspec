@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "GAWindTemplate"
-  s.version          = "0.2.0"
+  s.version          = "0.3.0"
   s.summary          = "Template for wind instruments."
   s.homepage         = "http://cat.snu.ac.kr:8000/iOS/gawindtemplate"
   s.license          = 'MIT'
