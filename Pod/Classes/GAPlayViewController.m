@@ -94,12 +94,12 @@
     self.micGlowView.value = 0;
 }
 
-- (void)audioOutputChangedToNote:(NSString *)note
+- (void)audioOutputNoteChanged:(NSString *)note
 {
     self.noteNameLabel.text = note;
 }
 
-- (void)audioOutputChangedWithMicLevel:(float)value
+- (void)audioOutputVolumeChanged:(float)value
 {
     self.micGlowView.value = value;
 }

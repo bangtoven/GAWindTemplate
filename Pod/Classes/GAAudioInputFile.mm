@@ -17,7 +17,7 @@
 }
 @end
 
-#define MAX_AMPLITUDE 440
+#define MAX_AMPLITUDE 4400
 @implementation GAAudioInputFile
 
 - (instancetype)initWithFileName:(NSString*)fileName andPitch:(int)pitch {
