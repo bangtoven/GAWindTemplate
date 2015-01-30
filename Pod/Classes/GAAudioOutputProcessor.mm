@@ -17,7 +17,7 @@
 
 #import "GASettings.h"
 
-#define VOLUME_QUEUE_SIZE 20
+#define VOLUME_QUEUE_SIZE 44
 
 @interface GAAudioOutputProcessor () <GAMicInputProcessorDelegate> {
     stk::NRev reverb;
@@ -145,7 +145,8 @@
         }
         case GAControlModeBlowWithTilt: {
             micThreshold = settings.micThreshold;
-            self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
+            if (self.micProcessor == nil)
+                self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
             [self.micProcessor startUpdate];
             
             micGain = 1.0;
@@ -154,7 +155,8 @@
         }
         case GAControlModeBlowWithOnlyMic: {
             micThreshold = settings.micThreshold;
-            self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
+            if (self.micProcessor == nil)
+                self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:YES];
             [self.micProcessor startUpdate];
             
             controlTiltForVolume = NO;
@@ -247,11 +249,10 @@
 - (void)micInputLevelUpdated:(float)averagePower
 {
     if (controlTiltForVolume==NO) {
-        float volume = (averagePower-micThreshold) / (1-micThreshold);
-        micGain = (9*micGain+volume)/10;
+        micGain = (averagePower-micThreshold) / (1-micThreshold);
         [self updateVolume];
         
-        [self.delegate audioOutputVolumeChanged:volume];
+        [self.delegate audioOutputVolumeChanged:micGain];
     }
 }
 
@@ -262,8 +263,8 @@
     
     double sum = masterVolume*VOLUME_QUEUE_SIZE;
     sum -= volumeQueue[lastQueueIndex];
-    sum += volume;
     volumeQueue[lastQueueIndex] = volume;
+    sum += volumeQueue[lastQueueIndex];
     masterVolume = sum/(float)VOLUME_QUEUE_SIZE;
 
     lastQueueIndex++;
@@ -281,6 +282,7 @@
 - (void)stopAudioOutput
 {
     [self.micProcessor stopUpdate];
+    self.micProcessor = nil;
     [self stopPlaying];
 }
 

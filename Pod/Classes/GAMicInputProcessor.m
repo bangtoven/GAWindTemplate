@@ -31,8 +31,13 @@
 
 - (id)initWithDelegate:(id<GAMicInputProcessorDelegate>)delegate andProcessThreshold:(BOOL)process {
     if (self = [super init]) {
-        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-        [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+        for (AVAudioSessionPortDescription *port in audioSession.currentRoute.outputs) {
+            if ([port.portType isEqualToString:AVAudioSessionPortBuiltInReceiver]) {
+                [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+            }
+        }
         
         NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
         
@@ -67,12 +72,12 @@
 }
 
 - (void)startUpdate {
-    if (!self.levelTimer) {
-        if (processThreshold)
-            self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-        else
-            self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(rawLevelTimerCallback:) userInfo: nil repeats: YES];
-    }
+    [self stopUpdate];
+    
+    if (processThreshold)
+        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+    else
+        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(rawLevelTimerCallback:) userInfo: nil repeats: YES];
     
     if (self.recorder.isRecording == NO)
         [self.recorder record];

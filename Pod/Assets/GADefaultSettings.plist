@@ -15,6 +15,6 @@
 	<key>_reverbTime</key>
 	<real>1.8</real>
 	<key>_reverbMix</key>
-	<real>0.25</real>
+	<real>1</real>
 </dict>
 </plist>
