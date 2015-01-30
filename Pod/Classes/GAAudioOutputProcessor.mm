@@ -203,7 +203,7 @@
     reverb.setT60(settings.reverbTime);
     motionSensitivity = settings.motionSensitivity;
     
-    if (settings.isTouchMode) {
+    if (settings.controlMode == GAControlModeTouch) {
         [self.micProcessor stopUpdate];
         self.micProcessor = nil;
         micGain = 1.0;

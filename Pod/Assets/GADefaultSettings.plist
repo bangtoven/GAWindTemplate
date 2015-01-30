@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>_touchMode</key>
-	<true/>
+	<key>_controlMode</key>
+	<integer>0</integer>
 	<key>_micThreshold</key>
 	<real>0.5</real>
 	<key>_keyShift</key>
 	<integer>0</integer>
+	<key>_displayNoteName</key>
+	<true/>
 	<key>_motionSensitivity</key>
 	<real>0.6</real>
 	<key>_reverbTime</key>

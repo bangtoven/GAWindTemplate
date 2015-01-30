@@ -16,7 +16,9 @@
     int baseMidiNumber;
 }
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *playModeSegment;
+@property (strong, nonatomic) IBOutletCollection(UITableViewCell) NSArray *modeCells;
+
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *playModeSegment;
 
 @property (strong) GAMicInputProcessor *micProcessor;
 @property (weak, nonatomic) IBOutlet F3BarGauge *micInputGaugeBar;
@@ -25,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *baseNoteLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *baseNoteStepper;
 @property (weak, nonatomic) IBOutlet UILabel *baseNoteShiftLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *displayNoteNameSwitch;
 
 @property (weak, nonatomic) IBOutlet UISlider *motionSensitivitySlider;
 
@@ -35,30 +38,25 @@
 
 @implementation GASettingsViewController
 
-- (void)viewDidLoad
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidLoad];
-
-    settings = [GASettings sharedSetting];
-    baseMidiNumber = settings.baseNote;
+    for (UITableViewCell *cell in self.modeCells) {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
-    self.playModeSegment.selectedSegmentIndex = settings.isTouchMode;
-    [self playModeChanged:self];
-    
-    self.micThresholdSlider.value = settings.micThreshold;
-    [self micSensitivityChanged:self];
-    
-    self.baseNoteStepper.value = settings.keyShift;
-    [self baseNoteChanged:self];
-    
-    self.motionSensitivitySlider.value = settings.motionSensitivity;
-    
-    self.reverbTimeSlider.value = settings.reverbTime;
-    self.reverbMixSlider.value = settings.reverbMix;    
+    [self selectControlModeCell:indexPath.row];
 }
 
-- (IBAction)playModeChanged:(id)sender {
-    if (self.playModeSegment.selectedSegmentIndex==1) {
+- (void)selectControlModeCell:(NSUInteger)selectedIndex
+{
+    settings.controlMode = selectedIndex;
+
+    for (UITableViewCell *cell in self.modeCells) {
+        if (cell.tag == selectedIndex)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    
+    if (settings.controlMode == GAControlModeTouch) {
         self.micThresholdSlider.enabled = NO;
         self.micInputGaugeBar.alpha = 0.5;
         [self.micProcessor stopUpdate];
@@ -68,9 +66,42 @@
         self.micThresholdSlider.enabled = YES;
         self.micInputGaugeBar.alpha = 1.0;
         self.micProcessor = [[GAMicInputProcessor alloc] initWithDelegate:self andProcessThreshold:NO];
-            [self.micProcessor stopUpdate];
         [self.micProcessor startUpdate];
+        if (settings.controlMode == GAControlModeBlowWithTilt) {
+            self.micInputGaugeBar.warningBarColor = [UIColor greenColor];
+            self.micInputGaugeBar.dangerBarColor  = [UIColor greenColor];
+        }
+        else if (settings.controlMode == GAControlModeBlowWithOnlyMic) {
+            self.micInputGaugeBar.warningBarColor = [UIColor yellowColor];
+            self.micInputGaugeBar.dangerBarColor  = [UIColor redColor];
+        }
+        [self.micInputGaugeBar resetPeak];
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    settings = [GASettings sharedSetting];
+    baseMidiNumber = settings.baseNote;
+
+//    self.playModeSegment.selectedSegmentIndex = settings.isTouchMode;
+//    [self playModeChanged:self];
+    [self selectControlModeCell:settings.controlMode];
+    
+    self.micThresholdSlider.value = settings.micThreshold;
+    [self micSensitivityChanged:self];
+    
+    self.baseNoteStepper.value = settings.keyShift;
+    [self baseNoteChanged:self];
+    
+    self.displayNoteNameSwitch.on = settings.displayNoteName;
+    
+    self.motionSensitivitySlider.value = settings.motionSensitivity;
+    
+    self.reverbTimeSlider.value = settings.reverbTime;
+    self.reverbMixSlider.value = settings.reverbMix;    
 }
 
 - (IBAction)micSensitivityChanged:(id)sender {
@@ -106,10 +137,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if it is unwind...
-    settings.touchMode = self.playModeSegment.selectedSegmentIndex==1;
+//  settings.touchMode = self.playModeSegment.selectedSegmentIndex==1;
+//  연주모드 변경은 셀 선택 시 이미 적용 되었음?
+    
     settings.micThreshold = self.micThresholdSlider.value;
     settings.keyShift = self.baseNoteStepper.value;
+    settings.displayNoteName = self.displayNoteNameSwitch.on;
     settings.motionSensitivity = self.motionSensitivitySlider.value;
     settings.reverbTime = self.reverbTimeSlider.value;
     settings.reverbMix = self.reverbMixSlider.value;

@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *instNameLabel;
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
+@property (weak, nonatomic) IBOutlet UIImageView *noteNameBackground;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
 @property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
 @property (weak, nonatomic) IBOutlet UIImageView *blowImageView;
@@ -58,7 +59,12 @@
 
 - (void)updateSettings
 {
-    self.blowImageView.hidden = [GASettings sharedSetting].isTouchMode;
+    GASettings *setting = [GASettings sharedSetting];
+    self.blowImageView.hidden = setting.controlMode == GAControlModeTouch;
+    
+    self.noteNameLabel.hidden = !setting.displayNoteName;
+    self.noteNameBackground.hidden = !setting.displayNoteName;
+    
     self.micGlowView.value = 0;
 }
 

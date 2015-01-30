@@ -42,7 +42,7 @@
 - (void)updateSettings
 {
     GASettings *settings = [GASettings sharedSetting];
-    isTouchMode = settings.isTouchMode;
+    isTouchMode = settings.controlMode == GAControlModeTouch;
     fingeringToMidiNumber = settings.baseNote + settings.keyShift;
 }
 
