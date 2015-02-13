@@ -219,16 +219,18 @@
             
             double angle = pitch/M_PI*180.0 + 90;
             
-            if (angle < 30)
+            if (angle < 15)
                 tiltGain = 0;
-            else if (angle < 120)
-                tiltGain = (angle-30)/90.;
+            else if (angle < 95)
+                tiltGain = (angle-15)/80.;
             else
                 tiltGain = 1;
             
             lastAttitude = pitch;
         }
     }
+    
+    [self.micProcessor updateMeters];
     
     if (updated)
         [self updateVolume];

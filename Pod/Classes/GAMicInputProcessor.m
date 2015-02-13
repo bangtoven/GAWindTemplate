@@ -74,9 +74,12 @@
 - (void)startUpdate {
     [self stopUpdate];
     
-    if (processThreshold)
-        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-    else
+//    if (processThreshold)
+//        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+//    else
+//        self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(rawLevelTimerCallback:) userInfo: nil repeats: YES];
+
+    if (!processThreshold)
         self.levelTimer = [NSTimer scheduledTimerWithTimeInterval:MIC_UPDATE_INTERVAL target: self selector: @selector(rawLevelTimerCallback:) userInfo: nil repeats: YES];
     
     if (self.recorder.isRecording == NO)
@@ -98,6 +101,11 @@
     [self.recorder updateMeters];
     double averagePower = pow(10, 0.05 * [self.recorder averagePowerForChannel:0]);
     [self.delegate micInputLevelUpdated:averagePower];
+}
+
+-(void)updateMeters
+{
+    [self levelTimerCallback:nil];
 }
 
 - (void)levelTimerCallback:(NSTimer *)timer

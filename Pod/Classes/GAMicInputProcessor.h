@@ -21,6 +21,7 @@
 - (id)initWithDelegate:(id<GAMicInputProcessorDelegate>)delegate andProcessThreshold:(BOOL)process;
 
 -(void)startUpdate;
+-(void)updateMeters;
 -(void)stopUpdate;
 
 -(void)updateSettings;

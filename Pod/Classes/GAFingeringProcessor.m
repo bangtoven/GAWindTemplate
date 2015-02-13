@@ -77,7 +77,7 @@
     if (timer)
         [timer invalidate];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(sendToDelegate) userInfo:nil repeats:NO];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(sendToDelegate) userInfo:nil repeats:NO];
 }
 
 - (void)sendToDelegate {
