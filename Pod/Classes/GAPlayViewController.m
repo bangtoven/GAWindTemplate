@@ -13,7 +13,6 @@
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *instNameLabel;
 @property (weak, nonatomic) IBOutlet GAFingeringOctaveButton *octaveButton;
 @property (weak, nonatomic) IBOutlet UIImageView *noteNameBackground;
 @property (weak, nonatomic) IBOutlet UILabel *noteNameLabel;
@@ -39,14 +38,12 @@
     if ([model containsString:@"iPod"])
         self.navigationController.delegate = self;
     
-    NSString *appName = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"];
-    self.instNameLabel.text = appName;
-    
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
     
     if (self.needsUpDownOctave) {
         [self.octaveButton setIsUpDown:YES];
+        [GASettings sharedSetting].hasUpDownOctave = YES;
         [GASettings sharedSetting].baseNote += 12;
         [self.audioOutput updateSettings];
     }
@@ -110,12 +107,13 @@
     
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                                     cancelButtonTitle:
-                                  NSLocalizedStringFromTableInBundle(@"cancel", table, bundle, @"Cancel")
+                                  NSLocalizedStringFromTableInBundle(@"Cancel", table, bundle, @"Cancel")
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:
-                                  NSLocalizedStringFromTableInBundle(@"settings", table, bundle, @"Settings"),
-                                  NSLocalizedStringFromTableInBundle(@"manual", table, bundle, @"Manual"),
-                                  @"About",nil];
+                                  NSLocalizedStringFromTableInBundle(@"Settings", table, bundle, @"Settings"),
+                                  NSLocalizedStringFromTableInBundle(@"Manual", table, bundle, @"Manual"),
+                                  NSLocalizedStringFromTableInBundle(@"About", table, bundle, @"About"),
+                                  nil];
     [actionSheet showInView:self.navigationController.view];
 }
 

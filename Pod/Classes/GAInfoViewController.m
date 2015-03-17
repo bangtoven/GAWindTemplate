@@ -9,6 +9,7 @@
 #import "GAInfoViewController.h"
 
 @interface GAInfoViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @end
 
@@ -16,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.infoLabel.numberOfLines = 0;
+    [self.infoLabel sizeToFit];
 }
 
 @end

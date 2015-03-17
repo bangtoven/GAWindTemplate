@@ -8,6 +8,7 @@
 
 #import "GAManualViewController.h"
 #import "NSBundle+GATemplate.h"
+#import "GASettings.h"
 
 @interface ContentsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -34,11 +35,19 @@
 
 @implementation GAManualViewController
 
+- (IBAction)linkBarButtonAction:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.catsnu.com"]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    pageImages = @[@"man01.jpg", @"man02.jpg", @"man031.jpg"];
+    if ([GASettings sharedSetting].hasUpDownOctave)
+        pageImages = @[@"man01.jpg", @"man02.jpg", @"man032.jpg"];
+    else
+        pageImages = @[@"man01.jpg", @"man02.jpg", @"man031.jpg"];
 
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;

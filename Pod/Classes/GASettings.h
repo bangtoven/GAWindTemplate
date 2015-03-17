@@ -25,6 +25,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) float reverbTime;
 @property (nonatomic) float reverbMix;
 
+@property (nonatomic) BOOL hasUpDownOctave;
 @property (nonatomic) int baseNote;
 
 + (instancetype)sharedSetting;
