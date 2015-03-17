@@ -1,0 +1,63 @@
+
+/* Class = "UITableViewSection"; headerTitle = "Notes"; ObjectID = "0GP-EB-noP"; */
+"0GP-EB-noP.headerTitle" = "Notes";
+
+/* Class = "UILabel"; text = "+2"; ObjectID = "3rY-rS-2eu"; */
+"3rY-rS-2eu.text" = "+2";
+
+/* Class = "UIBarButtonItem"; title = "catsnu.com"; ObjectID = "7FR-iG-XWr"; */
+"7FR-iG-XWr.title" = "catsnu.com";
+
+/* Class = "UILabel"; text = "Gb3"; ObjectID = "9fN-8b-Lwd"; */
+"9fN-8b-Lwd.text" = "Gb3";
+
+/* Class = "UILabel"; text = "Mix"; ObjectID = "Cdz-G1-y7K"; */
+"Cdz-G1-y7K.text" = "Mix";
+
+/* Class = "UILabel"; text = "Blow (control volume by mic input)"; ObjectID = "E1C-gL-1Aa"; */
+"E1C-gL-1Aa.text" = "Blow (control volume by mic input)";
+
+/* Class = "UITableViewSection"; footerTitle = "Adjust the threshold of the mic input to the environment. Low input below the threshold will be ignored."; ObjectID = "Jqg-1b-pej"; */
+"Jqg-1b-pej.footerTitle" = "Adjust the threshold of the mic input to the environment. Low input below the threshold will be ignored.";
+
+/* Class = "UITableViewSection"; headerTitle = "Mic threshold"; ObjectID = "Jqg-1b-pej"; */
+"Jqg-1b-pej.headerTitle" = "Mic threshold";
+
+/* Class = "UILabel"; text = "Display note name"; ObjectID = "LYt-jO-B6Z"; */
+"LYt-jO-B6Z.text" = "Display note name";
+
+/* Class = "UILabel"; text = "Base:"; ObjectID = "MBu-mZ-lYX"; */
+"MBu-mZ-lYX.text" = "Base:";
+
+/* Class = "UINavigationItem"; title = "Manual"; ObjectID = "Mc2-4Q-fUe"; */
+"Mc2-4Q-fUe.title" = "Manual";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "WgO-zQ-MRg"; */
+"WgO-zQ-MRg.title" = "About";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "YsI-NV-7GH"; */
+"YsI-NV-7GH.text" = "Time";
+
+/* Class = "UILabel"; text = "Blow (control volume by tilting)"; ObjectID = "dde-fm-YZl"; */
+"dde-fm-YZl.text" = "Blow (control volume by tilting)";
+
+/* Class = "UILabel"; text = "Developers:\nHyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho\n\nSupport:\nThis work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134."; ObjectID = "eEH-Lm-hg0"; */
+"eEH-Lm-hg0.text" = "Developers:\nHyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho\n\nSupport:\nThis work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "hQ8-3h-dPy"; */
+"hQ8-3h-dPy.title" = "Settings";
+
+/* Class = "UILabel"; text = "Db4"; ObjectID = "ihv-yy-JJU"; */
+"ihv-yy-JJU.text" = "Db4";
+
+/* Class = "UITableViewSection"; headerTitle = "Mode"; ObjectID = "ios-QC-Jsc"; */
+"ios-QC-Jsc.headerTitle" = "Mode";
+
+/* Class = "UILabel"; text = "Touch (control volume by tilting)"; ObjectID = "qEz-Jd-jeM"; */
+"qEz-Jd-jeM.text" = "Touch (control volume by tilting)";
+
+/* Class = "UITableViewSection"; headerTitle = "Motion sensitivity"; ObjectID = "r4t-cN-fwj"; */
+"r4t-cN-fwj.headerTitle" = "Motion sensitivity";
+
+/* Class = "UITableViewSection"; headerTitle = "Reverb"; ObjectID = "sre-Rk-25C"; */
+"sre-Rk-25C.headerTitle" = "Reverb";
