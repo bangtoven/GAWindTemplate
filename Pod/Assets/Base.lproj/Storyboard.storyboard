@@ -54,8 +54,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Db4" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihv-yy-JJU">
                                 <rect key="frame" x="258" y="130" width="84" height="84"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.23137254901960785" green="0.15294117647058825" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blowarea..png" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-85-zxy">
                                 <rect key="frame" x="74" y="548" width="151" height="52"/>
@@ -696,8 +697,8 @@ This work was financially supported by the Korea Creative Content Agency (KOCCA)
         <image name="button_small..png" width="51" height="48"/>
         <image name="info_base.jpg" width="540" height="960"/>
         <image name="middle_base.png" width="84" height="84"/>
-        <image name="octave.png" width="120" height="135"/>
-        <image name="octave_active.png" width="120" height="135"/>
+        <image name="octave.png" width="123" height="138"/>
+        <image name="octave_active.png" width="123" height="138"/>
         <image name="setting..png" width="42" height="43"/>
     </resources>
     <color key="tintColor" red="0.50196081399917603" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
