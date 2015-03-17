@@ -12,7 +12,7 @@
 "Cdz-G1-y7K.text" = "잔향 정도";
 
 /* Class = "UILabel"; text = "불기 모드: 마이크 입력으로 강약 조절"; ObjectID = "E1C-gL-1Aa"; */
-"E1C-gL-1Aa.text" = "불기 모드: 마이크 입력으로 강약 조절";
+"E1C-gL-1Aa.text" = "불기 모드 (마이크 입력으로 강약 조절)";
 
 /* Class = "UITableViewSection"; footerTitle = "주변 환경에 맞춰 마이크 작동 범위를 조절하세요. 파란색 부분은 노이즈로 처리되어 무시됩니다."; ObjectID = "Jqg-1b-pej"; */
 "Jqg-1b-pej.footerTitle" = "주변 환경에 맞춰 마이크 작동 범위를 조절하세요. 파란색 부분은 노이즈로 처리되어 무시됩니다.";
@@ -36,7 +36,7 @@
 "YsI-NV-7GH.text" = "잔향 시간";
 
 /* Class = "UILabel"; text = "불기 모드: 기기 각도로 강약 조절"; ObjectID = "dde-fm-YZl"; */
-"dde-fm-YZl.text" = "불기 모드: 기기 각도로 강약 조절";
+"dde-fm-YZl.text" = "불기 모드 (기기 각도로 강약 조절)";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "hQ8-3h-dPy"; */
 "hQ8-3h-dPy.title" = "설정";
@@ -48,7 +48,7 @@
 "ios-QC-Jsc.headerTitle" = "연주 모드";
 
 /* Class = "UILabel"; text = "터치 모드: 기기 각도로 강약 조절"; ObjectID = "qEz-Jd-jeM"; */
-"qEz-Jd-jeM.text" = "터치 모드: 기기 각도로 강약 조절";
+"qEz-Jd-jeM.text" = "터치 모드 (기기 각도로 강약 조절)";
 
 /* Class = "UITableViewSection"; headerTitle = "농 표현 모션 감도"; ObjectID = "r4t-cN-fwj"; */
 "r4t-cN-fwj.headerTitle" = "농 표현 모션 감도";

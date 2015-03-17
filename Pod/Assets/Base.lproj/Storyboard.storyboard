@@ -66,7 +66,7 @@
                                 </constraints>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-Zk-nGn" customClass="JHGlowView">
-                                <rect key="frame" x="69" y="520" width="160" height="80"/>
+                                <rect key="frame" x="70" y="520" width="160" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="MnL-Hv-eAD"/>
                                     <constraint firstAttribute="width" constant="160" id="NHf-6w-L2G"/>
@@ -209,7 +209,7 @@
                             <constraint firstItem="UkO-D9-onT" firstAttribute="height" secondItem="ihv-yy-JJU" secondAttribute="height" id="0TX-gP-1nj"/>
                             <constraint firstItem="W4R-rQ-817" firstAttribute="top" secondItem="ZnU-Jg-ecp" secondAttribute="bottom" constant="-20" id="1QI-J3-Vac"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="width" secondItem="ihv-yy-JJU" secondAttribute="width" id="1Zc-iu-QG3"/>
-                            <constraint firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" multiplier="2" id="4Kn-yq-5Or"/>
+                            <constraint firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" multiplier="2" constant="1" id="4Kn-yq-5Or"/>
                             <constraint firstItem="F6e-Gs-ihd" firstAttribute="top" secondItem="Bbd-pU-YBr" secondAttribute="bottom" constant="5" id="5A1-vd-YtJ"/>
                             <constraint firstItem="W4R-rQ-817" firstAttribute="top" secondItem="Bbd-pU-YBr" secondAttribute="top" constant="-10" id="68f-75-9de"/>
                             <constraint firstItem="Tds-gF-ewV" firstAttribute="top" secondItem="TD7-FP-SkM" secondAttribute="bottom" constant="15" id="6o2-bl-PbF"/>
@@ -236,7 +236,7 @@
                             <constraint firstItem="9rf-QA-E68" firstAttribute="leading" secondItem="Tds-gF-ewV" secondAttribute="leading" id="fZl-dI-hBF"/>
                             <constraint firstItem="F6e-Gs-ihd" firstAttribute="trailing" secondItem="RDE-2i-omj" secondAttribute="trailing" id="gPi-bz-lej"/>
                             <constraint firstItem="XjO-Jq-MoE" firstAttribute="top" secondItem="2ha-85-zxy" secondAttribute="bottom" id="kLO-d0-kpc"/>
-                            <constraint firstItem="XXO-Zk-nGn" firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" constant="-0.5" id="lCe-ya-re9"/>
+                            <constraint firstItem="XXO-Zk-nGn" firstAttribute="centerX" secondItem="2ha-85-zxy" secondAttribute="centerX" constant="0.5" id="lCe-ya-re9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lcm-8W-XEH" secondAttribute="trailing" constant="9" id="nMr-x5-zV2"/>
                             <constraint firstItem="UkO-D9-onT" firstAttribute="leading" secondItem="TD7-FP-SkM" secondAttribute="trailing" constant="5" id="nh4-L8-gSE"/>
                             <constraint firstItem="9rf-QA-E68" firstAttribute="top" secondItem="Tds-gF-ewV" secondAttribute="bottom" constant="15" id="q7P-ul-UhZ"/>
@@ -500,7 +500,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z92-Tc-BwT" id="97l-bo-aym">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-Gw-IOl">
+                                                <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.25" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-Gw-IOl">
                                                     <rect key="frame" x="16" y="28" width="568" height="31"/>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mix" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-G1-y7K">
@@ -570,11 +570,11 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="eEH-Lm-hg0">
                                 <rect key="frame" x="16" y="52" width="568" height="41"/>
-                                <mutableString key="text">Developers:
+                                <string key="text">Developers:
 Hyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho
 
 Support:
-This work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.</mutableString>
+This work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
