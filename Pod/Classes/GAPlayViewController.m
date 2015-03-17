@@ -9,6 +9,7 @@
 #import "GAPlayViewController.h"
 #import "JHGlowView.h"
 #import "GASettings.h"
+#import "NSBundle+GATemplate.h"
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
@@ -38,10 +39,8 @@
     if ([model containsString:@"iPod"])
         self.navigationController.delegate = self;
     
-    NSBundle *bundle = [NSBundle mainBundle];
-    NSDictionary *info = [bundle infoDictionary];
-    NSString *prodName = [info objectForKey:@"CFBundleName"];
-    self.instNameLabel.text = prodName;
+    NSString *appName = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"];
+    self.instNameLabel.text = appName;
     
     self.audioOutput = [[GAAudioOutputProcessor alloc] init];
     self.audioOutput.delegate = self;
@@ -106,7 +105,17 @@
 
 - (IBAction)settingButtonAction:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"취소" destructiveButtonTitle:nil otherButtonTitles:@"설정",@"사용법",@"악기 정보",@"앱 정보",nil];
+    NSBundle *bundle = [NSBundle templateBundle];
+    NSString *table = @"localized";
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
+                                                    cancelButtonTitle:
+                                  NSLocalizedStringFromTableInBundle(@"cancel", table, bundle, @"Cancel")
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:
+                                  NSLocalizedStringFromTableInBundle(@"settings", table, bundle, @"Settings"),
+                                  NSLocalizedStringFromTableInBundle(@"manual", table, bundle, @"Manual"),
+                                  @"About",nil];
     [actionSheet showInView:self.navigationController.view];
 }
 

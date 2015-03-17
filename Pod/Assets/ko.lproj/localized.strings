@@ -1,0 +1,12 @@
+/* 
+  strings.strings
+  Pods
+
+  Created by Jungho Bang on 2015. 3. 17..
+
+*/
+
+"cancel" = "취소";
+"settings" = "설정";
+"manual" = "사용법";
+"about" = "About";

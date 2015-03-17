@@ -83,6 +83,8 @@
 		73410CFD1A6E9C7700819671 /* Hun_Ord_Py_E3_mf_1_16441.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hun_Ord_Py_E3_mf_1_16441.wav; sourceTree = "<group>"; };
 		73410D001A6E9C7700819671 /* Hun_Ord_Py_F3_mf_1_16441.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hun_Ord_Py_F3_mf_1_16441.wav; sourceTree = "<group>"; };
 		73410D011A6E9C7700819671 /* Hun_Ord_Py_G3_mf_1_16441.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Hun_Ord_Py_G3_mf_1_16441.wav; sourceTree = "<group>"; };
+		73C060091AB822C4002AEFBB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		73C0600A1AB822C4002AEFBB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92AF05AA08A36184CE2E9459 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A08833824678C69770D0EA8A /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A4654522845E02D0AE9D24A7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 6003F581195388D10070C39A;
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
@@ -447,6 +450,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6003F597195388D20070C39A /* en */,
+				73C060091AB822C4002AEFBB /* ko */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -455,6 +459,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6003F5B9195388D20070C39A /* en */,
+				73C0600A1AB822C4002AEFBB /* ko */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

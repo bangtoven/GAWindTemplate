@@ -7,6 +7,7 @@
 //
 
 #import "GAManualViewController.h"
+#import "NSBundle+GATemplate.h"
 
 @interface ContentsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -16,7 +17,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.imageView.image = [UIImage imageNamed:self.imageFileName];
+    
+    NSBundle *bundle = [NSBundle templateBundle];
+
+    self.imageView.image = [UIImage imageNamed:self.imageFileName inBundle:bundle compatibleWithTraitCollection:nil];
+//    self.imageView.image = [UIImage imageNamed:self.imageFileName];
 }
 @end
 
@@ -33,7 +38,7 @@
 {
     [super viewDidLoad];
     
-    pageImages = @[@"4.png", @"1.png", @"2.png", @"3.png", @"5.png"];
+    pageImages = @[@"man01.jpg", @"man02.jpg", @"man031.jpg"];
 
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.dataSource = self;

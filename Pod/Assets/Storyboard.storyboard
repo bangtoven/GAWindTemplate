@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nI-xj-BIZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nI-xj-BIZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -611,17 +611,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정보 페이지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rn-Qv-nr6">
-                                <rect key="frame" x="16" y="114" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info_base.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Dcr-Ge-bB8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTr-xo-cSa">
+                                <rect key="frame" x="16" y="52" width="568" height="548"/>
+                                <string key="text">
+개발자
+강효지, 고병량, 고병오, 김대현, 김미정, 김영선, 김태은, 김혜연, 남상봉, 문지성, 박수철, 박재록, 방정호, 서윤정, 송향숙, 안준석, 유리나, 윤소정, 이강성, 이돈응, 이두현, 이수진, 이선진, 정기현, 조영미, 조진옥
+
+연구지원
+본 악기는 2012년부터 2014년까지 문화체육관광부의 재원으로 한국콘텐츠진흥원의 지원을 받아 개발되었습니다. (한국콘텐츠진흥원-2012년-HE1405-No.R2012030134)</string>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7Rn-Qv-nr6" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="TZL-0n-e26"/>
-                            <constraint firstItem="7Rn-Qv-nr6" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="70" id="YRP-9c-qno"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="centerX" secondItem="vTr-xo-cSa" secondAttribute="centerX" id="4mB-IN-QCd"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="J6y-yt-foJ"/>
+                            <constraint firstItem="vTr-xo-cSa" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="SWe-Fp-pxM"/>
+                            <constraint firstItem="vTr-xo-cSa" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="8" symbolic="YES" id="Uww-Wc-FQh"/>
+                            <constraint firstItem="vTr-xo-cSa" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="WdC-Lm-Rpc"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leading" id="bOr-JS-PTl"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="top" secondItem="kYb-H3-yPg" secondAttribute="top" id="bv2-9n-L14"/>
+                            <constraint firstItem="vTr-xo-cSa" firstAttribute="trailing" secondItem="kYb-H3-yPg" secondAttribute="trailingMargin" id="hew-tZ-HDK"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -713,6 +728,7 @@
         <image name="button_active_small..png" width="51" height="48"/>
         <image name="button_big..png" width="73" height="66"/>
         <image name="button_small..png" width="51" height="48"/>
+        <image name="info_base.jpg" width="540" height="960"/>
         <image name="middle_base.png" width="84" height="84"/>
         <image name="octave.png" width="120" height="135"/>
         <image name="octave_active.png" width="120" height="135"/>
