@@ -572,18 +572,30 @@
                                 <rect key="frame" x="16" y="52" width="568" height="528"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-il-bNg">
+                                <rect key="frame" x="16" y="52" width="74" height="30"/>
+                                <state key="normal" title="Bangtoven">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="whoIsTheDeveloper:" destination="sm8-TR-qaq" eventType="touchUpInside" id="w8c-US-z4x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Dcr-Ge-bB8" secondAttribute="trailing" id="58J-yg-e8z"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="GD3-QR-dpM"/>
+                            <constraint firstItem="W4O-il-bNg" firstAttribute="top" secondItem="GwS-4E-xKK" secondAttribute="top" id="Jm4-Zh-mTB"/>
                             <constraint firstItem="GwS-4E-xKK" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="XKu-Bm-hU6"/>
                             <constraint firstAttribute="bottom" secondItem="GwS-4E-xKK" secondAttribute="bottom" constant="20" symbolic="YES" id="ban-ge-C7T"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leading" id="e1p-KL-gRf"/>
                             <constraint firstItem="GwS-4E-xKK" firstAttribute="centerX" secondItem="Dcr-Ge-bB8" secondAttribute="centerX" id="g5L-Qm-gVP"/>
+                            <constraint firstItem="W4O-il-bNg" firstAttribute="leading" secondItem="GwS-4E-xKK" secondAttribute="leading" id="kzn-yU-DVC"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="top" secondItem="kYb-H3-yPg" secondAttribute="top" id="nbh-X3-UJc"/>
                             <constraint firstItem="GwS-4E-xKK" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="8" symbolic="YES" id="vGf-JX-xxB"/>
                         </constraints>
