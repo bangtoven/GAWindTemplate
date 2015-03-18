@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet JHGlowView *micGlowView;
 @property (weak, nonatomic) IBOutlet UIImageView *blowImageView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 @end
 
 @implementation GAPlayViewController
@@ -33,6 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.backgroundView.image = [UIImage imageNamed:@"Background"];
     
     NSString *model = [UIDevice currentDevice].model;
     if ([model containsString:@"iPod"])
