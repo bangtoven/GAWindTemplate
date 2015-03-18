@@ -7,7 +7,6 @@
 //
 
 #import "GAManualViewController.h"
-#import "NSBundle+GATemplate.h"
 #import "GASettings.h"
 
 @interface ContentsViewController ()
@@ -18,11 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSBundle *bundle = [NSBundle templateBundle];
-
-    self.imageView.image = [UIImage imageNamed:self.imageFileName inBundle:bundle compatibleWithTraitCollection:nil];
-//    self.imageView.image = [UIImage imageNamed:self.imageFileName];
+    self.imageView.image = [UIImage imageNamed:self.imageFileName];
 }
 @end
 

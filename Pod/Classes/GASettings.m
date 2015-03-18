@@ -7,7 +7,6 @@
 //
 
 #import "GASettings.h"
-#import "NSBundle+GATemplate.h"
 
 @implementation GASettings
 
@@ -23,7 +22,7 @@
 - (id)init
 {
     if (self = [super init]) {
-        NSURL *url = [[NSBundle templateBundle] URLForResource:@"GADefaultSettings" withExtension:@"plist"];
+        NSURL *url = [[NSBundle mainBundle] URLForResource:@"GADefaultSettings" withExtension:@"plist"];
         NSDictionary *initialDefaults = [NSDictionary dictionaryWithContentsOfURL:url];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults registerDefaults:initialDefaults];

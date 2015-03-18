@@ -8,7 +8,6 @@
 
 #import "GAFingeringProcessor.h"
 #import "GASettings.h"
-#import "NSBundle+GATemplate.h"
 
 @interface GAFingeringProcessor () {
     NSTimer *timer;
@@ -29,7 +28,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        NSBundle *bundle = [NSBundle templateBundle];
+        NSBundle *bundle = [NSBundle mainBundle];
         self.fingeringTable = [NSArray arrayWithContentsOfFile:[bundle pathForResource:@"GAFingeringTable" ofType:@"plist"]];
         
         self.buttonStatus = [NSMutableString stringWithString:@"00000"];

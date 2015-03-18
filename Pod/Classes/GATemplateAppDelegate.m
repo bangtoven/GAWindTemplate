@@ -7,7 +7,6 @@
 //
 
 #import "GATemplateAppDelegate.h"
-#import "NSBundle+GATemplate.h"
 
 @implementation GATemplateAppDelegate
 
@@ -17,7 +16,7 @@
 {
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
-    NSBundle *bundle = [NSBundle templateBundle];
+    NSBundle *bundle = [NSBundle mainBundle];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:bundle];
     UINavigationController *nvc = [storyboard instantiateInitialViewController];
     

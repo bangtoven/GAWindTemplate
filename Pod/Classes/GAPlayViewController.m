@@ -9,7 +9,6 @@
 #import "GAPlayViewController.h"
 #import "JHGlowView.h"
 #import "GASettings.h"
-#import "NSBundle+GATemplate.h"
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
@@ -102,17 +101,14 @@
 
 - (IBAction)settingButtonAction:(id)sender
 {
-    NSBundle *bundle = [NSBundle templateBundle];
-    NSString *table = @"localized";
-    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                                     cancelButtonTitle:
-                                  NSLocalizedStringFromTableInBundle(@"Cancel", table, bundle, @"Cancel")
+                                  NSLocalizedString(@"Cancel", @"Cancel")
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:
-                                  NSLocalizedStringFromTableInBundle(@"Settings", table, bundle, @"Settings"),
-                                  NSLocalizedStringFromTableInBundle(@"Manual", table, bundle, @"Manual"),
-                                  NSLocalizedStringFromTableInBundle(@"About", table, bundle, @"About"),
+                                  NSLocalizedString(@"Settings", @"Settings"),
+                                  NSLocalizedString(@"Manual", @"Manual"),
+                                  NSLocalizedString(@"About", @"About"),
                                   nil];
     [actionSheet showInView:self.navigationController.view];
 }
