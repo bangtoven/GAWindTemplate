@@ -10,4 +10,6 @@
 
 @interface GAInfoViewController : UIViewController
 
+@property (nonatomic,strong) NSString *infoString;
+
 @end

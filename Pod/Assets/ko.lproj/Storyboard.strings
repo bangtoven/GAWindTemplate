@@ -30,7 +30,7 @@
 "Mc2-4Q-fUe.title" = "사용법";
 
 /* Class = "UINavigationItem"; title = "About"; ObjectID = "WgO-zQ-MRg"; */
-"WgO-zQ-MRg.title" = "앱 정보";
+"WgO-zQ-MRg.title" = "";
 
 /* Class = "UILabel"; text = "잔향 시간"; ObjectID = "YsI-NV-7GH"; */
 "YsI-NV-7GH.text" = "잔향 시간";
@@ -55,6 +55,3 @@
 
 /* Class = "UITableViewSection"; headerTitle = "잔향"; ObjectID = "sre-Rk-25C"; */
 "sre-Rk-25C.headerTitle" = "잔향";
-
-/* Class = "UITextView"; text = "Developers:\nHyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho\n\n\nSupport:\nThis work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.\n"; ObjectID = "vTr-xo-cSa"; */
-"eEH-Lm-hg0.text" = "\n개발자:\n강효지, 고병량, 고병오, 김대현, 김미정, 김영선, 김태은, 김혜연, 남상봉, 문지성, 박수철, 박재록, 방정호, 서윤정, 송향숙, 안준석, 유리나, 윤소정, 이강성, 이돈응, 이두현, 이수진, 이선진, 정기현, 조영미, 조진옥\n\n연구지원:\n본 악기는 2012년부터 2014년까지 문화체육관광부의 재원으로 한국콘텐츠진흥원의 지원을 받아 개발되었습니다. (한국콘텐츠진흥원-2012년-HE1405-No.R2012030134)";

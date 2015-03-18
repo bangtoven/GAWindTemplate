@@ -9,6 +9,7 @@
 #import "GAPlayViewController.h"
 #import "JHGlowView.h"
 #import "GASettings.h"
+#import "GAInfoViewController.h"
 
 @interface GAPlayViewController () <UINavigationControllerDelegate, UIActionSheetDelegate,GAAudioOutputDelegate>
 
@@ -101,14 +102,17 @@
 
 - (IBAction)settingButtonAction:(id)sender
 {
+    NSString *table = @"template";
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
                                                     cancelButtonTitle:
-                                  NSLocalizedString(@"Cancel", @"Cancel")
+                                  NSLocalizedStringFromTable(@"Cancel", table, @"Cancel")
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:
-                                  NSLocalizedString(@"Settings", @"Settings"),
-                                  NSLocalizedString(@"Manual", @"Manual"),
-                                  NSLocalizedString(@"About", @"About"),
+                                  NSLocalizedStringFromTable(@"Settings", table, @"Settings"),
+                                  NSLocalizedStringFromTable(@"Manual", table, @"Manual"),
+                                  NSLocalizedStringFromTable(@"Inst", table, @"Inst"),
+                                  NSLocalizedStringFromTable(@"App", table, @"App"),
                                   nil];
     [actionSheet showInView:self.navigationController.view];
 }
@@ -127,9 +131,26 @@
         case 1:
             [self performSegueWithIdentifier:@"show manual" sender:nil];
             break;
+        case 2: {
+            [self performSegueWithIdentifier:@"show info"
+                                      sender:NSLocalizedString(@"inst-info", @"inst-info")];
+            break;
+        }
+        case 3: {
+            [self performSegueWithIdentifier:@"show info"
+                                      sender:NSLocalizedStringFromTable(@"Developer", @"template", @"Developer")];
+            break;
+        }
         default:
             [self performSegueWithIdentifier:@"show info" sender:nil];
             break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"show info"]) {
+        [(GAInfoViewController*)segue.destinationViewController setInfoString:sender];
     }
 }
 

@@ -9,16 +9,19 @@
 #import "GAInfoViewController.h"
 
 @interface GAInfoViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UITextView *infoTextView;
 
 @end
 
 @implementation GAInfoViewController
 
+- (IBAction)linkBarButtonAction:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.catsnu.com"]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.infoLabel.numberOfLines = 0;
-    [self.infoLabel sizeToFit];
+    self.infoTextView.text = self.infoString;
 }
 
 @end

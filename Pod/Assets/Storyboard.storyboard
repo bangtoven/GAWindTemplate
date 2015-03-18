@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nI-xj-BIZ">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -568,39 +567,36 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info_base.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Dcr-Ge-bB8">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="eEH-Lm-hg0">
-                                <rect key="frame" x="16" y="52" width="568" height="41"/>
-                                <string key="text">Developers:
-Hyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho
-
-Support:
-This work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwS-4E-xKK">
+                                <rect key="frame" x="16" y="52" width="568" height="528"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Dcr-Ge-bB8" secondAttribute="trailing" id="58J-yg-e8z"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="GD3-QR-dpM"/>
-                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="centerX" secondItem="eEH-Lm-hg0" secondAttribute="centerX" id="KQF-Oq-QBg"/>
+                            <constraint firstItem="GwS-4E-xKK" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="XKu-Bm-hU6"/>
+                            <constraint firstAttribute="bottom" secondItem="GwS-4E-xKK" secondAttribute="bottom" constant="20" symbolic="YES" id="ban-ge-C7T"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leading" id="e1p-KL-gRf"/>
+                            <constraint firstItem="GwS-4E-xKK" firstAttribute="centerX" secondItem="Dcr-Ge-bB8" secondAttribute="centerX" id="g5L-Qm-gVP"/>
                             <constraint firstItem="Dcr-Ge-bB8" firstAttribute="top" secondItem="kYb-H3-yPg" secondAttribute="top" id="nbh-X3-UJc"/>
-                            <constraint firstItem="eEH-Lm-hg0" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="8" symbolic="YES" id="o2q-Wv-oPk"/>
-                            <constraint firstItem="eEH-Lm-hg0" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="xjS-Lp-38i"/>
-                            <constraint firstItem="eEH-Lm-hg0" firstAttribute="centerX" secondItem="Dcr-Ge-bB8" secondAttribute="centerX" id="zJ1-Iy-kGU"/>
+                            <constraint firstItem="GwS-4E-xKK" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="8" symbolic="YES" id="vGf-JX-xxB"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="zJ1-Iy-kGU"/>
-                            </mask>
-                        </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="About" id="WgO-zQ-MRg"/>
+                    <navigationItem key="navigationItem" title="About" id="WgO-zQ-MRg">
+                        <barButtonItem key="rightBarButtonItem" title="catsnu.com" id="cI9-Js-bKp">
+                            <connections>
+                                <action selector="linkBarButtonAction:" destination="sm8-TR-qaq" id="b2R-mI-Ua7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="infoLabel" destination="eEH-Lm-hg0" id="WFO-J6-ucN"/>
+                        <outlet property="infoTextView" destination="GwS-4E-xKK" id="5ZO-C3-rGd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iAO-KN-8IB" userLabel="First Responder" sceneMemberID="firstResponder"/>
