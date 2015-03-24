@@ -27,10 +27,10 @@
 "MBu-mZ-lYX.text" = "최저음:";
 
 /* Class = "UINavigationItem"; title = "Manual"; ObjectID = "Mc2-4Q-fUe"; */
-"Mc2-4Q-fUe.title" = "사용법";
+//"Mc2-4Q-fUe.prompt" = "사용법";
 
 /* Class = "UINavigationItem"; title = "About"; ObjectID = "WgO-zQ-MRg"; */
-"WgO-zQ-MRg.title" = "";
+"WgO-zQ-MRg.title" = "정보";
 
 /* Class = "UILabel"; text = "잔향 시간"; ObjectID = "YsI-NV-7GH"; */
 "YsI-NV-7GH.text" = "잔향 시간";

@@ -10,6 +10,7 @@
 
 @interface GAInfoViewController : UIViewController
 
+@property (nonatomic) BOOL activateWhoIsTheDeveloper;
 @property (nonatomic,strong) NSString *infoString;
 
 @end

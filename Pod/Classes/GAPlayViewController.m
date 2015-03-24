@@ -134,26 +134,27 @@
         case 1:
             [self performSegueWithIdentifier:@"show manual" sender:nil];
             break;
-        case 2: {
-            [self performSegueWithIdentifier:@"show info"
-                                      sender:NSLocalizedString(@"inst-info", @"inst-info")];
+        case 2:
+            [self performSegueWithIdentifier:@"show inst info" sender:nil];
             break;
-        }
-        case 3: {
-            [self performSegueWithIdentifier:@"show info"
-                                      sender:NSLocalizedStringFromTable(@"Developer", @"template", @"Developer")];
+        case 3:
+            [self performSegueWithIdentifier:@"show developer" sender:nil];
             break;
-        }
         default:
-            [self performSegueWithIdentifier:@"show info" sender:nil];
             break;
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"show info"]) {
-        [(GAInfoViewController*)segue.destinationViewController setInfoString:sender];
+    if ([segue.identifier isEqualToString:@"show inst info"]) {
+        GAInfoViewController *dst = (GAInfoViewController*)segue.destinationViewController;
+        dst.infoString = NSLocalizedString(@"inst-info", @"inst-info");
+    }
+    else if ([segue.identifier isEqualToString:@"show developer"]) {
+        GAInfoViewController *dst = (GAInfoViewController*)segue.destinationViewController;
+        dst.infoString = NSLocalizedStringFromTable(@"Developers", @"template", @"Developers");
+        dst.activateWhoIsTheDeveloper = YES;
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D98g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nI-xj-BIZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5nI-xj-BIZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -267,7 +267,8 @@
                         <outlet property="octaveButton" destination="TD7-FP-SkM" id="pZA-fx-MZR"/>
                         <segue destination="3uA-QS-4U0" kind="show" identifier="show settings" id="zv1-L1-aPE"/>
                         <segue destination="aXa-Ou-oai" kind="show" identifier="show manual" id="FoG-Ns-gWI"/>
-                        <segue destination="sm8-TR-qaq" kind="show" identifier="show info" id="t3v-on-osd"/>
+                        <segue destination="sm8-TR-qaq" kind="show" identifier="show inst info" id="t3v-on-osd"/>
+                        <segue destination="sm8-TR-qaq" kind="show" identifier="show developer" id="1HO-LT-d3V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahD-1K-opn" sceneMemberID="firstResponder"/>
@@ -588,21 +589,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Dcr-Ge-bB8" secondAttribute="trailing" id="58J-yg-e8z"/>
-                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="GD3-QR-dpM"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="top" secondItem="kYb-H3-yPg" secondAttribute="top" id="73k-ae-Qo2"/>
                             <constraint firstItem="W4O-il-bNg" firstAttribute="top" secondItem="GwS-4E-xKK" secondAttribute="top" id="Jm4-Zh-mTB"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="bottom" secondItem="tGL-gQ-81h" secondAttribute="top" id="RQp-0L-wMF"/>
                             <constraint firstItem="GwS-4E-xKK" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leadingMargin" id="XKu-Bm-hU6"/>
                             <constraint firstAttribute="bottom" secondItem="GwS-4E-xKK" secondAttribute="bottom" constant="20" symbolic="YES" id="ban-ge-C7T"/>
-                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leading" id="e1p-KL-gRf"/>
-                            <constraint firstItem="GwS-4E-xKK" firstAttribute="centerX" secondItem="Dcr-Ge-bB8" secondAttribute="centerX" id="g5L-Qm-gVP"/>
                             <constraint firstItem="W4O-il-bNg" firstAttribute="leading" secondItem="GwS-4E-xKK" secondAttribute="leading" id="kzn-yU-DVC"/>
-                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="top" secondItem="kYb-H3-yPg" secondAttribute="top" id="nbh-X3-UJc"/>
                             <constraint firstItem="GwS-4E-xKK" firstAttribute="top" secondItem="q3a-I9-zI3" secondAttribute="bottom" constant="8" symbolic="YES" id="vGf-JX-xxB"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="centerX" secondItem="GwS-4E-xKK" secondAttribute="centerX" id="vWf-Mx-lVw"/>
+                            <constraint firstItem="Dcr-Ge-bB8" firstAttribute="leading" secondItem="kYb-H3-yPg" secondAttribute="leading" id="xVZ-qc-MQw"/>
+                            <constraint firstAttribute="trailing" secondItem="Dcr-Ge-bB8" secondAttribute="trailing" id="zsY-Bb-UuO"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="About" id="WgO-zQ-MRg">
-                        <barButtonItem key="rightBarButtonItem" title="catsnu.com" id="cI9-Js-bKp">
+                        <barButtonItem key="rightBarButtonItem" title="catsnu" id="cI9-Js-bKp">
                             <connections>
                                 <action selector="linkBarButtonAction:" destination="sm8-TR-qaq" id="b2R-mI-Ua7"/>
                             </connections>
@@ -616,7 +617,7 @@
             </objects>
             <point key="canvasLocation" x="844" y="67"/>
         </scene>
-        <!--Manual-->
+        <!--Manual View Controller-->
         <scene sceneID="5gX-y4-30C">
             <objects>
                 <viewController id="aXa-Ou-oai" customClass="GAManualViewController" sceneMemberID="viewController">
@@ -629,13 +630,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Manual" id="Mc2-4Q-fUe">
-                        <barButtonItem key="rightBarButtonItem" title="catsnu.com" id="7FR-iG-XWr">
+                    <navigationItem key="navigationItem" id="Mc2-4Q-fUe">
+                        <view key="titleView" opaque="NO" contentMode="scaleToFill" id="98g-n0-C2F">
+                            <rect key="frame" x="180" y="-5.5" width="240" height="55"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xYh-BG-i4c">
+                                    <rect key="frame" x="8" y="10" width="224" height="37"/>
+                                    <color key="pageIndicatorTintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                                    <color key="currentPageIndicatorTintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </pageControl>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="xYh-BG-i4c" firstAttribute="leading" secondItem="98g-n0-C2F" secondAttribute="leadingMargin" id="6pc-oR-Mu4"/>
+                                <constraint firstItem="xYh-BG-i4c" firstAttribute="bottom" secondItem="98g-n0-C2F" secondAttribute="bottomMargin" id="eTS-yi-Tke"/>
+                                <constraint firstItem="xYh-BG-i4c" firstAttribute="trailing" secondItem="98g-n0-C2F" secondAttribute="trailingMargin" id="loD-3F-ua2"/>
+                            </constraints>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" title="catsnu" id="7FR-iG-XWr">
                             <connections>
                                 <action selector="linkBarButtonAction:" destination="aXa-Ou-oai" id="oMj-BW-knx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <keyCommands/>
+                    <connections>
+                        <outlet property="pageControl" destination="xYh-BG-i4c" id="Xzi-eY-WH4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="es0-qk-N82" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -653,16 +674,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IEd-pg-gBs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IEd-pg-gBs">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IEd-pg-gBs" firstAttribute="height" secondItem="Djt-bl-XLN" secondAttribute="height" id="RJN-Ge-KtZ"/>
-                            <constraint firstAttribute="centerX" secondItem="IEd-pg-gBs" secondAttribute="centerX" id="SBW-Lt-O4A"/>
-                            <constraint firstItem="IEd-pg-gBs" firstAttribute="width" secondItem="Djt-bl-XLN" secondAttribute="width" id="jBJ-CO-o18"/>
-                            <constraint firstAttribute="centerY" secondItem="IEd-pg-gBs" secondAttribute="centerY" id="pwy-6O-fUz"/>
+                            <constraint firstAttribute="trailing" secondItem="IEd-pg-gBs" secondAttribute="trailing" id="Dl3-ht-b4H"/>
+                            <constraint firstItem="IEd-pg-gBs" firstAttribute="bottom" secondItem="HOp-Ob-P5f" secondAttribute="top" id="HiZ-BL-9SH"/>
+                            <constraint firstItem="IEd-pg-gBs" firstAttribute="leading" secondItem="Djt-bl-XLN" secondAttribute="leading" id="VDk-IO-dvu"/>
+                            <constraint firstItem="IEd-pg-gBs" firstAttribute="top" secondItem="Djt-bl-XLN" secondAttribute="top" id="xhk-lr-yuC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -710,5 +732,8 @@
         <image name="octave_active.png" width="123" height="138"/>
         <image name="setting..png" width="42" height="43"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1HO-LT-d3V"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.50196081399917603" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -4,4 +4,6 @@
 "Inst" = "About Instrument";
 "App" = "About App";
 
-"Developer" = "Developers:\nHyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho\n\nSupport:\nThis work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.\n";
+"Developers" = "Developers:\nHyojee Kang, PyoungRyang Ko, Byongoh Ko, Daehyun Kim, Mijung Kim, Youngsun Kim, Taeeun Kim, Haeyun Kim, Sangbong Nam, Jisung Moon, Suchul Park, Jaerock Park, Jungho Bang, Yunjeong Seo, Hyangsook Song, Junseok An, Rina Yoo, So Jeong Youn, Gang Seong Lee, Donoung Lee, Doohyun Lee, Suzin Rhee, Sun-jin Lee, Kihyun Jung, Youngmi Cho, Jinok Cho\n\nSupport:\nThis work was financially supported by the Korea Creative Content Agency (KOCCA), an affiliate organization of the Ministry of Culture, Sports, and Tourism Korea (MCST), under the frame of the project KOCCA-2012-HE1405-R2012030134.\n";"Developer" = "by Jungho Bang (me@bangtoven.com)";
+
+"ManualURL" = "http://en.catsnu.com/Project/Gugak.aspx";

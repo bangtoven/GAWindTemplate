@@ -27,20 +27,22 @@
 }
 
 - (IBAction)whoIsTheDeveloper:(id)sender {
-    count++;
-    if (count<3)
-        return;
-    else if (count<10)
-        self.infoTextView.textColor = [UIColor colorWithWhite:1.0 alpha:(12-count)/10.];
-    else if (count==10) {
-        self.infoTextView.textColor = [UIColor whiteColor];
-        self.infoTextView.text =
-        @"by Jungho Bang (me@bangtoven.com)";
+    if (self.activateWhoIsTheDeveloper) {
+        count++;
+        if (count<10)
+            self.infoTextView.textColor = [UIColor colorWithHue:(10-count)/10. saturation:count/10. brightness:1.0 alpha:1.0];
+        else if (count==10) {
+            self.infoTextView.textColor = [UIColor whiteColor];
+            self.infoTextView.text =
+            NSLocalizedStringFromTable(@"Developer", @"template", @"Developer");
+        }
+        else if (count==11) {
+            self.infoTextView.text = self.infoString;
+            count = 0;
+        }
+        else
+            return;
     }
-    else if (count==11)
-        self.infoTextView.text = self.infoString;
-    else
-        return;
 }
 
 @end

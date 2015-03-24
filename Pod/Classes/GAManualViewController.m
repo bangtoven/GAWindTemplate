@@ -9,30 +9,25 @@
 #import "GAManualViewController.h"
 #import "GASettings.h"
 
-@interface ContentsViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@end
-
 @implementation ContentsViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.imageView.image = [UIImage imageNamed:self.imageFileName];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.masterViewController pageDidChanged:self.pageIndex];
+}
 @end
 
 #pragma mark - GAManualViewController
-@interface GAManualViewController () {
-    NSArray *pageImages;
-}
-
-@end
-
 @implementation GAManualViewController
 
 - (IBAction)linkBarButtonAction:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.catsnu.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:NSLocalizedStringFromTable(@"ManualURL", @"template", @"ManualURL")]];
 }
 
 - (void)viewDidLoad
@@ -83,8 +78,14 @@
     ContentsViewController *cvc = [self.storyboard instantiateViewControllerWithIdentifier:@"ContentsViewController"];
     cvc.imageFileName = pageImages[index];
     cvc.pageIndex = index;
+    cvc.masterViewController = self;
     
     return cvc;
+}
+
+- (void)pageDidChanged:(NSUInteger)pageIndex
+{
+    self.pageControl.currentPage = pageIndex;
 }
 
 #pragma mark - Page View Controller Data Source
